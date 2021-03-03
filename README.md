@@ -1,2 +1,14 @@
 # claroflex-gantt-chart-django
 Django BE for Gantt chart
+```sh
+mkdir venv
+virtualenv --prompt="(venv:claroflex)" ./venv/
+source ./venv/bin/activate
+git clone https://github.com/Ignat99/claroflex-gantt-chart-django
+cd claroflex-gantt-chart-django
+pip install -U -r requirements.txt
+python ./manage.py makemigrations
+python ./manage.py migrate
+python ./manage.py test
+python ./manage.py runserver 0.0.0.0:8080
+```

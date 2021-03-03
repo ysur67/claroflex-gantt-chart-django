@@ -1,0 +1,16 @@
+# Created by https://www.gitignore.io/api/django
+
+### Django ###
+*.log
+*.pot
+*.pyc
+manage.py
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+*/migrations/*
+apps/*/migrations/*
+.sass-cache
+media/
+
