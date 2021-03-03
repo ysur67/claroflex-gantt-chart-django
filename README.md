@@ -1,5 +1,7 @@
 # claroflex-gantt-chart-django
 Django BE for Gantt chart
+
+## Install the Web server
 ```sh
 mkdir venv
 virtualenv --prompt="(venv:claroflex)" ./venv/
@@ -11,4 +13,13 @@ python ./manage.py makemigrations
 python ./manage.py migrate
 python ./manage.py test
 python ./manage.py runserver 0.0.0.0:8080
+```
+## Docker
+
+## Some extra info
+
+https://habr.com/ru/post/240463/
+
+```sh
+python ./manage.py shell
 ```
