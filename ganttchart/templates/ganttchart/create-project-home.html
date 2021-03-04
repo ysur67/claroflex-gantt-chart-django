@@ -1,0 +1,98 @@
+
+
+{% extends "projects/base.html" %}
+{% load i18n %}
+{% load base_tags %}
+{% load staticfiles %}
+{% block title %}
+{% trans "Projects" %} - {% trans "Home" %}
+{% endblock title %}
+{% block content %}
+<div class="card">
+   <div class="row">
+      <div class="col-xs-12">
+         <div class="content">
+            <!-- PIVOT -->
+            <div class="row" style="background-color: #e1e1e1; color: #fb404b;">
+               <div class="content">
+                  <h2>{% trans "Pivot" %}</h2>
+               </div>
+            </div>
+            <div class="row">
+               <div class="content">
+                  <div class="col-lg-3">
+                     <figure class="claro-link hover">
+                        <img src="{% static 'img/Pivot_ERP.jpg' %}" alt="sq-sample27"/>
+                        <figcaption class="computer hidden-xs hidden-sm">
+                           <i class="pe-7s-culture"></i>
+                           <h5>{% trans "New Project" %}</h5>
+                           <h2>{% trans "Pivot" %}</h2>
+                        </figcaption>
+                        <figcaption class="mobile hidden-md hidden-lg hidden-xl">
+                           <h5>{% trans "New Project" %}</h5>
+                           <h2>{% trans "Pivot" %}</h2>
+                        </figcaption>
+                        <a href="{% url 'projects:project-create-pivot' %}"></a>
+                     </figure>
+                  </div>
+                  <div class="col-lg-3">
+                     <figure class="claro-link hover">
+                        <img src="{% static 'img/Pivot_Mini_s.jpg' %}" alt="sq-sample27"/>
+                        <figcaption class="computer hidden-xs hidden-sm">
+                           <i class="pe-7s-culture"></i>
+                           <h5>{% trans "New Project" %}</h5>
+                           <h2>{% trans "Pivot Mini" %}</h2>
+                        </figcaption>
+                        <figcaption class="mobile hidden-md hidden-lg hidden-xl">
+                           <h5>{% trans "New Project" %}</h5>
+                           <h2>{% trans "Pivot Mini" %}</h2>
+                        </figcaption>
+                        <a href="{% url 'projects:project-create-pivot-mini' %}"></a>
+                     </figure>
+                  </div>
+               </div>
+            </div>
+            <!--SLIDE-->
+            <div class="row" style="background-color: #e1e1e1; color: #fb404b;">
+               <div class="content">
+                  <h2>{% trans "Slide" %}</h2>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-3">
+                  <figure class="claro-link hover">
+                     <img src="{% static 'img/Slide_N_ERP.jpg' %}" alt="sq-sample27"/>
+                     <figcaption class="computer hidden-xs hidden-sm">
+                        <i class="pe-7s-culture"></i>
+                        <h5>{% trans "New Project" %}</h5>
+                        <h2>{% trans "Slide" %}</h2>
+                     </figcaption>
+                     <figcaption class="mobile hidden-md hidden-lg hidden-xl">
+                        <h5>{% trans "New Project" %}</h5>
+                        <h2>{% trans "Slide" %}</h2>
+                     </figcaption>
+                     <a href="{% url 'projects:project-create-slide' %}"></a>
+                  </figure>
+               </div>
+               <div class="col-lg-3">
+                  <figure class="claro-link hover">
+                     <img src="{% static 'img/Slide_ERP.jpg' %}" alt="sq-sample27"/>
+                     <figcaption class="computer hidden-xs hidden-sm">
+                        <i class="pe-7s-culture"></i>
+                        <h5>{% trans "New Project" %}</h5>
+                        <h2>{% trans "Slide Mini" %}</h2>
+                     </figcaption>
+                     <figcaption class="mobile hidden-md hidden-lg hidden-xl">
+                        <h5>{% trans "New Project" %}</h5>
+                        <h2>{% trans "Slide Mini" %}</h2>
+                     </figcaption>
+                     <a href="{% url 'projects:project-create-slide-mini' %}"></a>
+                  </figure>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}
+
