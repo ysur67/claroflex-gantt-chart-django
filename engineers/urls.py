@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+#from django.contrib.auth.decorators import login_required
+from . import views
 
+#login_required(views.create_project_home),
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^project/create/home$',
+        views.create_project_home,
+        name='project-create-home'),
 ]
