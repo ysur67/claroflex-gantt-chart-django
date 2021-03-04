@@ -17,12 +17,12 @@ from ganttchart.models import Contact
 from ganttchart.models import Project
 from ganttchart.models import Task
 from ganttchart.models import Report
-from ganttchart.models import TascsReport
+from ganttchart.models import TasksReport
 
 def create_project_home(request):
     return render(request, 'projects/create-project-home.html', {})
 
 
 class ListContactView(ListView):
-
-      model = Contact
+    model = Contact
+    template_name = 'contact_list.html'
