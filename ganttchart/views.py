@@ -11,13 +11,18 @@ from django.http import HttpResponse
 from django.http import HttpResponseNotFound
 from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
+from django.views.generic import ListView
 
-from models import Contact
-from models import Project
-from models import Task
-from models import Report
-from models import TascsReport
+from ganttchart.models import Contact
+from ganttchart.models import Project
+from ganttchart.models import Task
+from ganttchart.models import Report
+from ganttchart.models import TascsReport
 
 def create_project_home(request):
     return render(request, 'projects/create-project-home.html', {})
 
+
+class ListContactView(ListView):
+
+      model = Contact
