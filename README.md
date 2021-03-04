@@ -20,6 +20,8 @@ python ./manage.py runserver 0.0.0.0:8080
 
 https://habr.com/ru/post/240463/
 
+https://habr.com/ru/post/242261/
+
 https://habr.com/ru/company/otus/blog/544880/
 
 ```sh
