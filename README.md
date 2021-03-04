@@ -1,6 +1,14 @@
 # claroflex-gantt-chart-django
 Django BE for Gantt chart
 
+## PostgreSQL
+
+We are using this database. The psycopg2-binary package does not need to be installed everywhere. In most cases, enough
+
+```sh
+pip install psycopg2
+```
+
 ## Install the Web server
 ```sh
 mkdir venv
