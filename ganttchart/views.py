@@ -11,13 +11,19 @@ from django.http import HttpResponse
 from django.http import HttpResponseNotFound
 from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
-from django.views.generic import ListView
+from django.core.urlresolvers import reverse
+from django.views.generic import (
+    ListView,
+    CreateView,
+)
 
-from ganttchart.models import Contact
-from ganttchart.models import Project
-from ganttchart.models import Task
-from ganttchart.models import Report
-from ganttchart.models import TasksReport
+from ganttchart.models import (
+    Contact,
+    Project,
+    Task,
+    Report,
+    TasksReport,
+)
 
 def create_project_home(request):
     return render(request, 'projects/create-project-home.html', {})
@@ -26,3 +32,12 @@ def create_project_home(request):
 class ListContactView(ListView):
     model = Contact
     template_name = 'contact_list.html'
+
+class CreateContactView(CreateView):
+
+    model = Contact
+    template_name = 'edit_contact.html'
+    fields = ['first_name', 'last_name', 'email']
+
+    def get_success_url(self):
+        return reverse('contacts-list')
