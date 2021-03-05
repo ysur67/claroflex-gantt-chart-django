@@ -16,7 +16,7 @@ sudo -u postgres psql postgres
 ```sql
 CREATE DATABASE django;
 CREATE USER django WITH PASSWORD ‘verysecret’;
-GRANT ALL PRIVILEGES ON DATABASE django TO sonar;
+GRANT ALL PRIVILEGES ON DATABASE django TO django;
 ALTER USER django CREATEDB;
 ```
 
