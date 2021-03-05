@@ -1,12 +1,51 @@
 # claroflex-gantt-chart-django
 Django BE for Gantt chart
 
+## Docker
+Copy file .env.template to .env in project root directory
+
+Run migrations:
+```
+docker-compose exec app python manage migrate
+```
+
+Create superuser:
+```
+docker-compose exec app python manage createsuperuser
+```
+
+Restart app:
+```
+docker-compose restart app
+``` 
+
+Run docker with custom config
+```
+docker-compose -f docker-compose.yml - f docker-compose.prod.yml up -d
+```
+
+Run docker in dev mode with building:
+```
+docker-compose up --build
+```
+
 ## PostgreSQL
 
 We are using this database. The psycopg2-binary package does not need to be installed everywhere. In most cases, enough
 
 ```sh
 pip install psycopg2
+```
+
+```sh
+sudo -u postgres psql postgres
+```
+
+```sql
+CREATE DATABASE django;
+CREATE USER django WITH PASSWORD ‘verysecret’;
+GRANT ALL PRIVILEGES ON DATABASE django TO django;
+ALTER USER django CREATEDB;
 ```
 
 ## Install the Web server
@@ -22,7 +61,9 @@ python ./manage.py migrate
 python ./manage.py test
 python ./manage.py runserver 0.0.0.0:8080
 ```
-## Docker
+
+## Video
+[![Watch the video](https://img.youtube.com/vi/NfsJDPm0X54/0.jpg)](https://youtu.be/NfsJDPm0X54)
 
 ## Some extra info
 
