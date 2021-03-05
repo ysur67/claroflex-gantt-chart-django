@@ -9,6 +9,17 @@ We are using this database. The psycopg2-binary package does not need to be inst
 pip install psycopg2
 ```
 
+```sh
+sudo -u postgres psql postgres
+```
+
+```sql
+CREATE DATABASE django;
+CREATE USER django WITH PASSWORD ‘verysecret’;
+GRANT ALL PRIVILEGES ON DATABASE django TO sonar;
+ALTER USER django CREATEDB;
+```
+
 ## Install the Web server
 ```sh
 mkdir venv
