@@ -36,7 +36,7 @@ python ./manage.py runserver 0.0.0.0:8080
 ## Docker
 
 ## Video
-https://www.youtube.com/watch?v=NfsJDPm0X54
+[![Watch the video](https://img.youtube.com/vi/NfsJDPm0X54/0.jpg)](https://youtu.be/NfsJDPm0X54)
 
 ## Some extra info
 
