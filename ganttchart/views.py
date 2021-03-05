@@ -42,7 +42,7 @@ class CreateContactView(CreateView):
     def get_success_url(self):
         return reverse('contacts-list')
 
-class FillProject(CreateView):
+class FillProjectView(CreateView):
     model = Project
     template_name = 'ganttchart/projects.tpl'
 

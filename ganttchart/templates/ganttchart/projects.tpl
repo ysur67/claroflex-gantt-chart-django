@@ -1,4 +1,4 @@
-<script type="text/javascript" src="{% static '/js/tinymce/tinymce.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'static/bootstrap/js/tinymce/tinymce.min.js' %}"></script>
 
 <div class="content_block_padn">
 {% add_form %}

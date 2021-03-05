@@ -15,5 +15,4 @@ apps/*/migrations/*
 media/
 
 .idea
-static/
 media/
