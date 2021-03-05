@@ -30,6 +30,8 @@ https://habr.com/ru/post/240463/
 
 https://habr.com/ru/post/242261/
 
+https://github.com/nyergler/effective-django
+
 https://habr.com/ru/company/otus/blog/544880/
 
 ```sh
