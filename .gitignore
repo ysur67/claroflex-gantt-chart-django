@@ -14,3 +14,6 @@ apps/*/migrations/*
 .sass-cache
 media/
 
+.idea
+static/
+media/
