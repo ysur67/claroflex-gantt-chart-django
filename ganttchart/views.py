@@ -30,7 +30,10 @@ from ganttchart.models import (
     Report,
     TasksReport,
 )
-from ganttchart.forms import *
+from ganttchart.forms import (
+    ContactForm,
+    ContactAddressFormSet,
+)
 
 def create_project_home(request):
     return render(request, 'projects/create-project-home.html', {})
@@ -48,10 +51,10 @@ class LoggedInMixin(object):
 class ListContactView(ListView):
     model = Contact
     template_name = 'contact_list.html'
-    
+
     def get_queryset(self):
         return Contact.objects.filter(owner=self.request.user)
-    
+
 class ContactOwnerMixin(object):
     def get_object(self, queryset=None):
         """Returns the object the view is displaying.
@@ -85,6 +88,45 @@ class CreateContactView(LoggedInMixin, CreateView):
         context = super(CreateContactView, self).get_context_data(**kwargs)
         context['action'] = reverse('contacts-new')
         return context
+
+
+class UpdateContactView(LoggedInMixin, ContactOwnerMixin, UpdateView):
+
+    model = Contact
+    template_name = 'edit_contact.html'
+    form_class = ContactForm
+
+    def get_success_url(self):
+        return reverse('contacts-list')
+
+    def get_context_data(self, **kwargs):
+
+        context = super(UpdateContactView, self).get_context_data(**kwargs)
+        context['action'] = reverse('contacts-edit',
+                                    kwargs={'pk': self.get_object().id})
+
+        return context
+
+
+class DeleteContactView(LoggedInMixin, ContactOwnerMixin, DeleteView):
+
+    model = Contact
+    template_name = 'delete_contact.html'
+
+    def get_success_url(self):
+        return reverse('contacts-list')
+
+
+class EditContactAddressView(LoggedInMixin, ContactOwnerMixin, UpdateView):
+
+    model = Contact
+    template_name = 'edit_addresses.html'
+    form_class = ContactAddressFormSet
+
+    def get_success_url(self):
+
+        # redirect to the Contact view.
+        return self.get_object().get_absolute_url()
 
 class FillProjectView(CreateView):
     model = Project

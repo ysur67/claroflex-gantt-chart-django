@@ -36,7 +36,7 @@ urlpatterns = [
     ),
     url(r'^logout/$',
         LogoutView.as_view(
-            template_name='admin/logout.html'
+            template_name='logout.html'
         ),
         name="ganttchart-logout"
     ),
@@ -49,6 +49,12 @@ urlpatterns = [
     url(r'^new$',
         ganttchart.views.CreateContactView.as_view(),
         name='contacts-new',),
+    url(r'^edit/(?P<pk>\d+)/$', ganttchart.views.UpdateContactView.as_view(),
+        name='contacts-edit',),
+    url(r'^edit/(?P<pk>\d+)/addresses$', ganttchart.views.EditContactAddressView.as_view(),
+        name='contacts-edit-addresses',),
+    url(r'^delete/(?P<pk>\d+)/$', ganttchart.views.DeleteContactView.as_view(),
+        name='contacts-delete',),
     url(r'^project$',
         ganttchart.views.FillProjectView.as_view(),
         name='ganttchart-project',),
