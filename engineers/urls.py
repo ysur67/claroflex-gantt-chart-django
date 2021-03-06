@@ -25,9 +25,14 @@ import ganttchart.views
 
 #login_required(views.create_project_home),
 urlpatterns = [
+    url(r'^login/$', 'django.contrib.auth.views.login'),
+    url(r'^logout/$', 'django.contrib.auth.views.logout'),
+    
     url(r'^$',
         ganttchart.views.ListContactView.as_view(),
         name='contacts-list',),
+    url(r'^(?P<pk>\d+)/$', contacts.views.ContactView.as_view(),
+        name='contacts-view',),
     url(r'^new$',
         ganttchart.views.CreateContactView.as_view(),
         name='contacts-new',),
