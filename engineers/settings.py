@@ -120,3 +120,4 @@ STATIC_ROOT = str(BASE_DIR / 'static')
 MEDIA_ROOT = str(BASE_DIR / 'media')
 MEDIA_URL = '/media/'
 
+

@@ -52,6 +52,6 @@ class FillProjectView(CreateView):
 
     def get_success_url(self):
  #       if(_GET['part']==1 && _GET['part']==2)
-            // Форма добавления нового проекта
+            # Форма добавления нового проекта
         add_form = fill_projects_add_form()
 #        return reverse('contacts-list')
