@@ -30,7 +30,7 @@ from ganttchart.models import (
     Report,
     TasksReport,
 )
-import forms
+from ganttchart.forms import *
 
 def create_project_home(request):
     return render(request, 'projects/create-project-home.html', {})
@@ -80,7 +80,7 @@ class CreateContactView(LoggedInMixin, CreateView):
 
     def get_success_url(self):
         return reverse('contacts-list')
-    
+
     def get_context_data(self, **kwargs):
         context = super(CreateContactView, self).get_context_data(**kwargs)
         context['action'] = reverse('contacts-new')

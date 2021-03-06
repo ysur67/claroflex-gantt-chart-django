@@ -13,6 +13,7 @@ class ContactForm(forms.ModelForm):
     )
     class Meta:
         model = Contact
+        fields = ['first_name', 'last_name', 'email']
 
     def __init__(self, *args, **kwargs):
         if kwargs.get('instance'):
@@ -35,4 +36,5 @@ class ContactForm(forms.ModelForm):
 ContactAddressFormSet = inlineformset_factory(
     Contact,
     Address,
+    fields = ['contact', 'address_type', 'address', 'city', 'state', 'postal_code']
 )

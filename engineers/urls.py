@@ -19,19 +19,32 @@ from django.conf.urls.static import static
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
-
+from django.contrib.auth.views import (
+    LoginView,
+    LogoutView
+)
 #from django.contrib.auth.decorators import login_required
 import ganttchart.views
 
 #login_required(views.create_project_home),
 urlpatterns = [
-    url(r'^login/$', 'django.contrib.auth.views.login'),
-    url(r'^logout/$', 'django.contrib.auth.views.logout'),
-    
+    url(r'^login/$',
+        LoginView.as_view(
+            template_name='admin/login.html'
+        ),
+        name="ganttchart-login"
+    ),
+    url(r'^logout/$',
+        LogoutView.as_view(
+            template_name='admin/logout.html'
+        ),
+        name="ganttchart-logout"
+    ),
+
     url(r'^$',
         ganttchart.views.ListContactView.as_view(),
         name='contacts-list',),
-    url(r'^(?P<pk>\d+)/$', contacts.views.ContactView.as_view(),
+    url(r'^(?P<pk>\d+)/$', ganttchart.views.ContactView.as_view(),
         name='contacts-view',),
     url(r'^new$',
         ganttchart.views.CreateContactView.as_view(),
