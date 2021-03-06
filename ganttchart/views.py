@@ -28,6 +28,9 @@ from ganttchart.models import (
 def create_project_home(request):
     return render(request, 'projects/create-project-home.html', {})
 
+# Форма добавления выговора
+def fill_projects_add_form():
+    return reverse ('ganttchart/add_form.tpl')
 
 class ListContactView(ListView):
     model = Contact
@@ -44,9 +47,11 @@ class CreateContactView(CreateView):
 
 class FillProjectView(CreateView):
     model = Project
-    add_form = 'ganttchart/add_form.tpl'
     template_name = 'ganttchart/projects.tpl'
     fields = ['deleted', 'closed', 'head_confirmed', 'name']
 
     def get_success_url(self):
-        return reverse('contacts-list')
+ #       if(_GET['part']==1 && _GET['part']==2)
+            // Форма добавления нового проекта
+        add_form = fill_projects_add_form()
+#        return reverse('contacts-list')
