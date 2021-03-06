@@ -44,7 +44,9 @@ class CreateContactView(CreateView):
 
 class FillProjectView(CreateView):
     model = Project
+    add_form = 'ganttchart/add_form.tpl'
     template_name = 'ganttchart/projects.tpl'
+    fields = ['deleted', 'closed', 'head_confirmed', 'name']
 
     def get_success_url(self):
         return reverse('contacts-list')

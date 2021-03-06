@@ -31,7 +31,7 @@ function add_project()
 	
 	project_tasks_arr = get_project_form_tasks();
 	
-	// Прикрепленные файлы
+	// Archivos adjuntos
 	files_arr = Disk.get_upload_content_files(0);
 	files_content_type = Disk.get_upload_content_files_content_type(0);
 	 
@@ -60,7 +60,7 @@ function add_project()
 		else if(data['success'])
 		{
 			get_project_item(data['project_id'], 1);
-			$('#success').html('<div class="success">Проект успешно добавлен.</div>');
+			$('#success').html('<div class="success">El proyecto se ha agregado con Г©xito.</div>');
 			document.location = '/projects?id='+data['project_id'];
 			
 			//clear_block_by_settime('success');
@@ -146,7 +146,7 @@ function project_errors(data)
 	
 	if(data['error']['project_name'])
 	{
-		error_text += '<div>Название проекта не может быть пустым.</div>';
+		error_text += '<div>El nombre del proyecto no puede estar vacГ­o.</div>';
 		 
 	}
 	if(data['error']['date'])
@@ -158,19 +158,19 @@ function project_errors(data)
 			if(j['date_start']==1)
 			{
 				$('#task_date_start_'+j['task_id']).addClass('light_error_input');
-				error_text += '<div>Дата старта задачи #<b>'+this_task_num+'</b> не указана.</div>';
+				error_text += '<div>Fecha de inicio de la tarea #<b>'+this_task_num+'</b> no especificado.</div>';
 			}
 			if(j['date_finish']==1)
 			{
 				$('#task_date_finish_'+j['task_id']).addClass('light_error_input');
-				error_text += '<div>Дата завершения задачи #<b>'+this_task_num+'</b> не указана.</div>';
+				error_text += '<div>Fecha de finalizaciГіn de la tarea #<b>'+this_task_num+'</b> no especificado.</div>';
 			}
 			
 			if(j['valid']==1)
 			{ 
 				$('#task_date_start_'+j['task_id']).addClass('light_error_input');
 				$('#task_date_finish_'+j['task_id']).addClass('light_error_input');
-				error_text += '<div>Дата старта задачи #<b>'+this_task_num+'</b> не может быть меньше даты завершения.</div>';
+				error_text += '<div>Fecha de inicio de la tarea #<b>'+this_task_num+'</b> no puede ser inferior a la fecha de finalizaciГіn.</div>';
 			}
 			 
 		})
@@ -187,7 +187,7 @@ function project_errors(data)
 			$('#task_date_start_'+i).addClass('light_error_input');
 			$('#task_date_finish_'+i).addClass('light_error_input');
 			
-			error_text += '<div>Дата старта задачи #<b>'+this_task_num+'</b> должна быть больше даты завершения задачи #<b>'+pre_task_num+'</b>.</div>';
+			error_text += '<div>Fecha de inicio de la tarea #<b>'+this_task_num+'</b> debe ser mayor que la fecha de finalizaciГіn de la tarea. #<b>'+pre_task_num+'</b>.</div>';
 			 
 		})
 	}
@@ -257,7 +257,7 @@ function save_project()
 	
 	project_tasks_arr = get_project_form_tasks();
 	
-	// Прикрепленные файлы
+	// Archivos adjuntos
 	files_arr = Disk.get_upload_content_files(project_id);
 	files_content_type = Disk.get_upload_content_files_content_type(project_id);
 	files_deleted = Disk.get_content_deleted_files();
@@ -291,7 +291,7 @@ function save_project()
 		{
 			document.location.reload();
 			/*
-			$('#success').html('<div class="success">Данные успешно сохранены.</div>');
+			$('#success').html('<div class="success">Los datos se guardaron con Г©xito.</div>');
 			clear_block_by_settime('success');
 			
 			get_project_tasks_list(project_id);
@@ -340,7 +340,7 @@ function add_project_task(after_task_id)
 	num = $('.task').size() + 1;
 	task_id = 'rand'+Number(Math.round(Math.random()*1000000));
 	
-	// Если есть предшествующая задача
+	// Si hay una tarea antecedente
 	if(after_task_id)
 	{
 		var after_task_date_finish = $('#task_'+after_task_id+' .date_finish').val();
@@ -349,7 +349,7 @@ function add_project_task(after_task_id)
 		{
 			date_start = date_plus_days(to_norm_date(after_task_date_finish), 1);
 			
-			// Дата старта новой задачи
+			// Fecha de inicio de la nueva tarea
 			date_start = time_to_rus_date(date_start);
 		}
 	}
@@ -362,7 +362,7 @@ function add_project_task(after_task_id)
 	$('#add_more_project_task_btn').show();
 	$('#project_tasks_tb').show();
 	 
-	$('#projects_tasks').append('<tr class="task" num="'+num+'" after_task_id="'+after_task_id+'" id="task_'+task_id+'" task_id="'+task_id+'" completed="0"><td class="task_num cont_process"></td><td class="task_user_c" ><select id="select_task_user_'+task_id+'" class="user"></select><div class="project_task_desc_bl"><textarea id="task_desc_'+task_id+'" class="task_desc input_text"></textarea></div></td><td class="prt_after_sel_bl"><select id="after_task_'+task_id+'" class="input_text after_task_s"></select></td><td class="prt_dates_bl"><div class="prt_date_t">По плану</div><input type="text" id="task_date_start_'+task_id+'" class="date_inp input_text date_start" task_id="'+task_id+'" value="'+date_start+'"/>&nbsp;&nbsp;&nbsp;<input type="text" id="task_date_finish_'+task_id+'" class="date_inp input_text date_finish" task_id="'+task_id+'"/></td><td class="prt_delete_bl"><a href="javascript:;" class="delete" onclick="delete_project_task(\''+task_id+'\')"></a></td></tr>');
+	$('#projects_tasks').append('<tr class="task" num="'+num+'" after_task_id="'+after_task_id+'" id="task_'+task_id+'" task_id="'+task_id+'" completed="0"><td class="task_num cont_process"></td><td class="task_user_c" ><select id="select_task_user_'+task_id+'" class="user"></select><div class="project_task_desc_bl"><textarea id="task_desc_'+task_id+'" class="task_desc input_text"></textarea></div></td><td class="prt_after_sel_bl"><select id="after_task_'+task_id+'" class="input_text after_task_s"></select></td><td class="prt_dates_bl"><div class="prt_date_t">De acuerdo al plan</div><input type="text" id="task_date_start_'+task_id+'" class="date_inp input_text date_start" task_id="'+task_id+'" value="'+date_start+'"/>&nbsp;&nbsp;&nbsp;<input type="text" id="task_date_finish_'+task_id+'" class="date_inp input_text date_finish" task_id="'+task_id+'"/></td><td class="prt_delete_bl"><a href="javascript:;" class="delete" onclick="delete_project_task(\''+task_id+'\')"></a></td></tr>');
 	
 	$('#project_tasks_tb').show();
 	
@@ -386,7 +386,7 @@ function add_project_task(after_task_id)
 	
 	$('#select_task_user_'+task_id+'[not_select!=1]').easycomplete(
 	{
-		str_word_select : 'Выбрать сотрудника',
+		str_word_select : 'Seleccionar empleado',
 		url:'/ajax/ajaxGetUsers.php?who=all&by=name&current_user=1&result_name=2',
 		width:350,
 		trigger : 1
@@ -453,7 +453,7 @@ function delete_project(project_id)
 		
 		if(data==1)
 		{
-			$('#project_'+project_id).replaceWith('<tr class="tb_data_1_row" id="project_'+project_id+'"><td colspan="5"><div class="success">Проект успешно удален | <a href="javascript:;" onclick="restore_project('+project_id+');">Восстановить</a> | <a href="javascript:;" onclick="$(\'#project_'+project_id+'\').remove();">Скрыть</a></div></td></tr>');
+			$('#project_'+project_id).replaceWith('<tr class="tb_data_1_row" id="project_'+project_id+'"><td colspan="5"><div class="success">Proyecto eliminado correctamente | <a href="javascript:;" onclick="restore_project('+project_id+');">Restablecer</a> | <a href="javascript:;" onclick="$(\'#project_'+project_id+'\').remove();">Esconder</a></div></td></tr>');
 		}
 		
 	});
@@ -524,7 +524,7 @@ function add_project_report(project_id)
 }
 
 actual_report_page = 1;
-// Выводит больше выговоров
+// Produce mГЎs reprimendas
 function get_more_project_reports()
 {
 	var page;
@@ -541,7 +541,7 @@ function get_more_project_reports()
 		
 		$('#reports_list').append(data);
 		
-		// Актаульная страница
+		// PГЎgina real
 		actual_report_page++;
 		
 		if(actual_report_page>=pages_count)
@@ -572,7 +572,7 @@ function get_project_report_item(report_id, with_replace)
 }
 
 
-// Принять отчет о круге обязанностей 
+// Acepte el Informe del CГ­rculo de Obligaciones 
 function confirm_project_report(report_id, confirm_all)
 {
 	loading_btn('confirm_report_btn_'+report_id);
@@ -620,7 +620,7 @@ function delete_project_report(report_id, project_id)
 		if(data==1)
 		{ 
 			$('.cont_hide_'+report_id+'_'+project_id).hide();
-			$('#cont_report_result_'+report_id+'_'+project_id).html('<div class="">Комментарий успешно удален | <a href="javascript:;" onclick="restore_project_report(\''+report_id+'\',\'' +project_id+'\')" class="link">Восстановить</a> | <a href="javascript:;" onclick="$(\'#report_'+report_id+'\').remove()" class="link">Скрыть</a> </div>');
+			$('#cont_report_result_'+report_id+'_'+project_id).html('<div class="">Comentario eliminado correctamente | <a href="javascript:;" onclick="restore_project_report(\''+report_id+'\',\'' +project_id+'\')" class="link">Restablecer</a> | <a href="javascript:;" onclick="$(\'#report_'+report_id+'\').remove()" class="link">Esconder</a> </div>');
 			
 			recount_project_notice();
 		}
@@ -658,7 +658,7 @@ function recount_project_notice()
 	},
 	function(data){ 
 		 
-		// Правим счетчик в левом меню
+		// Manejamos el contador en el menГє de la izquierda
 		if(parseInt(data['count'])>=1)
 		{ 
 			$('#new_projects_count').html('(+ '+data['count']+')');
@@ -667,7 +667,7 @@ function recount_project_notice()
 		{
 			$('#new_projects_count').html('');
 		}
-		 // Правим счетчик в левом меню
+		 // Manejamos el contador en el menГє de la izquierda
 		if(parseInt(data['new_projects_count'])>=1)
 		{
 			$('#new_count_in_part_projects').html('(+ '+data['count']+')');
@@ -704,7 +704,7 @@ function project_task_complete(task_id, completed)
 			$('#project_task_completed_bl_'+task_id).html('');
 			recount_project_notice();
 		}
-		// Правим счетчик в левом меню
+		// Manejamos el contador en el menГє de la izquierda
 		else if(data['success']==1 && (completed==1 || completed==2))
 		{	
 			 $('#task_'+task_id+' .task_num').removeClass(task_completed_class);
@@ -745,7 +745,7 @@ function project_confirm(project_id)
 
 projects_list_actual_page = 1;
 
-// Выводит больше выговоров
+// Produce mГЎs reprimendas
 function get_more_projects()
 {
 	var page;
@@ -765,7 +765,7 @@ function get_more_projects()
 		
 		//draw_background_list_item('project_item', 'zebra1');
 		
-		// Актаульная страница
+		// PГЎgina real
 		projects_list_actual_page++;
 		
 		if(projects_list_actual_page>=pages_count)
@@ -809,11 +809,11 @@ function project_close(project_id, status)
 			
 			if(status=='close')
 			{
-				$('#success_close').html('<div class="success">Проект успешно закрыт.</div>');
+				$('#success_close').html('<div class="success">Proyecto cerrado con Г©xito.</div>');
 			}
 			else
 			{
-				$('#success_close').html('<div class="success">Проект успешно открыт.</div>');
+				$('#success_close').html('<div class="success">Proyecto abierto con Г©xito.</div>');
 			}
 			
 			clear_block_by_settime('success_close');
@@ -851,7 +851,7 @@ function show_projects_content()
 
 function projects_tasks_init(static_task_obj)
 {	
-	// Если объкт задач для диаграммы был сформирован на стороне сервера
+	// Si el objeto de tarea para el diagrama se generГі en el lado del servidor
 	if(!static_task_obj)
 	{
 		renumber_project_tasks();
@@ -877,7 +877,7 @@ function projects_tasks_init(static_task_obj)
 			
 			$('#select_task_user_'+task_id+'[not_select!=1]').easycomplete(
 			{
-				str_word_select : 'Выбрать сотрудника',
+				str_word_select : 'Seleccionar empleado' ,
 				url:'/ajax/ajaxGetUsers.php?who=all&by=name&current_user=1&result_name=2',
 				width:350,
 				trigger : 1
@@ -907,7 +907,7 @@ function project_tasks_data_to_obj(e)
 {
 	num = 1;
 	tasks_obj = {};
-	// Выбираем время старта и завершения
+	// Elegir la hora de inicio y finalizaciГіn
 	$('.task').each(function(){
 		
 		var this_task_obj = {};
@@ -953,14 +953,14 @@ function project_scheme_init(e, static_task_obj)
 	if(e)
  	var task_id = $(e.target).attr('task_id');
 	 
-	// Начальная дата гарфиков
+	// Fecha de inicio de grГЎficos
 	var min_date_start = null;
-	// Финальная дата графиков
+	// Fecha final de grГЎficos
 	var max_date_finish = null;
 	
-	// Начальная дата гарфиков по плану
+	// Fecha de inicio de grГЎficos segГєn plan
 	var min_plan_date_start = null;
-	// Финальная дата графиков 
+	// Fecha final de grГЎficos 
 	var max_plan_date_finish = null;
 	
 	
@@ -969,30 +969,30 @@ function project_scheme_init(e, static_task_obj)
 	$('#project_tasks_tb .date_inp').removeClass('light_error_input');
 	 
 	
-	// Устанавливаем сначала дату финальных графиков как дату текущего дня
+	// Primero, establecemos la fecha de los grГЎficos finales como la fecha del dГ­a actual
 	max_date_finish = new Date().getTime(); 
 	
 	var tasks_count = 0; 
  
-	// Проход по задачам и определяем гарницы графиков
+	// Repasa las tareas y define los lГ­mites de los grГЎficos
 	$.each(tasks_obj, function(i, task_data){
 		 
 		//var start_val = $(this).children('td').children('.date_start').val() || $(this).children('td').children('.date_start').text();
 		//var finish_val = $(this).children('td').children('.date_finish').val() || $(this).children('td').children('.date_finish').text();
 		
-		// Статически задан объект задач
+		// Objeto de tarea establecido estГЎticamente
 		if(static_task_obj==1 && !check_pr_task_for_visible_in_user_part_list(task_data))
 		{
 			return true;
 		}
 		 
-		// Даты старта и завершения задач с учетом сдвигов		
+		// Fechas de inicio y finalizaciГіn de las tareas, teniendo en cuenta los turnos		
 		var dates_arr = get_task_dates(task_data);
-		// По факту		 
+		// ГЏГ® ГґГ ГЄГІГі		 
 		var fact_date_start = dates_arr['start'];
 		var fact_date_finish = dates_arr['finish'];
 			 
-		// По плану
+		// ГЏГ® ГЇГ«Г Г­Гі
 		var plan_date_start = task_data['start'];
 		var plan_date_finish = task_data['finish'];
 		
@@ -1040,7 +1040,7 @@ function project_scheme_init(e, static_task_obj)
 	 
 	if(static_task_obj!=1)
 	{
-		// Определяет границы временного интервала выполнения задачи
+		// Define los lГ­mites del intervalo de tiempo para la tarea
 		show_project_period_date(min_date_start, max_date_finish, min_plan_date_start, max_plan_date_finish);
 	}
 	
@@ -1052,7 +1052,7 @@ function project_scheme_init(e, static_task_obj)
 		return false;
 	}
 	 
-	// Разбираем заданную дату
+	// Analizamos una fecha determinada
 	date_start = new Date(min_date_start);
 	 
 	date_start_day=date_start.getDay()+1;
@@ -1081,7 +1081,7 @@ function project_scheme_init(e, static_task_obj)
 	var days_count = 0;
 	var days_rows = '';
 	
-	dates_days = '<td>№</td>';
+	dates_days = '<td>В№</td>';
 	
 	while(!stop_date)
 	{
@@ -1106,15 +1106,15 @@ function project_scheme_init(e, static_task_obj)
 			tday_class = 'actual_date';
 		}
 		
-		// Дни в заголовке
+		// DГ­as en el encabezado
 		dates_days += '<td class="'+tday_class+'"><div class='+dayweek_class+'>'+dayweek+'</div>'+date+'</td>';
 		
 		month_rus_name = get_month_rus_name_by_month(month,1);
 		
-		// Месяц в заголовке
+		// Mes en el tГ­tulo
 		dates_months[year+'_'+month] = '<th colspan="'+month_colspan+'">'+month_rus_name+', <span class="year">'+year+'</span></th>';
 		
-		// Подсчет, сколько дней будет отображено в месяце на схеме
+		// Contar cuГЎntos dГ­as se mostrarГЎn en un mes en un diagrama
 		if(current_month_in_row!=month)
 		{
 			month_colspan = 1;
@@ -1132,7 +1132,7 @@ function project_scheme_init(e, static_task_obj)
 	}
 	 
  
-	// Формируем ячейки для графика
+	// Formando celdas para el grГЎfico
 	var date_proc = date_start_timeseconds - 60*60*24*4;
 	 
 	
@@ -1223,7 +1223,7 @@ function render_project_scheme_line(task_id, static_task_obj)
 			return true;
 		}
 		
-		// Даты старта и завершения задач		
+		// Fechas de inicio y finalizaciГіn de las tareas		
 		var dates_arr = get_task_dates(task_data);
 		
 		var this_date_start = dates_arr['start'];
@@ -1239,7 +1239,7 @@ function render_project_scheme_line(task_id, static_task_obj)
 		$('#fact_date_start_'+this_task_id).html(time_to_rus_date(this_date_start));
 		$('#fact_date_finish_'+this_task_id).html(time_to_rus_date(this_date_finish));
 		
-		// Кол-во дней, на которое было просрочено задание 
+		// NГєmero de dГ­as en los que la tarea estГЎ retrasada 
 		var task_dates_later = dates_arr['task_dates_later'];
 		
 	 	//alert(task_dates_later)
@@ -1317,7 +1317,7 @@ function render_project_scheme_line(task_id, static_task_obj)
 			 
 			
 			 
-			// Анимируем линию
+			// Animando la lГ­nea
 			if(task_id == this_task_id)
 			{  
 				line = '<a '+line_href+' class="line '+line_class+'" style="width:0px; '+style_cursor+'" is_desc="'+desc_attr+'" after_task_id="'+after_task_id+'" task_id="'+this_task_id+'"><div id="pr_line_desc_'+this_task_id+'" class="d_none prline_desc_c">'+line_desc+'</div>'+later_line_days+'</a>';
@@ -1367,7 +1367,7 @@ function draw_line_dependence()
 			return true;
 		}
 		
-		// Находим график предшеств. задачи 
+		// Encontrar la grГЎfica de la tarea anterior
 		var pre_task_line_obj = $('.line[task_id="'+after_task_id+'"]');
 		var pre_task_line_offset = pre_task_line_obj.offset();
 		var pre_task_line_obj_width = $(pre_task_line_obj).width();
@@ -1402,7 +1402,7 @@ function draw_line_dependence()
 }
 
 
-// Возвращает даты старта и конца задач
+// Devuelve las fechas de inicio y finalizaciГіn de las tareas
 function get_task_dates(this_task_data)
 {
 	var result = {};
@@ -1415,40 +1415,40 @@ function get_task_dates(this_task_data)
 	result['start'] = start_date;
 	result['finish'] = finish_date;
 	
-	// Предыдущие задачи для данной задачи
+	// Tareas anteriores para esta tarea
 	var prepends_tasks;
 
 	 
-	// Предыдущие задачи перед задачей
+	// Tareas anteriores antes de la tarea
 	var prepends_tasks = get_prepend_tasks_arr(this_task_data);
  
-	// Если у задачи есть предшествующие задачи
+	// Si la tarea tiene tareas anteriores
 	if(Object.keys(prepends_tasks).length)
 	{ 
-		// Кол-во дней, на которые смещается задача исходят из предыдущих
+		// El nГєmero de dГ­as en los que se cambia la tarea se basa en los anteriores
 		task_offset_days = get_task_offset_days(prepends_tasks, this_task_data);
 		
-		// Обозначаем дату cтарта и завершения с учетом смещения
+		// Designamos la fecha de inicio y finalizaciГіn, teniendo en cuenta la compensaciГіn horaria
 		start_date = date_plus_days(this_task_data['start'], task_offset_days);
 		finish_date = date_plus_days(this_task_data['finish'], task_offset_days);		
 	}
 	
 	
-	// Дата предполагаемого завершения задачи с учетом всех сдвигов(если есть)
-	// Дата завершения является предполагаемой с учотом сдвига и не отображает дату завершения фактическую
+	// Fecha de finalizaciГіn prevista de la tarea, teniendo en cuenta todos los turnos (si los hay)
+	// La fecha de finalizaciГіn se estima con respecto al turno y no refleja la fecha de finalizaciГіn real
 	task_true_finish_date = finish_date;
 	
 	
 	var actual_mkdate = to_mktime(date('Y-m-d'));
 
 	
-	// Если задание еще не выполнено и дата выполнения уже просрочена
-	// Делаем дату завершения ФАКТИЧЕСКОЕ, т.е. актуального дня 
+	// Si la tarea aГєn no se ha completado y la fecha de vencimiento ya ha expirado
+	// Hacemos que la fecha de finalizaciГіn sea REAL, es decir del dГ­a actual
 	if(actual_mkdate > to_mktime(finish_date) && !isset_date(this_task_data['date_finished']))
 	{
 		finish_date = date('Y-m-d');
 	} 
-	// Если дата ФАКТИЧЕСКОГО завершения больше дату ПЛАНИРУЕМОГО завершения
+	// Si la fecha de finalizaciГіn REAL es mayor que la fecha de finalizaciГіn PLANIFICADA
 	else if(isset_date(this_task_data['date_finished']) && to_mktime(this_task_data['date_finished']) > to_mktime(finish_date))
 	{
 		finish_date = this_task_data['date_finished'];
@@ -1461,7 +1461,7 @@ function get_task_dates(this_task_data)
 	 
 	return result;
 }
-// Получает кол-во дней, на которое задача смещается, если нужно из-за предыдущих задач
+// Obtiene el nГєmero de dГ­as en los que se cambia la tarea, si es necesario debido a tareas anteriores
 function get_task_offset_days(prepends_tasks, this_task_data)
 {
 	var task_count_later_days = 0;
@@ -1481,7 +1481,7 @@ function get_task_offset_days(prepends_tasks, this_task_data)
 	var pre_iter_task_date_finished;
 		 
  	//alert(prepends_tasks)
-	// Проходим по всем предыдущим задачам
+	// Pasamos por todas las tareas anteriores
 	$.each(prepends_tasks, function(i,j){
 		 
 		var task_id = tasks_obj[j]['task_id']; 
@@ -1511,19 +1511,19 @@ function get_task_offset_days(prepends_tasks, this_task_data)
 			 
 			task_count_later_days =  task_later_days;
 			
-			// Если есть дни смещения от предыдущих задач
+			// Si hay dГ­as de compensaciГіn de tareas anteriores
 			task_date_start = date_plus_days(task_date_start, task_count_later_days);
 			task_date_finish = date_plus_days(task_date_finish, task_count_later_days);
 			
 		}
 		
-		/* Выявляем, на сколько дней просрочено задание*/		
-		// Если задача еще не выполнена и уже просрочена
+		/* Averiguamos cuГЎntos dГ­as estГЎ atrasada la tarea*/		
+		// Si la tarea aГєn no se ha completado y ya estГЎ vencida
 		if(actual_mkdate > to_mktime(task_date_finish) && !isset_date(task_date_finished))
 		{    
 			task_date_finish = date('Y-m-d');
 		}
-		// Если дата ФАКТИЧЕСКОГО завершения больше даты ПЛАНИРУЕМОГО завершения
+		// Si la fecha de finalizaciГіn REAL es mayor que la fecha de finalizaciГіn PLANIFICADA
 		else if(isset_date(task_date_finished) && to_mktime(task_date_finished) > to_mktime(task_date_finish))
 		{ 
 			task_date_finish = task_date_finished;
@@ -1558,32 +1558,32 @@ function get_task_offset_days(prepends_tasks, this_task_data)
  
 
 
-// Получает массив предыдущих заданий
+// Obtiene una variedad de tareas anteriores
 function get_prepend_tasks_arr(this_task_data)
 {
 	var st = 0;
 	var n = 0;
 	
-	// Предыдущие задачи для данной задачи
+	// Tareas anteriores para esta tarea
 	var prepends_tasks = [];
 	
 	if(this_task_data['after_task_id']!=0 && this_task_data['task_id'])
 	{
 		var search_task_id = this_task_data['after_task_id']; 
 		 
-		// Находим все задачи за которыми слудует текущая задача
+		// Encontrar todas las tareas seguidas de la tarea actual
 		while(!st && n < 100)
 		{  
-			// Проходим по всем задачам
+			// Pasamos por todas las tareas
 			$.each(tasks_obj, function(i, task_data1){
 			 
-			 	// Находим задачу, которая является предыдущей для задачи
+			 	// Encuentra la tarea que es la anterior para la tarea
 			 	if(task_data1['task_id']==search_task_id)
 				{
-					// Добавляем в массив предыдущих задач
+					// Agregue las tareas anteriores a la matriz
 					prepends_tasks.push(search_task_id);
 					
-					// Если задача найдена и у нее есть так же предыдущая задача
+					// Si se encuentra la tarea y tambiГ©n tiene la tarea anterior
 					if(task_data1['after_task_id']!=0)
 					{  
 						search_task_id = task_data1['after_task_id'];
@@ -1659,7 +1659,7 @@ function show_project_period_date(min_date_start, max_date_finish, min_plan_date
 		
 		var days = difference_in_days_between_dates(date('Y-m-d', max_date_finish), date('Y-m-d', max_plan_date_finish));
 		
-		var days_str =  numToword(days, new Array('день', 'дня', 'дней'));
+		var days_str =  numToword(days, new Array('Г¤ГҐГ­Гј', 'Г¤Г­Гї', 'Г¤Г­ГҐГ©'));
 		
 		//difference_in_days_between_dates();
 		
@@ -1685,7 +1685,7 @@ function after_tasks_select_init()
 		num++;
 	})
 	
-	// Проход по задачам
+	// Repasamos las tareas
 	$('.task').each(function(){
 		 
 		var task_id = $(this).attr('task_id');
@@ -1747,7 +1747,7 @@ function pr_task_after_task_change(e)
 
 function show_project_tasks_comments(task_id, toclose)
 {
-	// если окно с комментарием уже открыто
+	// si la ventana de comentarios ya estГЎ abierta
 	if($('#task_comments_bl_'+task_id).attr('id')=='task_comments_bl_'+task_id || toclose)
 	{
 		tinyMCE.editors['task_report_text_'+task_id].destroy()
@@ -1858,7 +1858,7 @@ function delete_project_task_report(report_id, task_id)
 		if(data==1)
 		{ 
 			$('.task_report_cont_hide_'+report_id+'_'+task_id).hide();
-			$('#cont_task_report_result_'+report_id+'_'+task_id).html('<div class="">Комментарий успешно удален | <a href="javascript:;" onclick="restore_project_task_report(\''+report_id+'\',\'' +task_id+'\')" class="link">Восстановить</a> | <a href="javascript:;" onclick="$(\'#task_report_'+report_id+'\').remove()" class="link">Скрыть</a> </div>');
+			$('#cont_task_report_result_'+report_id+'_'+task_id).html('<div class="">Comentario eliminado correctamente | <a href="javascript:;" onclick="restore_project_task_report(\''+report_id+'\',\'' +task_id+'\')" class="link">Restablecer</a> | <a href="javascript:;" onclick="$(\'#task_report_'+report_id+'\').remove()" class="link">Esconder</a> </div>');
 			
 			recount_project_notice();
 		}
@@ -1888,7 +1888,7 @@ function restore_project_task_report(report_id, task_id)
 	});
 }
 
-// Принять отчет о круге обязанностей 
+// Aceptar El CГ­rculo de Obligaciones Informe 
 function confirm_project_task_report(report_id, task_id, confirm_all)
 {
 	loading_btn('confirm_report_task_btn_'+report_id);
