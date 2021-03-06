@@ -1,4 +1,3 @@
-{% extends "ganttchart/base.html" %}
 {% load static%}
 {% load i18n %}
 {% block title %}
