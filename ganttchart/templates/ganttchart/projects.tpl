@@ -10,7 +10,7 @@
     {% include 'ganttchart/add_form.tpl' %}
 </div>
 
-{{ top_menu }}
+{% include 'ganttchart/top_menu.tpl' %}
 
 {{ user_part_project_gant }}
 
