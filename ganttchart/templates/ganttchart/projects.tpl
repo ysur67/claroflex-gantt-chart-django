@@ -7,7 +7,7 @@
 <script type="text/javascript" src="{% static 'bootstrap/js/tinymce/tinymce.min.js' %}"></script>
 
 <div class="content_block_padn">
-{{ fill_projects_add_form }}
+    {% include 'ganttchart/add_form.tpl' %}
 </div>
 
 {{ top_menu }}

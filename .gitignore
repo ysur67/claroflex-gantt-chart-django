@@ -15,4 +15,7 @@ apps/*/migrations/*
 media/
 
 .idea
-media/
+static/
+.env
+docker-compose.*.yml
+!docker-compose.example.yml
