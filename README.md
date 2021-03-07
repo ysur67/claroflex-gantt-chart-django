@@ -1,8 +1,7 @@
 # claroflex-gantt-chart-django
 Django BE for Gantt chart
 
-##Docker
-
+## Docker
 Copy file .env.template to .env in project root directory
 
 Run migrations:
@@ -11,25 +10,21 @@ docker-compose exec app python manage migrate
 ```
 
 Create superuser:
-
 ```
 docker-compose exec app python manage createsuperuser
 ```
 
 Restart app:
-
 ```
 docker-compose restart app
 ``` 
 
 Run docker with custom config
-
 ```
 docker-compose -f docker-compose.yml - f docker-compose.prod.yml up -d
 ```
 
 Run docker in dev mode with building:
-
 ```
 docker-compose up --build
 ```
@@ -66,7 +61,6 @@ python ./manage.py migrate
 python ./manage.py test
 python ./manage.py runserver 0.0.0.0:8080
 ```
-## Docker
 
 ## Video
 [![Watch the video](https://img.youtube.com/vi/NfsJDPm0X54/0.jpg)](https://youtu.be/NfsJDPm0X54)
