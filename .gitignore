@@ -11,10 +11,10 @@ db.sqlite3-journal
 */migrations/*
 apps/*/migrations/*
 .sass-cache
-media/
+/media/
 
 .idea
-static/
+/static/
 .env
 docker-compose.*.yml
 !docker-compose.example.yml
