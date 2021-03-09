@@ -1,0 +1,46 @@
+{% load static %}
+{% load i18n %}
+<html lang="es">
+<head>
+    {% block title %}
+        {% trans "Projects" %} - {% trans "Home" %}
+    {% endblock title %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/style.css' %}">
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+{% block content %}
+
+    <div class="content_block_padn">
+        {% include 'ganttchart/add_form.html' %}
+    </div>
+
+    {{ top_menu }}
+
+    {{ user_part_project_gant }}
+
+    <br>
+    <div id="projects_list_content ">
+        {% for project in object_list %}
+            <p><b>{{ project.name }}</b></p>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+<script type="text/javascript" src="{% static 'bootstrap/js/tinymce/jquery.tinymce.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/tinymce/tinymce.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/projects.js' %}"></script>
+
+
+<script>
+    show_closed = '{{ closed }}';
+</script>
+
+</body>
+</html>
+

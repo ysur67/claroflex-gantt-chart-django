@@ -1,20 +1,10 @@
-# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-# Create your views here.
 
-
-import json
-import ast
-import csv
-
-from django.http import HttpResponse
-from django.http import HttpResponseNotFound
-from django.shortcuts import render
-from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import render
 from django.urls import reverse
+from django.utils.decorators import method_decorator
 from django.views.generic import (
     ListView,
     DeleteView,
@@ -23,24 +13,26 @@ from django.views.generic import (
     UpdateView,
 )
 
-from ganttchart.models import (
-    Contact,
-    Project,
-    Task,
-    Report,
-    TasksReport,
-)
 from ganttchart.forms import (
     ContactForm,
     ContactAddressFormSet,
 )
+from ganttchart.models import (
+    Contact,
+    Project,
+)
+
+
+# Create your views here.
 
 def create_project_home(request):
     return render(request, 'projects/create-project-home.html', {})
 
+
 # Форма добавления выговора
 def fill_projects_add_form():
-    return reverse ('ganttchart/add_form.tpl')
+    return reverse('ganttchart/add_form.tpl')
+
 
 class LoggedInMixin(object):
     @method_decorator(login_required)
@@ -54,6 +46,7 @@ class ListContactView(ListView):
 
     def get_queryset(self):
         return Contact.objects.filter(owner=self.request.user)
+
 
 class ContactOwnerMixin(object):
     def get_object(self, queryset=None):
@@ -72,9 +65,11 @@ class ContactOwnerMixin(object):
             raise PermissionDenied
         return obj
 
+
 class ContactView(LoggedInMixin, ContactOwnerMixin, DetailView):
     model = Contact
     template_name = 'contact.html'
+
 
 class CreateContactView(LoggedInMixin, CreateView):
     model = Contact
@@ -91,7 +86,6 @@ class CreateContactView(LoggedInMixin, CreateView):
 
 
 class UpdateContactView(LoggedInMixin, ContactOwnerMixin, UpdateView):
-
     model = Contact
     template_name = 'edit_contact.html'
     form_class = ContactForm
@@ -100,7 +94,6 @@ class UpdateContactView(LoggedInMixin, ContactOwnerMixin, UpdateView):
         return reverse('contacts-list')
 
     def get_context_data(self, **kwargs):
-
         context = super(UpdateContactView, self).get_context_data(**kwargs)
         context['action'] = reverse('contacts-edit',
                                     kwargs={'pk': self.get_object().id})
@@ -109,7 +102,6 @@ class UpdateContactView(LoggedInMixin, ContactOwnerMixin, UpdateView):
 
 
 class DeleteContactView(LoggedInMixin, ContactOwnerMixin, DeleteView):
-
     model = Contact
     template_name = 'delete_contact.html'
 
@@ -118,23 +110,26 @@ class DeleteContactView(LoggedInMixin, ContactOwnerMixin, DeleteView):
 
 
 class EditContactAddressView(LoggedInMixin, ContactOwnerMixin, UpdateView):
-
     model = Contact
     template_name = 'edit_addresses.html'
     form_class = ContactAddressFormSet
 
     def get_success_url(self):
-
         # redirect to the Contact view.
         return self.get_object().get_absolute_url()
 
-class FillProjectView(CreateView):
+
+class FillProjectView(CreateView, ListView):
     model = Project
-    template_name = 'ganttchart/projects.tpl'
+    template_name = 'ganttchart/projects.html'
     fields = ['deleted', 'closed', 'head_confirmed', 'name']
 
     def get_success_url(self):
- #       if(_GET['part']==1 && _GET['part']==2)
-            # Форма добавления нового проекта
-        add_form = fill_projects_add_form()
-#        return reverse('contacts-list')
+        return reverse('ganttchart-project')
+
+    # def get_success_url(self):
+#       if(_GET['part']==1 && _GET['part']==2)
+        # Форма добавления нового проекта
+        # add_form = fill_projects_add_form()
+        #        return reverse('contacts-list')
+
