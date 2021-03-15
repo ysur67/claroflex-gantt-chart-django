@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls import include
-from django.conf.urls.static import static
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -23,46 +22,55 @@ from django.contrib.auth.views import (
     LoginView,
     LogoutView
 )
-#from django.contrib.auth.decorators import login_required
-import ganttchart.views
+# from django.contrib.auth.decorators import login_required
+from django.urls import path
 
-#login_required(views.create_project_home),
+# import ganttchart.views
+
+# login_required(views.create_project_home),
+from django.views.generic import RedirectView
+
 urlpatterns = [
     url(r'^login/$',
         LoginView.as_view(
             template_name='admin/login.html'
         ),
         name="ganttchart-login"
-    ),
+        ),
     url(r'^logout/$',
         LogoutView.as_view(
             template_name='logout.html'
         ),
         name="ganttchart-logout"
-    ),
+        ),
 
-    url(r'^$',
-        ganttchart.views.ListContactView.as_view(),
-        name='contacts-list',),
-    url(r'^(?P<pk>\d+)/$', ganttchart.views.ContactView.as_view(),
-        name='contacts-view',),
-    url(r'^new$',
-        ganttchart.views.CreateContactView.as_view(),
-        name='contacts-new',),
-    url(r'^edit/(?P<pk>\d+)/$', ganttchart.views.UpdateContactView.as_view(),
-        name='contacts-edit',),
-    url(r'^edit/(?P<pk>\d+)/addresses$', ganttchart.views.EditContactAddressView.as_view(),
-        name='contacts-edit-addresses',),
-    url(r'^delete/(?P<pk>\d+)/$', ganttchart.views.DeleteContactView.as_view(),
-        name='contacts-delete',),
-    url(r'^project$',
-        ganttchart.views.FillProjectView.as_view(),
-        name='ganttchart-project',),
+    # url(r'^$',
+    #     ganttchart.views.ListContactView.as_view(),
+    #     name='contacts-list', ),
+    # url(r'^(?P<pk>\d+)/$', ganttchart.views.ContactView.as_view(),
+    #     name='contacts-view', ),
+    # url(r'^new$',
+    #     ganttchart.views.CreateContactView.as_view(),
+    #     name='contacts-new', ),
+    # url(r'^edit/(?P<pk>\d+)/$', ganttchart.views.UpdateContactView.as_view(),
+    #     name='contacts-edit', ),
+    # url(r'^edit/(?P<pk>\d+)/addresses$', ganttchart.views.EditContactAddressView.as_view(),
+    #     name='contacts-edit-addresses', ),
+    # url(r'^delete/(?P<pk>\d+)/$', ganttchart.views.DeleteContactView.as_view(),
+    #     name='contacts-delete', ),
+    # url(r'^project$',
+    #     ganttchart.views.FillProjectView.as_view(),
+    #     name='ganttchart-project', ),
     url(r'^admin/',
         admin.site.urls),
-    url(r'^project/create/home$',
-        ganttchart.views.create_project_home,
-        name='project-create-home'),
+    # url(r'^project/create/home$',
+    #     ganttchart.views.create_project_home,
+    #     name='project-create-home'),
+    path('', RedirectView.as_view(url='/projects/')),
+    path('projects/', include('projects.urls')),
+    path('api/v1/', include(('users.urls', 'users'))),
+    path('api/v1/', include(('projects.api_urls', 'projects'))),
+    path('api-auth/', include('rest_framework.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

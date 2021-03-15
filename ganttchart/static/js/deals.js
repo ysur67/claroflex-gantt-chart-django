@@ -1,7 +1,7 @@
 add_deal_btn = 0;
 import_deal_btn = 0;
 
-// Добавление нового клиента
+// Р”РѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕРіРѕ РєР»РёРµРЅС‚Р°
 function add_new_deal()
 {
 	var deal_name, deal_type, deal_client, deal_status, deal_report, deal_private_edit, deal_private_show, deal_other_info,deal_contact_person,
@@ -38,7 +38,7 @@ function add_new_deal()
 	
 	add_deal_btn = 1;
 	
-	// Прикрепленные файлы
+	// РџСЂРёРєСЂРµРїР»РµРЅРЅС‹Рµ С„Р°Р№Р»С‹
 	files_arr = Disk.get_upload_content_files(0);
 	files_content_type = Disk.get_upload_content_files_content_type(0);
 	
@@ -75,7 +75,7 @@ function add_new_deal()
 						 
 				if(i=='deal_client')
 				{ 
-					error_text = 'Не выбран клиент';
+					error_text = 'РќРµ РІС‹Р±СЂР°РЅ РєР»РёРµРЅС‚';
 					
 					
 					$("#client_name_error").html(error_text);
@@ -94,7 +94,7 @@ function add_new_deal()
 	}, 'json');
 }
 
-// импорт нового клиента(сделок)
+// РёРјРїРѕСЂС‚ РЅРѕРІРѕРіРѕ РєР»РёРµРЅС‚Р°(СЃРґРµР»РѕРє)
 function import_new_deal()
 {
 	var deal_name, deal_type, deal_client, deal_status, deal_report, deal_private_edit, deal_private_show, deal_other_info,deal_contact_person,
@@ -131,18 +131,18 @@ function import_new_deal()
 	
 	import_deal_btn = 1;
 	
-	// Прикрепленные файлы
+	// РџСЂРёРєСЂРµРїР»РµРЅРЅС‹Рµ С„Р°Р№Р»С‹
 //	files_arr = Disk.get_upload_content_files(0);
 //	files_content_type = Disk.get_upload_content_files_content_type(0);
 	
-	var files = []; // переменная. будет содержать данные файлов
-	// заполняем переменную данными файлов, при изменении значения file поля
+	var files = []; // РїРµСЂРµРјРµРЅРЅР°СЏ. Р±СѓРґРµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ РґР°РЅРЅС‹Рµ С„Р°Р№Р»РѕРІ
+	// Р·Р°РїРѕР»РЅСЏРµРј РїРµСЂРµРјРµРЅРЅСѓСЋ РґР°РЅРЅС‹РјРё С„Р°Р№Р»РѕРІ, РїСЂРё РёР·РјРµРЅРµРЅРёРё Р·РЅР°С‡РµРЅРёСЏ file РїРѕР»СЏ
 	$('#file_form_import').each(function(){
 		files.push(this.files[0]);//obj.age = obj.age.toString();
 //                    alert( JSON.stringify(this.files[0].toString()) );
 	});
 	
-	// создадим данные файлов в подходящем для отправки формате
+	// СЃРѕР·РґР°РґРёРј РґР°РЅРЅС‹Рµ С„Р°Р№Р»РѕРІ РІ РїРѕРґС…РѕРґСЏС‰РµРј РґР»СЏ РѕС‚РїСЂР°РІРєРё С„РѕСЂРјР°С‚Рµ
 	var data = new FormData();
 
 	data.append( 'import_data', files[0] );
@@ -155,16 +155,16 @@ function import_new_deal()
 	data.append( 'group_id', group_id);
 	data.append( 'mode', 'import_new_deal');
 	
-	// AJAX запрос
+	// AJAX Р·Р°РїСЂРѕСЃ
 	$.ajax({
 		url         : '/ajax/ajaxDeals.php',
 		type        : 'POST',
 		data        : data,
 		cache       : false,
 //                        dataType    : 'json',
-		// отключаем обработку передаваемых данных, пусть передаются как есть
+		// РѕС‚РєР»СЋС‡Р°РµРј РѕР±СЂР°Р±РѕС‚РєСѓ РїРµСЂРµРґР°РІР°РµРјС‹С… РґР°РЅРЅС‹С…, РїСѓСЃС‚СЊ РїРµСЂРµРґР°СЋС‚СЃСЏ РєР°Рє РµСЃС‚СЊ
 		processData : false,
-		// отключаем установку заголовка типа запроса. Так jQuery скажет серверу что это строковой запрос
+		// РѕС‚РєР»СЋС‡Р°РµРј СѓСЃС‚Р°РЅРѕРІРєСѓ Р·Р°РіРѕР»РѕРІРєР° С‚РёРїР° Р·Р°РїСЂРѕСЃР°. РўР°Рє jQuery СЃРєР°Р¶РµС‚ СЃРµСЂРІРµСЂСѓ С‡С‚Рѕ СЌС‚Рѕ СЃС‚СЂРѕРєРѕРІРѕР№ Р·Р°РїСЂРѕСЃ
 		contentType : false
 	}).done(function(data1){ 
 		data1 = jQuery.parseJSON(data1);
@@ -176,7 +176,7 @@ function import_new_deal()
 				error_text = '';		 
 				if(i=='deal_client')
 				{ 
-					error_text = 'Не выбран клиент';
+					error_text = 'РќРµ РІС‹Р±СЂР°РЅ РєР»РёРµРЅС‚';
 					$("#client_name_error").html(error_text);
 					//light_error_input('deal_client');
 				}
@@ -191,7 +191,7 @@ function import_new_deal()
 	});
 }
 
-// Добавление нового клиента
+// Р”РѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕРіРѕ РєР»РёРµРЅС‚Р°
 function save_deal(deal_id)
 {
 	var deal_name, deal_type, deal_client, deal_status, deal_report, deal_private_edit, deal_private_show, deal_price, deal_contact_person, deal_other_info, deal_email, deal_address, deal_phone, group_id;
@@ -217,7 +217,7 @@ function save_deal(deal_id)
 	
 	group_id = $("#deal_group").val();
 	
-	// Прикрепленные файлы
+	// РџСЂРёРєСЂРµРїР»РµРЅРЅС‹Рµ С„Р°Р№Р»С‹
 	files_arr = Disk.get_upload_content_files(deal_id);
 	files_content_type = Disk.get_upload_content_files_content_type(deal_id);
 	files_deleted = Disk.get_content_deleted_files();
@@ -260,7 +260,7 @@ function save_deal(deal_id)
 						 
 				if(i=='deal_client')
 				{ 
-					error_text = 'Не выбран клиент';
+					error_text = 'РќРµ РІС‹Р±СЂР°РЅ РєР»РёРµРЅС‚';
 					//light_error_input('deal_client');
 					$('#client_name_error').html(error_text)
 				}
@@ -277,7 +277,7 @@ function save_deal(deal_id)
 			{  
 				$('#deal_status').children('option[value=0]').remove();
 			}
-			$('#edit_deal_success').html('<div class="success success_marg">Изменения успешно сохранены</div>');
+			$('#edit_deal_success').html('<div class="success success_marg">РР·РјРµРЅРµРЅРёСЏ СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅС‹</div>');
 			//$('#deal_report').val('');
 			//$('#deal_status').val(0);
 			setTimeout(function(){$('#edit_deal_success').html('')},2000);
@@ -293,7 +293,7 @@ function save_deal(deal_id)
 }
 
 
-// Удаляет контакт
+// РЈРґР°Р»СЏРµС‚ РєРѕРЅС‚Р°РєС‚
 function delete_deal(deal_id)
 {
 	$('#deal_proc_'+deal_id).html('<img src="/img/loading5.gif">');
@@ -311,14 +311,14 @@ function delete_deal(deal_id)
 			//$('#deal_content_'+deal_id).hide();
 			
 			$('#deal_'+deal_id).hide();
-			$('#deal_'+deal_id).after("<tr id='deleted_deal_"+deal_id+"'><td colspan='12'><div class='success'>Сделка успешно удалена | <a href='javascript:;' onclick='restore_deal("+deal_id+")'>Восстановить</a> | <a href='javascript:;' onclick='$(\"#deleted_deal_"+deal_id+"\").remove(); $(\"#deal_"+deal_id+"\").remove();draw_background_list_item(\"deals_item\");'>Закрыть</a></div></td></tr>");
+			$('#deal_'+deal_id).after("<tr id='deleted_deal_"+deal_id+"'><td colspan='12'><div class='success'>РЎРґРµР»РєР° СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅР° | <a href='javascript:;' onclick='restore_deal("+deal_id+")'>Р’РѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ</a> | <a href='javascript:;' onclick='$(\"#deleted_deal_"+deal_id+"\").remove(); $(\"#deal_"+deal_id+"\").remove();draw_background_list_item(\"deals_item\");'>Р—Р°РєСЂС‹С‚СЊ</a></div></td></tr>");
 			
-			//$('#deal_result_'+deal_id).html("<div class='success'>Сделка успешно удалена | <a href='javascript:;' onclick='restore_deal("+deal_id+")'>Восстановить</a> | <a href='javascript:;' onclick='$(\"#deal_"+deal_id+"\").remove(); draw_background_list_item(\"deals_item\");'>Закрыть</a></div>");
+			//$('#deal_result_'+deal_id).html("<div class='success'>РЎРґРµР»РєР° СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅР° | <a href='javascript:;' onclick='restore_deal("+deal_id+")'>Р’РѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ</a> | <a href='javascript:;' onclick='$(\"#deal_"+deal_id+"\").remove(); draw_background_list_item(\"deals_item\");'>Р—Р°РєСЂС‹С‚СЊ</a></div>");
 		}
 	});
 }
 
-// Восстановить контакт
+// Р’РѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РєРѕРЅС‚Р°РєС‚
 function restore_deal(deal_id)
 {
 	$('#deal_proc_'+deal_id).html('<img src="/img/loading5.gif">');
@@ -345,7 +345,7 @@ function restore_deal(deal_id)
 
 deals_actual_page = 1;
 default_search_text = '';
-// Выводит больше контактов
+// Р’С‹РІРѕРґРёС‚ Р±РѕР»СЊС€Рµ РєРѕРЅС‚Р°РєС‚РѕРІ
 function get_more_deals()
 {
 	var page, search_word;
@@ -373,7 +373,7 @@ function get_more_deals()
 		$('#deals_list').append(data);
 		
 		draw_background_list_item("deals_item");
-		// Актаульная страница
+		// РђРєС‚Р°СѓР»СЊРЅР°СЏ СЃС‚СЂР°РЅРёС†Р°
 		deals_actual_page++;
 		
 		draw_background_list_item('deals_item');
@@ -384,7 +384,7 @@ function get_more_deals()
 	});
 }
 
-// Поиск контактов
+// РџРѕРёСЃРє РєРѕРЅС‚Р°РєС‚РѕРІ
 function deals_search()
 {
 	var search_word;
@@ -425,7 +425,7 @@ function deals_search()
 	}, 'json');
 }
 
-// Проверка на существующего постоянного клиента
+// РџСЂРѕРІРµСЂРєР° РЅР° СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ РїРѕСЃС‚РѕСЏРЅРЅРѕРіРѕ РєР»РёРµРЅС‚Р°
 function check_select_client_in_add_form()
 {
 	var tmp_value; 
@@ -495,7 +495,7 @@ function show_sales_funnel(user_id, show)
 }
 
 
-// Показать блок настройки доступа к файлам и папкам
+// РџРѕРєР°Р·Р°С‚СЊ Р±Р»РѕРє РЅР°СЃС‚СЂРѕР№РєРё РґРѕСЃС‚СѓРїР° Рє С„Р°Р№Р»Р°Рј Рё РїР°РїРєР°Рј
 function show_access_deal_block(deal_id)
 {
 	close_deal_access_blocks();
@@ -538,7 +538,7 @@ function close_deal_access_blocks()
 
 
 user_deals_actual_page = {};
-// Выводит больше сделок
+// Р’С‹РІРѕРґРёС‚ Р±РѕР»СЊС€Рµ СЃРґРµР»РѕРє
 function get_user_more_deals(user_id)
 {
 	var page;
@@ -569,7 +569,7 @@ function get_user_more_deals(user_id)
 			
 			user_deals_actual_page[user_id]++;
 			
-			// Убираем кнопку - показать больше
+			// РЈР±РёСЂР°РµРј РєРЅРѕРїРєСѓ - РїРѕРєР°Р·Р°С‚СЊ Р±РѕР»СЊС€Рµ
 			if(data['hide_more_pages_btn'])
 			{
 				$('#user_more_deals_tr_'+user_id).remove();
@@ -629,7 +629,7 @@ function set_deal_reminder_date(deal_id)
 						 
 				if(i=='reminder_date' && j==1)
 				{ 
-					error_text += 'Некорректно указана дата';
+					error_text += 'РќРµРєРѕСЂСЂРµРєС‚РЅРѕ СѓРєР°Р·Р°РЅР° РґР°С‚Р°';
 				}
 			})
 			
@@ -687,7 +687,7 @@ function add_user_to_access_deal(deal_id)
 	
 	$('#'+elem_id).easycomplete(
 	{
-		str_word_select : 'Выбрать пользователя',
+		str_word_select : 'Р’С‹Р±СЂР°С‚СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ',
 		width:396,
 		url:'/ajax/ajaxGetUsers.php?by=name&who=all_tree&result_name=2'
 	});	 
@@ -717,7 +717,7 @@ function save_deal_user_access(deal_id)
 		
 		if(data==1)
 		{
-			$('#access_result_'+deal_id).html('<div class="success stand_margin">Успешно сохранено</div>');
+			$('#access_result_'+deal_id).html('<div class="success stand_margin">РЈСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅРѕ</div>');
 			clear_block_by_settime('access_result_'+deal_id);
 		}
 		 
