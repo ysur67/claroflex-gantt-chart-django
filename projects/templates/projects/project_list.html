@@ -1,0 +1,216 @@
+{% extends 'projects/base_project.html' %}
+{% load static %}
+
+{% block right_block %}
+    <div class="nav_block">
+        <div class="top_shdw"></div>
+        <span class="current">Мои проекты</span> <span id="nav_custom_n" style="font-weight:normal"></span>
+    </div>
+    <div class="content_block_no_padding">
+        <script type="text/javascript" src="{% static 'js/tinymce/tinymce.min.js' %}"></script>
+
+        <div class="content_block_padn">
+            <div style="display: none" id="add_form_block" class="add_form_margin">
+                <div class="title_add_form">Добавить проект</div>
+                <div class="add_form add_form_margin">
+
+                    <table cellpadding="0" cellspacing="0" class="tables_data_1">
+                        <tbody>
+                        <tr>
+                            <td class="td_title">Название</td>
+                            <td class="td_value"><input type="text" class="input_text" id="project_name"
+                                                        style="width:528px"/>
+                                <div class="td_error sub_input_error"></div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="td_title td_vert_top">Описание</td>
+                            <td class="td_value"><textarea id="project_desc" class="input_text"
+                                                           style="width:528px; height:100px"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_title td_vert_top">Ответственное лицо</td>
+                            <td class="td_value"><select id="project_head"></select>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td class="td_title td_vert_top">Задачи</td>
+                            <td class="td_value"><a href="javascript:;" onclick="add_project_task()"
+                                                    class="link" id="add_project_task_btn"> [+] добавить
+                                задачу</a>
+                            </td>
+                        </tr>
+                        <input type="hidden" name="user_created" id="user_created"
+                               value="{{ request.user.pk }}"/>
+
+                        </tbody>
+                    </table>
+
+                    <table cellpadding="0" cellspacing="0" style="margin-bottom:10px" class="d_none"
+                           id="project_tasks_tb">
+                        <tr>
+                            <td style="vertical-align:top; min-width:300px">
+                                <table class="project_tasks_tb d_none1" cellpadding="0" cellspacing="0"
+                                       id="project_tasks_tb">
+                                    <tr>
+                                        <th class="nopdl">№</th>
+                                        <th class="">Сотрудник</th>
+                                        <th title="Предшествующая задача">Связь</th>
+                                        <th class="">Дата старта &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Дата
+                                            завершения
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                    <tbody id="projects_tasks">
+                                    </tbody>
+                                </table>
+                                <a href="javascript:;" onclick="add_project_task()" class="link d_none"
+                                   id="add_more_project_task_btn"> [+] добавить еще задачу</a>
+                            </td>
+                            <td style="vertical-align:top"></td>
+                        </tr>
+                    </table>
+
+                    <div class="d_none project_period_date" id="project_period_date">Дата старта: <span
+                            id="project_date_start"></span> Дата завершения: <span
+                            id="project_date_finish"></span></div>
+                    <div class="project_scheme d_none" id="project_scheme">
+                        <table cellpadding="0" cellspacing="0" class="project_scheme_tb">
+                            <thead class="project_scheme_month_th">
+                            <tr id="project_scheme_month_th_tr"></tr>
+                            </thead>
+                            <thead class="project_scheme_days_th">
+                            <tr id="project_scheme_days_th_tr"></tr>
+                            </thead>
+                            <tbody class="project_scheme_days_rows" id="project_scheme_days_rows"></tbody>
+                        </table>
+                    </div>
+
+                    <div id="file_form_0" style="margin-top:20px">
+
+                    </div>
+
+                    <div style="margin-top:20px">
+                        <a class="button" onclick="add_project()" href="javascript:;" id="add_project_btn">
+                            <div class="right"></div>
+                            <div class="left"></div>
+                            <div class="btn_cont">добавить проект</div>
+                        </a>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="error_box" id="error_box"></div>
+                    <div id="success" class="success_marg"></div>
+
+                </div>
+
+                <div class="stand_margin">
+                    <a href="javascript:;" class="link"
+                       onclick="$('#add_form_block').hide(); $('#show_add_form_a').show()">Скрыть</a>
+                </div>
+
+            </div>
+
+            <div class="add_new_list_item" id="show_add_form_a">
+                <a href="javascript:;" class="link"
+                   onclick="$('#add_form_block').fadeIn(200); $('#show_add_form_a').hide()">+ Добавить
+                    проект</a>
+            </div>
+
+            <script type="text/javascript">
+                tinymce.init({
+                    selector: "#project_desc",
+                    language: 'ru',
+                    plugins: ['table'
+
+                    ],
+                    menubar: false,
+                    toolbar1: "table"
+                });
+            </script>
+            <script>
+                Disk.get_content_file_upload_form('0', 8, 'file_form_0');
+                $('#add_more_project_task_btn').trigger('click');
+                after_tasks_select_init();
+                $('.after_task_s').live('change', pr_task_after_task_change);
+                $('#project_head').easycomplete(
+                    {
+                        str_word_select: 'Выбрать сотрудника',
+                        url: '/api/v1/users/',
+                        width: 350,
+                        trigger: 1
+                    });
+            </script>
+        </div>
+
+        <div class="task_top_panel project_top_menu">
+            {% url 'project-list' as PROJECTS_URL %}
+            <a class="item active" href="{{ PROJECTS_URL }}">Мои проекты <span
+                    id="new_count_for_worker"></span></a>
+            <a class="item " href="{{ PROJECTS_URL }}">Мои закрытые проекты </a>
+            <a class="item " href="{{ PROJECTS_URL }}">Проекты, в которых участвую <span
+                    id="new_count_in_part_projects"></span></a>
+            <a class="item " href="{{ PROJECTS_URL }}">Закрытые, в которых участвую</a>
+            <div class="clear"></div>
+        </div>
+
+
+        <br>
+
+        <div id="projects_list_content ">
+            <table cellpadding="0" cellspacing="0" class="tasks_tb" style="width:100%; margin-top:5px">
+                <thead>
+                <tr class="">
+                    <th class="">Название</th>
+                    <th class="">Добавил</th>
+                    <th class="">Дата старта</th>
+                    <th class="">Дата завершения</th>
+                    <th class=""></th>
+                </tr>
+                </thead>
+                <tbody id="project_list">
+                {% for project in projects %}
+                    <tr class="task_it_row project_item  " id="project_{{ project.id }}">
+                        <td><a href="{% url 'project-detail' project.id %}" class="link">{{ project.name }}
+                            <nobr></nobr>
+                        </a></td>
+                        <td>{{ project.user_created }} <br/><span
+                                class="user_position">Акционер / Инвестор / Клиент</span>
+                        </td>
+                        <td>{{ project.created_at|date:"d.m.Y" }}</td>
+                        <td>{{ project.completed_at|default_if_none:"" }}</td>
+                        <td style="padding-right:5px"><a class="button"
+                                                         onclick="delete_project({{ project.id }})"
+                                                         href="javascript:;"
+                                                         id="delete_project_btn_{{ project.id }}">
+                            <div class="right"></div>
+                            <div class="left"></div>
+                            <div class="btn_cont">удалить</div>
+                        </a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="content_block_padn">
+
+            </div>
+
+
+            <script>
+                pages_count = "1";
+                is_part = "0";
+                //draw_background_list_item('project_item', 'zebra1');
+            </script>
+
+        </div>
+
+        <script>
+            show_closed = '';
+        </script>
+    </div>
+{% endblock %}
+

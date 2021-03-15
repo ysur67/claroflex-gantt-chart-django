@@ -36,8 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'rest_framework',
     'django_extensions',
-    'ganttchart',
+
+    # 'ganttchart',
+    'projects',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +126,14 @@ MEDIA_ROOT = str(BASE_DIR / 'media')
 MEDIA_URL = '/media/'
 
 
+DEFAULT_AUTHENTICATION_CLASSES = (
+    'rest_framework.authentication.SessionAuthentication',
+    'rest_framework.authentication.BasicAuthentication'
+),
+
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ],
+    "DATE_INPUT_FORMATS": ["%d-%m-%Y", "%d.%m.%Y"],
+}
