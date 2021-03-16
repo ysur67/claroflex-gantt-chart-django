@@ -303,7 +303,7 @@ function save_project() {
     loading_btn('add_project_btn');
 
     const data = {
-            tasks: project_tasks_arr,
+        tasks: project_tasks_arr,
     };
 
     $.ajax({
@@ -787,43 +787,50 @@ function get_more_projects() {
 }
 
 function project_close(project_id, status) {
-    if ($('#project_close_btn').attr('closed') == 0 && status == 'open') {
-        return false;
-    }
+    // if ($('#project_close_btn').attr('closed') == 0 && status == 'open') {
+    //     return false;
+    // }
 
     loading_btn('project_close_btn');
 
-    $.post('/ajax/ajaxProjects.php',
-        {
-            mode: 'project_close',
-            project_id: project_id,
-            status: status
-        },
+
+    $.post(`/api/v1/projects/${project_id}/${status}/`,
+        {},
         function (data) {
 
             loading_btn('project_close_btn', 1);
 
-            if (data) {
-                if (status == 'close') {
-                    $('#report_add_form').hide();
-                } else if (status == 'open') {
-                    $('#report_add_form').show();
-                }
-                $('#project_close_btn').replaceWith(data['btn']);
-                $('.project_closed_title').html(data['str_status']);
-
-                if (status == 'close') {
-                    $('#success_close').html('<div class="success">Проект успешно закрыт.</div>');
-                } else {
-                    $('#success_close').html('<div class="success">Проект успешно открыт.</div>');
-                }
-
-                clear_block_by_settime('success_close');
-
+            if (status === 'close') {
+                $('#report_add_form').hide();
+            } else if (status === 'open') {
+                $('#report_add_form').show();
             }
+            const nextStatus = status === 'close' ? 'open': 'close';
+            const nextStatusTitle = status === 'close' ? 'открыть': 'закрыть';
+            const btn = `
+                <a class="button" onclick="project_close('${project_id}', '${nextStatus}')" href="javascript:;" id="project_close_btn"  closed="0">
+                <div class="right"></div><div class="left"></div><div class="btn_cont">${nextStatusTitle} проект <span class="link_cancel">&times;</span></div></a>
+            `
+
+
+            const closedTitle = status === 'close' ? 'Проект закрыт': '';
+            $('#project_close_btn').replaceWith(btn);
+            $('.project_closed_title').html(closedTitle);
+
+            if (status === 'close') {
+                $('#success_close').html('<div class="success">Проект успешно закрыт.</div>');
+            } else {
+                $('#success_close').html('<div class="success">Проект успешно открыт.</div>');
+            }
+
+
+            clear_block_by_settime('success_close');
+
 
         }, 'json');
 }
+
+
 
 function show_projects_content() {
     //var show_closed;

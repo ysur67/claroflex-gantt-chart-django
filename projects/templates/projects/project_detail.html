@@ -67,7 +67,7 @@
 
                                             <td class="task_user_c">
                                                 <select id="select_task_user_{{ task.id }}" class="user">
-                                                    <option value="{{ task.user.id }}" class="selected">{{ task.user.username }}
+                                                    <option value="{{ task.user.id }}" class="selected">{{ task.user_name }}
                                                     </option>
                                                 </select>
                                                 <div class="project_task_desc_bl">
@@ -167,12 +167,12 @@
                     <div>
                         <div style="margin-top:15px"></div>
                         <div style="float:right">
-                            <div class="project_closed_title project_str_closed_status"></div>
-                            <a class="button" onclick="project_close('137', 'close')" href="javascript:;"
+                            <div class="project_closed_title project_str_closed_status">{% if object.completed_at %}Проект закрыт{% endif %}</div>
+                            <a class="button" onclick="project_close({{ object.id }}, '{% if object.completed_at %}open{% else %}close{% endif %}')" href="javascript:;"
                                id="project_close_btn" closed="0">
                                 <div class="right"></div>
                                 <div class="left"></div>
-                                <div class="btn_cont">закрыть проект <span
+                                <div class="btn_cont">{% if object.completed_at %}открыть{% else %}закрыть{% endif %} проект <span
                                         class="link_cancel">&times;</span></div>
                             </a>
                         </div>

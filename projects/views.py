@@ -36,3 +36,14 @@ class ProjectViewSet(viewsets.ModelViewSet):
         obj.save()
         return Response({})
 
+    @action(methods=['POST'], detail=True, url_path='close')
+    def close_project(self, *args, **kwargs):
+        obj = self.get_object()
+        obj.close()
+        return Response({})
+
+    @action(methods=['POST'], detail=True, url_path='open')
+    def open_project(self, *args, **kwargs):
+        obj = self.get_object()
+        obj.open()
+        return Response({})
