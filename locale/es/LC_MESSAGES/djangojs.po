@@ -21,68 +21,70 @@ msgstr ""
 #: projects/static/admin/js/SelectFilter2.js:38
 #, javascript-format
 msgid "Available %s"
-msgstr ""
+msgstr "%´s disponible"
 
 #: projects/static/admin/js/SelectFilter2.js:44
 #, javascript-format
 msgid ""
 "This is the list of available %s. You may choose some by selecting them in "
 "the box below and then clicking the \"Choose\" arrow between the two boxes."
-msgstr ""
+msgstr "Esta es la lista de %´s disponibles. Puede elegir algunos seleccionándolos en "
+"en el cuadro de abajo y luego haciendo clic en la flecha \" Elegir \ "entre los dos cuadros."
 
 #: projects/static/admin/js/SelectFilter2.js:60
 #, javascript-format
 msgid "Type into this box to filter down the list of available %s."
-msgstr ""
+msgstr "Escriba en este cuadro para filtrar la lista de %´s disponibles."
 
 #: projects/static/admin/js/SelectFilter2.js:65
 msgid "Filter"
-msgstr ""
+msgstr "Filtrar"
 
 #: projects/static/admin/js/SelectFilter2.js:69
 msgid "Choose all"
-msgstr ""
+msgstr "Elegir todos"
 
 #: projects/static/admin/js/SelectFilter2.js:69
 #, javascript-format
 msgid "Click to choose all %s at once."
-msgstr ""
+msgstr "Haga clic para elegir todos los %´s a la vez."
 
 #: projects/static/admin/js/SelectFilter2.js:75
 msgid "Choose"
-msgstr ""
+msgstr "Elegir"
 
 #: projects/static/admin/js/SelectFilter2.js:77
 msgid "Remove"
-msgstr ""
+msgstr "Eliminar"
 
 #: projects/static/admin/js/SelectFilter2.js:83
 #, javascript-format
 msgid "Chosen %s"
-msgstr ""
+msgstr "Elegido %´s"
 
 #: projects/static/admin/js/SelectFilter2.js:89
 #, javascript-format
 msgid ""
 "This is the list of chosen %s. You may remove some by selecting them in the "
 "box below and then clicking the \"Remove\" arrow between the two boxes."
-msgstr ""
+msgstr "Esta es la lista de% s elegidos. Puede eliminar algunos seleccionándolos en el "
+"cuadro de abajo y luego haciendo clic en la flecha \" Eliminar \ "entre los dos cuadros."
 
 #: projects/static/admin/js/SelectFilter2.js:99
 msgid "Remove all"
-msgstr ""
+msgstr "Eliminar todos"
 
 #: projects/static/admin/js/SelectFilter2.js:99
 #, javascript-format
 msgid "Click to remove all chosen %s at once."
-msgstr ""
+msgstr "Haga clic para eliminar todos los% s elegidos a la vez."
 
 #: projects/static/admin/js/actions.js:49
 #: projects/static/admin/js/actions.min.js:2
 msgid "%(sel)s of %(cnt)s selected"
 msgid_plural "%(sel)s of %(cnt)s selected"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "% (sel) s de% (cnt) s seleccionados"
+msgstr[1] "% (sel) s de% (cnt) s seleccionados"
 
 #: projects/static/admin/js/actions.js:118
 #: projects/static/admin/js/actions.min.js:5
@@ -97,7 +99,8 @@ msgid ""
 "You have selected an action, but you haven’t saved your changes to "
 "individual fields yet. Please click OK to save. You’ll need to re-run the "
 "action."
-msgstr ""
+msgstr "Tiene cambios sin guardar en campos editables individuales. Si ejecuta un "
+", los cambios no guardados se perderán."
 
 #: projects/static/admin/js/actions.js:132
 #: projects/static/admin/js/actions.min.js:6
@@ -105,208 +108,210 @@ msgid ""
 "You have selected an action, and you haven’t made any changes on individual "
 "fields. You’re probably looking for the Go button rather than the Save "
 "button."
-msgstr ""
+msgstr "Ha seleccionado una acción y no ha realizado ningún cambio en la "
+"campos. Probablemente esté buscando el botón Ir en lugar de Guardar"
+"botón."
 
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:13
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:113
 msgid "Now"
-msgstr ""
+msgstr "Ahora"
 
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:14
 msgid "Midnight"
-msgstr ""
+msgstr "Medianoche"
 
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:15
 msgid "6 a.m."
-msgstr ""
+msgstr "6 por la mañana"
 
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:16
 msgid "Noon"
-msgstr ""
+msgstr "Mediodía"
 
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:17
 msgid "6 p.m."
-msgstr ""
+msgstr "6 por la tarde"
 
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:80
 #, javascript-format
 msgid "Note: You are %s hour ahead of server time."
 msgid_plural "Note: You are %s hours ahead of server time."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Nota: se adelanta %´s hora a la hora del servidor."
+msgstr[1] "Nota: se adelanta %´s hora a la hora del servidor."
 
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:88
 #, javascript-format
 msgid "Note: You are %s hour behind server time."
 msgid_plural "Note: You are %s hours behind server time."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Nota: Estás´%´s hora por detrás de la hora del servidor."
+msgstr[1] "Nota: Estás´%´s hora por detrás de la hora del servidor."
 
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:131
 msgid "Choose a Time"
-msgstr ""
+msgstr "Elige una hora"
 
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:161
 msgid "Choose a time"
-msgstr ""
+msgstr "Elige una hora"
 
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:178
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:336
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:241
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:321
 msgid "Today"
-msgstr ""
+msgstr "Hoy"
 
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:258
 msgid "Choose a Date"
-msgstr ""
+msgstr "Elige una fecha"
 
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:315
 msgid "Yesterday"
-msgstr ""
+msgstr "Ayer"
 
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:327
 msgid "Tomorrow"
-msgstr ""
+msgstr "Mañana"
 
 #: projects/static/admin/js/calendar.js:11
 msgid "January"
-msgstr ""
+msgstr "Enero"
 
 #: projects/static/admin/js/calendar.js:12
 msgid "February"
-msgstr ""
+msgstr "febrero"
 
 #: projects/static/admin/js/calendar.js:13
 msgid "March"
-msgstr ""
+msgstr "MArzo"
 
 #: projects/static/admin/js/calendar.js:14
 msgid "April"
-msgstr ""
+msgstr "Abril"
 
 #: projects/static/admin/js/calendar.js:15
 msgid "May"
-msgstr ""
+msgstr "Mayo"
 
 #: projects/static/admin/js/calendar.js:16
 msgid "June"
-msgstr ""
+msgstr "Junio"
 
 #: projects/static/admin/js/calendar.js:17
 msgid "July"
-msgstr ""
+msgstr "Julio"
 
 #: projects/static/admin/js/calendar.js:18
 msgid "August"
-msgstr ""
+msgstr "Agosto"
 
 #: projects/static/admin/js/calendar.js:19
 msgid "September"
-msgstr ""
+msgstr "Septiembre"
 
 #: projects/static/admin/js/calendar.js:20
 msgid "October"
-msgstr ""
+msgstr "Octubre"
 
 #: projects/static/admin/js/calendar.js:21
 msgid "November"
-msgstr ""
+msgstr "Noviembre"
 
 #: projects/static/admin/js/calendar.js:22
 msgid "December"
-msgstr ""
+msgstr "Diciembre"
 
 #: projects/static/admin/js/calendar.js:25
 msgctxt "one letter Sunday"
 msgid "S"
-msgstr ""
+msgstr "D"
 
 #: projects/static/admin/js/calendar.js:26
 msgctxt "one letter Monday"
 msgid "M"
-msgstr ""
+msgstr "L"
 
 #: projects/static/admin/js/calendar.js:27
 msgctxt "one letter Tuesday"
 msgid "T"
-msgstr ""
+msgstr "Mar"
 
 #: projects/static/admin/js/calendar.js:28
 msgctxt "one letter Wednesday"
 msgid "W"
-msgstr ""
+msgstr "Mier"
 
 #: projects/static/admin/js/calendar.js:29
 msgctxt "one letter Thursday"
 msgid "T"
-msgstr ""
+msgstr "J"
 
 #: projects/static/admin/js/calendar.js:30
 msgctxt "one letter Friday"
 msgid "F"
-msgstr ""
+msgstr "V"
 
 #: projects/static/admin/js/calendar.js:31
 msgctxt "one letter Saturday"
 msgid "S"
-msgstr ""
+msgstr "S"
 
 #: projects/static/admin/js/collapse.js:16
 #: projects/static/admin/js/collapse.js:34
 #: projects/static/admin/js/collapse.min.js:1
 #: projects/static/admin/js/collapse.min.js:2
 msgid "Show"
-msgstr ""
+msgstr "Mostrar"
 
 #: projects/static/admin/js/collapse.js:30
 #: projects/static/admin/js/collapse.min.js:2
 msgid "Hide"
-msgstr ""
+msgstr "Esconder"
 
 #: projects/static/js/projects.js:83
 msgid "Проект успешно добавлен."
-msgstr ""
+msgstr "El proyecto se ha agregado con éxito."
 
 #: projects/static/js/projects.js:448 projects/static/js/projects.js:885
 msgid "Выбрать сотрудника"
-msgstr ""
+msgstr "Seleccione un empleado"
 
 #: projects/static/js/projects.js:501
 msgid "Проект успешно удален"
-msgstr ""
+msgstr "Proyecto eliminado correctamente"
 
 #: projects/static/js/projects.js:501
 msgid "Восстановить"
-msgstr ""
+msgstr "Restablecer"
 
 #: projects/static/js/projects.js:809
 msgid "открыть"
-msgstr ""
+msgstr "abrir"
 
 #: projects/static/js/projects.js:809
 msgid "закрыть"
-msgstr ""
+msgstr "cerrar"
 
 #: projects/static/js/projects.js:812
 msgid "проект"
-msgstr ""
+msgstr "proyecto"
 
 #: projects/static/js/projects.js:823
 msgid "Проект успешно открыт"
-msgstr ""
+msgstr "Proyecto abierto con éxito"
 
 #: projects/static/js/tinymce/tinymce.min.js:6
 msgid "align"
-msgstr ""
+msgstr "alinear"
 
 #: projects/static/js/tinymce/tinymce.min.js:6
 msgid "blockquote"
-msgstr ""
+msgstr "blockquote"
 
 #: projects/static/js/tinymce/tinymce.min.js:6
 msgid "p"
-msgstr ""
+msgstr "p"
