@@ -1,0 +1,182 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-16 06:11+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: engineers/settings.py:143
+msgid "English"
+msgstr ""
+
+#: engineers/settings.py:144
+msgid "Spain"
+msgstr ""
+
+#: engineers/settings.py:145
+msgid "Russian"
+msgstr ""
+
+#: ganttchart/models.py:68 ganttchart/models.py:114
+msgid "project_deleted"
+msgstr ""
+
+#: ganttchart/models.py:70
+msgid "project_closed"
+msgstr ""
+
+#: ganttchart/models.py:72
+msgid "project_head_confirmed"
+msgstr ""
+
+#: ganttchart/models.py:74 ganttchart/models.py:88
+msgid "name"
+msgstr ""
+
+#: ganttchart/models.py:77 ganttchart/models.py:85 ganttchart/models.py:110
+msgid "project"
+msgstr ""
+
+#: ganttchart/models.py:78
+msgid "projects"
+msgstr ""
+
+#: ganttchart/models.py:86
+msgid "contact"
+msgstr ""
+
+#: ganttchart/models.py:90
+msgid "date start"
+msgstr ""
+
+#: ganttchart/models.py:92
+msgid "date finish"
+msgstr ""
+
+#: ganttchart/models.py:94
+msgid "task_confirm"
+msgstr ""
+
+#: ganttchart/models.py:96
+msgid "task_conpleted"
+msgstr ""
+
+#: ganttchart/models.py:97
+msgid "added by contact id"
+msgstr ""
+
+#: ganttchart/models.py:99
+msgid "after_task_id"
+msgstr ""
+
+#: ganttchart/models.py:102
+msgid "projects_task"
+msgstr ""
+
+#: ganttchart/models.py:103
+msgid "projects_tasks"
+msgstr ""
+
+#: ganttchart/models.py:112
+msgid "report_id"
+msgstr ""
+
+#: ganttchart/models.py:116
+msgid "project_report_confirm"
+msgstr ""
+
+#: ganttchart/models.py:118
+msgid "project report date"
+msgstr ""
+
+#: ganttchart/models.py:119
+msgid "report_text"
+msgstr ""
+
+#: ganttchart/models.py:123
+msgid "projects_report"
+msgstr ""
+
+#: ganttchart/models.py:124
+msgid "projects_reports"
+msgstr ""
+
+#: ganttchart/models.py:131
+msgid "project_task_report_project"
+msgstr ""
+
+#: ganttchart/models.py:133
+msgid "project_task_report_confirm"
+msgstr ""
+
+#: ganttchart/models.py:135
+msgid "project_task_report_deleted"
+msgstr ""
+
+#: ganttchart/models.py:137
+msgid "project_task_report_user_id"
+msgstr ""
+
+#: ganttchart/models.py:141
+msgid "projects_tasks_report"
+msgstr ""
+
+#: ganttchart/models.py:142
+msgid "projects_tasks_reports"
+msgstr ""
+
+#: ganttchart/templates/ganttchart/create-project-home.html:8
+#: ganttchart/templates/ganttchart/projects.html:6
+msgid "Projects"
+msgstr ""
+
+#: ganttchart/templates/ganttchart/create-project-home.html:8
+#: ganttchart/templates/ganttchart/projects.html:6
+msgid "Home"
+msgstr ""
+
+#: ganttchart/templates/ganttchart/create-project-home.html:18
+#: ganttchart/templates/ganttchart/create-project-home.html:29
+#: ganttchart/templates/ganttchart/create-project-home.html:33
+msgid "Pivot"
+msgstr ""
+
+#: ganttchart/templates/ganttchart/create-project-home.html:28
+#: ganttchart/templates/ganttchart/create-project-home.html:32
+#: ganttchart/templates/ganttchart/create-project-home.html:43
+#: ganttchart/templates/ganttchart/create-project-home.html:47
+#: ganttchart/templates/ganttchart/create-project-home.html:67
+#: ganttchart/templates/ganttchart/create-project-home.html:71
+#: ganttchart/templates/ganttchart/create-project-home.html:82
+#: ganttchart/templates/ganttchart/create-project-home.html:86
+msgid "New Project"
+msgstr ""
+
+#: ganttchart/templates/ganttchart/create-project-home.html:44
+#: ganttchart/templates/ganttchart/create-project-home.html:48
+msgid "Pivot Mini"
+msgstr ""
+
+#: ganttchart/templates/ganttchart/create-project-home.html:58
+#: ganttchart/templates/ganttchart/create-project-home.html:68
+#: ganttchart/templates/ganttchart/create-project-home.html:72
+msgid "Slide"
+msgstr ""
+
+#: ganttchart/templates/ganttchart/create-project-home.html:83
+#: ganttchart/templates/ganttchart/create-project-home.html:87
+msgid "Slide Mini"
+msgstr ""

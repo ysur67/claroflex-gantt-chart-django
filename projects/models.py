@@ -1,5 +1,10 @@
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
+
+
+def get_user_name(user):
+    return f"{user.first_name} {user.last_name}" if user.first_name else user.username
 
 
 class Project(models.Model):
@@ -25,15 +30,22 @@ class Project(models.Model):
 
     @property
     def user_created_name(self):
-        obj = self.user_created
-        return f"{obj.first_name} {obj.last_name}" if obj.first_name else obj.username
+        return get_user_name(self.user_created)
 
     @property
     def responsible_user_name(self):
         obj = self.responsible_user
         if not obj:
             return None
-        return f"{obj.first_name} {obj.last_name}" if obj.first_name else obj.username
+        return get_user_name(obj)
+
+    def close(self):
+        self.completed_at = timezone.now()
+        self.save(update_fields=['completed_at', 'updated_at',])
+
+    def open(self):
+        self.completed_at = None
+        self.save(update_fields=['completed_at', 'updated_at', ])
 
 
 class ProjectFile(models.Model):
@@ -51,3 +63,8 @@ class ProjectTask(models.Model):
     start_date = models.DateField('Start date')
     close_date = models.DateField('Close date')
     related_task = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
+
+    @property
+    def user_name(self):
+        print(get_user_name(self.user))
+        return get_user_name(self.user)

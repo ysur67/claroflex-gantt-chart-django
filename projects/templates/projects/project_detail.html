@@ -1,9 +1,9 @@
 {% extends 'projects/base_project.html' %}
-{% load static %}
+{% load static i18n %}
 {% block right_block %}
     <div class="nav_block">
         <div class="top_shdw"></div>
-        <a href="{% url 'project-list' %}">Мои проекты</a> » <span class="current">Просмотр проекта</span> <span
+        <a href="{% url 'project-list' %}">{% trans 'Мои проекты' %}</a> » <span class="current">{% trans 'Просмотр проекта' %}</span> <span
             id="nav_custom_n" style="font-weight:normal"></span>
     </div>
     <div class="content_block_no_padding">
@@ -11,26 +11,24 @@
 
         <div class="content_block_padn">
             <div class="project_closed_title"></div>
-            <a href="javascript:;" onclick="get_project_edit_form({{ object.id }})" class="link" style="float:right">Изменить
-                данные</a>
+            <a href="javascript:;" onclick="get_project_edit_form({{ object.id }})" class="link" style="float:right">{% trans 'Изменить данные' %}</a>
             <div class="project_title">{{ object.name }}</div>
             <div id="project_desc_show" class="d_none stand_margin">
                 {{ object.description|safe }}
                 <div class="stand_margin">
                     <a href="javascript:;" class="link"
-                       onclick="$('#project_desc_show').hide(); $('#show_project_desc').show()">Скрыть</a>
+                       onclick="$('#project_desc_show').hide(); $('#show_project_desc').show()">{% trans 'Скрыть' %}</a>
                 </div>
             </div>
             <div class="stand_margin" id="show_project_desc">
                 <a href="javascript:;" class="link"
-                   onclick="$('#project_desc_show').fadeIn(200); $('#show_project_desc').hide()">Показать
-                    описание проекта</a>
+                   onclick="$('#project_desc_show').fadeIn(200); $('#show_project_desc').hide()">{% trans 'Показать описание проекта' %}</a>
             </div>
             <div style="margin-top:15px"></div>
 
             <table cellpadding="0" cellspacing="0">
                 <tr>
-                    <td>Ответственное лицо:</td>
+                    <td>{% trans 'Ответственное лицо' %}:</td>
                     <td style="padding-left:10px">{{ object.responsible_user_name }}</td>
                 </tr>
             </table>
@@ -45,10 +43,9 @@
                                        id="project_tasks_tb">
                                     <tr>
                                         <th class="nopdl">№</th>
-                                        <th class="">Сотрудник</th>
-                                        <th title="Предшествующая задача">Связь</th>
-                                        <th class="">Дата старта &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Дата
-                                            завершения
+                                        <th class="">{% trans 'Сотрудник' %}</th>
+                                        <th title="{% trans 'Предшествующая задача' %}">{% trans 'Связь' %}</th>
+                                        <th class="">{% trans 'Дата старта' %} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% trans 'Дата завершения' %}
                                         </th>
 
                                         <th></th>
@@ -67,7 +64,7 @@
 
                                             <td class="task_user_c">
                                                 <select id="select_task_user_{{ task.id }}" class="user">
-                                                    <option value="{{ task.user.id }}" class="selected">{{ task.user.username }}
+                                                    <option value="{{ task.user.id }}" class="selected">{{ task.user_name }}
                                                     </option>
                                                 </select>
                                                 <div class="project_task_desc_bl">
@@ -77,7 +74,7 @@
                                                 <div style="margin:5px 0px 8px 0px">
                                                     <a href="javascript:;"
                                                        onclick="show_project_tasks_comments('{{ task.id }}')"
-                                                       class="link_proc">Отчет
+                                                       class="link_proc">{% trans 'Отчет' %}
                                                         <span class="new_count" id="new_task_report_count_{{ task.id }}"></span></a>
                                                     <div id="comments_{{ task.id }}" class="project_task_comments_bl"></div>
                                                 </div>
@@ -92,7 +89,7 @@
                                             </td>
 
                                             <td class="prt_dates_bl">
-                                                <div class="prt_date_t">По плану</div>
+                                                <div class="prt_date_t">{% trans 'По плану' %}</div>
                                                 <input type="text" id="task_date_start_{{ task.id }}"
                                                        class="date_inp input_text date_start"
                                                        task_id="{{ task.id }}"
@@ -103,7 +100,7 @@
                                                        task_id="{{ task.id }}"
                                                        value="{{ task.close_date|date:"d.m.Y" }}"/>
 
-                                                <div class="prt_date_t">По факту</div>
+                                                <div class="prt_date_t">{% trans 'По факту' %}</div>
                                                 <div>
                                                     <div class="prtdt" id="fact_date_start_{{ task.id }}"></div>
                                                     <div class="prtdt" id="fact_date_finish_{{ task.id }}"></div>
@@ -113,14 +110,14 @@
                                             <td class="prt_delete_bl">
                                                 <a href="javascript:;" class="delete"
                                                    onclick="delete_project_task('{{ task.id }}')"
-                                                   title="Удалить задачу"></a></td>
+                                                   title="{% trans 'Удалить задачу' %}"></a></td>
                                         </tr>
                                     {% endfor %}
 
                                     </tbody>
                                 </table>
                                 <a href="javascript:;" onclick="add_project_task()" class="link"
-                                   id="add_more_project_task_btn">[+] добавить еще задачу</a>
+                                   id="add_more_project_task_btn">[+] {% trans 'добавить еще задачу' %}</a>
                             </td>
                             <td style="vertical-align:top"></td>
                         </tr>
@@ -132,19 +129,18 @@
                     </div>
 
                     <div style="margin-bottom:10px" id="add_project_task_btn">
-                        <a href="javascript:;" onclick="add_project_task()" class="link">[+] добавить
-                            задачу</a>
+                        <a href="javascript:;" onclick="add_project_task()" class="link">[+] {% trans 'добавить задачу' %}</a>
                     </div>
                     <div class="d_none project_period_date" id="project_period_date">
 
-                        <div><span class="prt_dates_rs">По плану</span> Дата старта: <span
-                                id="project_date_start_plan"></span> Дата завершения: <span
+                        <div><span class="prt_dates_rs">{% trans 'По плану' %}</span> {% trans 'Дата старта' %}: <span
+                                id="project_date_start_plan"></span> {% trans 'Дата завершения' %}: <span
                                 id="project_date_finish_plan"></span></div>
-                        <div style="margin:4px 0px 4px 0px"><span class="prt_dates_rs">По факту</span> Дата
-                            старта: <span id="project_date_start"></span> Дата завершения: <span
+                        <div style="margin:4px 0px 4px 0px"><span class="prt_dates_rs">{% trans 'По факту' %}</span> {% trans 'Дата старта' %}:
+                            <span id="project_date_start"></span> {% trans 'Дата завершения' %}: <span
                                     id="project_date_finish"></span></div>
                         <div style="margin:4px 0px 4px 0px"><span
-                                class="prt_dates_rs">Отставание от графика</span> <span
+                                class="prt_dates_rs">{% trans 'Отставание от графика' %}</span> <span
                                 id="behind_schedule"></span></div>
 
 
@@ -160,19 +156,18 @@
                             <tbody class="project_scheme_days_rows" id="project_scheme_days_rows"></tbody>
                         </table>
                     </div>
-                    <div class="sub_project_scheme" id="gr_edited_notice">Изменения на графике отобразятся
-                        после нажатия на кнопку "Сохранить изменения".
+                    <div class="sub_project_scheme" id="gr_edited_notice">{% trans 'Изменения на графике отобразятся после нажатия на кнопку "Сохранить изменения"' %}.
                     </div>
                     <div class="clear"></div>
                     <div>
                         <div style="margin-top:15px"></div>
                         <div style="float:right">
-                            <div class="project_closed_title project_str_closed_status"></div>
-                            <a class="button" onclick="project_close('137', 'close')" href="javascript:;"
+                            <div class="project_closed_title project_str_closed_status">{% if object.completed_at %}{% trans 'Проект закрыт' %}{% endif %}</div>
+                            <a class="button" onclick="project_close({{ object.id }}, '{% if object.completed_at %}open{% else %}close{% endif %}')" href="javascript:;"
                                id="project_close_btn" closed="0">
                                 <div class="right"></div>
                                 <div class="left"></div>
-                                <div class="btn_cont">закрыть проект <span
+                                <div class="btn_cont">{% if object.completed_at %}{% trans 'открыть' %}{% else %}{% trans 'закрыть' %}{% endif %} {% trans 'проект' %} <span
                                         class="link_cancel">&times;</span></div>
                             </a>
                         </div>
@@ -181,7 +176,7 @@
                         <a class="button" onclick="save_project()" href="javascript:;" id="add_project_btn">
                             <div class="right"></div>
                             <div class="left"></div>
-                            <div class="btn_cont">сохранить изменения</div>
+                            <div class="btn_cont">{% trans 'сохранить изменения' %}</div>
                         </a>
 
                         <div class="clear"></div>
@@ -195,7 +190,7 @@
 
             </div>
 
-            <div class="cat_block" style="margin-top:35px">Комментарии:</div>
+            <div class="cat_block" style="margin-top:35px">{% trans 'Комментарии' %}:</div>
             <div id="report_add_form " style="display:block">
                 <div class="add_form  add_form_ntrb" id="add_report_form">
                     <textarea id="report_text" class="input_text" style="width:700px"></textarea>
@@ -206,7 +201,7 @@
                            id="add_report_btn_137">
                             <div class="right"></div>
                             <div class="left"></div>
-                            <div class="btn_cont">добавить комментарий</div>
+                            <div class="btn_cont">{% trans 'добавить комментарий' %}</div>
                         </a>
                         <div class="clear"></div>
                     </div>
@@ -215,14 +210,14 @@
             </div>
 
             <div id="reports_list">
-                <div class="no_contents" id="no_reports">Отчет отсутствует.</div>
+                <div class="no_contents" id="no_reports"{% trans 'Отчет отсутствует' %}.</div>
             </div>
 
 
             <script type="text/javascript">
                 tinymce.init({
                     selector: "#report_text",
-                    language: 'ru',
+                    language: '{{ LANGUAGE_CODE }}',
                     plugins: ['table'
 
                     ],

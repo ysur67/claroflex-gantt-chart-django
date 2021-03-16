@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 from pathlib import Path
 
 import environ
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,6 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
-
 
 # Application definition
 
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -75,7 +76,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'engineers.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -101,11 +101,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -114,7 +111,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -125,11 +121,10 @@ STATIC_ROOT = str(BASE_DIR / 'static')
 MEDIA_ROOT = str(BASE_DIR / 'media')
 MEDIA_URL = '/media/'
 
-
 DEFAULT_AUTHENTICATION_CLASSES = (
-    'rest_framework.authentication.SessionAuthentication',
-    'rest_framework.authentication.BasicAuthentication'
-),
+                                     'rest_framework.authentication.SessionAuthentication',
+                                     'rest_framework.authentication.BasicAuthentication'
+                                 ),
 
 REST_FRAMEWORK = {
     'DEFAULT_PARSER_CLASSES': [
@@ -137,3 +132,20 @@ REST_FRAMEWORK = {
     ],
     "DATE_INPUT_FORMATS": ["%d-%m-%Y", "%d.%m.%Y"],
 }
+
+LOCALE_PATHS = (
+    str(BASE_DIR / 'locale'),
+)
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('ru', _('Russian')),
+    ('es', _('Spain')),
+)
+
+LANGUAGE_CODE = env('LANGUAGE_CODE', default='es')
+
+FORCE_LANGUAGE = env('FORCE_LANGUAGE', default=False)
+
+if FORCE_LANGUAGE or not DEBUG:
+    LANGUAGES = tuple(filter(lambda item: item[0] == LANGUAGE_CODE, LANGUAGES))
