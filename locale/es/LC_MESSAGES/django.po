@@ -20,31 +20,31 @@ msgstr ""
 
 #: engineers/settings.py:141
 msgid "English"
-msgstr ""
+msgstr "Ingles"
 
 #: engineers/settings.py:142
 msgid "Spain"
-msgstr ""
+msgstr "España"
 
 #: engineers/settings.py:143
 msgid "Russian"
-msgstr ""
+msgstr "Rusia"
 
 #: projects/templates/projects/base_project.html:7
 msgid "Projects"
-msgstr ""
+msgstr "Proyecto"
 
 #: projects/templates/projects/base_project.html:7
 msgid "Home"
-msgstr ""
+msgstr "Inicio"
 
 #: projects/templates/projects/base_project.html:79
 msgid "выход"
-msgstr ""
+msgstr "Salida"
 
 #: projects/templates/projects/base_project.html:113
 msgid "система автоматизации бизнеса"
-msgstr ""
+msgstr "sistema de automatización empresarial"
 
 #: projects/templates/projects/project_detail.html:6
 #: projects/templates/projects/project_list.html:7
@@ -58,36 +58,36 @@ msgstr "Vista de proyecto"
 
 #: projects/templates/projects/project_detail.html:14
 msgid "Изменить данные"
-msgstr ""
+msgstr "Cambiar los datos"
 
 #: projects/templates/projects/project_detail.html:20
 #: projects/templates/projects/project_list.html:111
 msgid "Скрыть"
-msgstr ""
+msgstr "Esconder"
 
 #: projects/templates/projects/project_detail.html:25
 msgid "Показать описание проекта"
-msgstr ""
+msgstr "Mostrar descripción del proyecto"
 
 #: projects/templates/projects/project_detail.html:31
 #: projects/templates/projects/project_list.html:34
 msgid "Ответственное лицо"
-msgstr ""
+msgstr "Persona responsable"
 
 #: projects/templates/projects/project_detail.html:46
 #: projects/templates/projects/project_list.html:60
 msgid "Сотрудник"
-msgstr ""
+msgstr "Empleado"
 
 #: projects/templates/projects/project_detail.html:47
 #: projects/templates/projects/project_list.html:61
 msgid "Предшествующая задача"
-msgstr ""
+msgstr "Tarea previa"
 
 #: projects/templates/projects/project_detail.html:47
 #: projects/templates/projects/project_list.html:61
 msgid "Связь"
-msgstr ""
+msgstr "Comunicación"
 
 #: projects/templates/projects/project_detail.html:48
 #: projects/templates/projects/project_detail.html:136
@@ -96,7 +96,7 @@ msgstr ""
 #: projects/templates/projects/project_list.html:76
 #: projects/templates/projects/project_list.html:167
 msgid "Дата старта"
-msgstr ""
+msgstr "Fecha de inicio"
 
 #: projects/templates/projects/project_detail.html:48
 #: projects/templates/projects/project_detail.html:137
@@ -105,128 +105,128 @@ msgstr ""
 #: projects/templates/projects/project_list.html:77
 #: projects/templates/projects/project_list.html:168
 msgid "Дата завершения"
-msgstr ""
+msgstr "Fecha de realización"
 
 #: projects/templates/projects/project_detail.html:77
 msgid "Отчет"
-msgstr ""
+msgstr "Reporte"
 
 #: projects/templates/projects/project_detail.html:92
 #: projects/templates/projects/project_detail.html:136
 msgid "По плану"
-msgstr ""
+msgstr "De acuerdo al plan"
 
 #: projects/templates/projects/project_detail.html:103
 #: projects/templates/projects/project_detail.html:139
 msgid "По факту"
-msgstr ""
+msgstr "De hecho"
 
 #: projects/templates/projects/project_detail.html:113
 msgid "Удалить задачу"
-msgstr ""
+msgstr "Eliminar tarea"
 
 #: projects/templates/projects/project_detail.html:120
 #: projects/templates/projects/project_list.html:70
 msgid "добавить еще задачу"
-msgstr ""
+msgstr "agregar otra tarea"
 
 #: projects/templates/projects/project_detail.html:132
 #: projects/templates/projects/project_list.html:43
 msgid "добавить задачу"
-msgstr ""
+msgstr "agregar tarea"
 
 #: projects/templates/projects/project_detail.html:143
 msgid "Отставание от графика"
-msgstr ""
+msgstr "Retrasado en el horario"
 
 #: projects/templates/projects/project_detail.html:159
 msgid ""
 "Изменения на графике отобразятся после нажатия на кнопку \"Сохранить "
 "изменения\""
-msgstr ""
+msgstr "Los cambios en el gráfico se muestran después de hacer clic en \ "Guardar" "cambios\"
 
 #: projects/templates/projects/project_detail.html:165
 msgid "Проект закрыт"
-msgstr ""
+msgstr "El proyecto esta cerrado"
 
 #: projects/templates/projects/project_detail.html:170
 msgid "открыть"
-msgstr ""
+msgstr "abrir"
 
 #: projects/templates/projects/project_detail.html:170
 msgid "закрыть"
-msgstr ""
+msgstr "cerrar"
 
 #: projects/templates/projects/project_detail.html:170
 msgid "проект"
-msgstr ""
+msgstr "el proyecto"
 
 #: projects/templates/projects/project_detail.html:179
 msgid "сохранить изменения"
-msgstr ""
+msgstr "guardar cambios"
 
 #: projects/templates/projects/project_detail.html:193
 msgid "Комментарии"
-msgstr ""
+msgstr "Comentarios"
 
 #: projects/templates/projects/project_detail.html:204
 msgid "добавить комментарий"
-msgstr ""
+msgstr "Añadir un comentario"
 
 #: projects/templates/projects/project_detail.html:213
 msgid "Отчет отсутствует"
-msgstr ""
+msgstr "Sin informe"
 
 #: projects/templates/projects/project_list.html:14
 #: projects/templates/projects/project_list.html:118
 msgid "Добавить проект"
-msgstr ""
+msgstr "Agregar proyecto"
 
 #: projects/templates/projects/project_list.html:20
 #: projects/templates/projects/project_list.html:165
 msgid "Название"
-msgstr ""
+msgstr "Nombre"
 
 #: projects/templates/projects/project_list.html:28
 msgid "Описание"
-msgstr ""
+msgstr "Descripción"
 
 #: projects/templates/projects/project_list.html:41
 msgid "Задачи"
-msgstr ""
+msgstr "Tareas"
 
 #: projects/templates/projects/project_list.html:99
 msgid "добавить проект"
-msgstr ""
+msgstr "agregar proyect"
 
 #: projects/templates/projects/project_list.html:151
 msgid "Мои закрытые проекты"
-msgstr ""
+msgstr "Mis proyectos cerrados"
 
 #: projects/templates/projects/project_list.html:152
 msgid "Проекты, в которых участвую"
-msgstr ""
+msgstr "Proyectos en los que participo"
 
 #: projects/templates/projects/project_list.html:154
 msgid "Закрытые, в которых участвую"
-msgstr ""
+msgstr "Cerrados, en el que participo"
 
 #: projects/templates/projects/project_list.html:166
 msgid "Добавил"
-msgstr ""
+msgstr "Añadido por"
 
 #: projects/templates/projects/project_list.html:179
 msgid "Акционер"
-msgstr ""
+msgstr "Accionista"
 
 #: projects/templates/projects/project_list.html:179
 msgid "Инвестор"
-msgstr ""
+msgstr "Inversor"
 
 #: projects/templates/projects/project_list.html:179
 msgid "Клиент"
-msgstr ""
+msgstr "Cliente"
 
 #: projects/templates/projects/project_list.html:189
 msgid "удалить"
-msgstr ""
+msgstr "eliminar"
