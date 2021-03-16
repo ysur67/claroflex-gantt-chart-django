@@ -105,7 +105,7 @@ msgstr "Fecha de inicio"
 #: projects/templates/projects/project_list.html:77
 #: projects/templates/projects/project_list.html:168
 msgid "Дата завершения"
-msgstr "Fecha de realización"
+msgstr "Fecha de real-ón"
 
 #: projects/templates/projects/project_detail.html:77
 msgid "Отчет"
