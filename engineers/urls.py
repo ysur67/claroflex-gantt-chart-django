@@ -29,6 +29,7 @@ from django.urls import path
 
 # login_required(views.create_project_home),
 from django.views.generic import RedirectView
+from django.views.i18n import JavaScriptCatalog
 
 urlpatterns = [
     url(r'^login/$',
@@ -70,7 +71,8 @@ urlpatterns = [
     path('projects/', include('projects.urls')),
     path('api/v1/', include(('users.urls', 'users'))),
     path('api/v1/', include(('projects.api_urls', 'projects'))),
-    path('api-auth/', include('rest_framework.urls'))
+    path('api-auth/', include('rest_framework.urls')),
+    path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

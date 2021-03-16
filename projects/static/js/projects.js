@@ -80,7 +80,7 @@ function add_project() {
             var error_text = '';
 
             get_project_item(data['id'], 1);
-            $('#success').html('<div class="success">Проект успешно добавлен.</div>');
+            $('#success').html(`<div class="success">${gettext('Проект успешно добавлен.')}</div>`);
             document.location = `/projects/${data['id']}`;
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -445,7 +445,7 @@ function add_project_task(after_task_id) {
 
     $('#select_task_user_' + task_id + '[not_select!=1]').easycomplete(
         {
-            str_word_select: 'Выбрать сотрудника',
+            str_word_select: gettext('Выбрать сотрудника'),
             url: '/api/v1/users/',
             width: 350,
             trigger: 1
@@ -498,7 +498,7 @@ function delete_project(project_id) {
     $.post(`/api/v1/projects/${project_id}/delete/`,
         {},
         function (data) {
-            $('#project_' + project_id).replaceWith('<tr class="tb_data_1_row" id="project_' + project_id + '"><td colspan="5"><div class="success">Проект успешно удален | <a href="javascript:;" onclick="restore_project(' + project_id + ');">Восстановить</a> | <a href="javascript:;" onclick="$(\'#project_' + project_id + '\').remove();">Скрыть</a></div></td></tr>');
+            $('#project_' + project_id).replaceWith(`<tr class="tb_data_1_row" id="project_' + project_id + '"><td colspan="5"><div class="success">${gettext('Проект успешно удален')} | <a href="javascript:;" onclick="restore_project(' + project_id + ');">${gettext('Восстановить')}</a> | <a href="javascript:;" onclick="$(\'#project_' + project_id + '\').remove();">${gettext('Скрыть')}</a></div></td></tr>`);
         });
 }
 
@@ -806,21 +806,21 @@ function project_close(project_id, status) {
                 $('#report_add_form').show();
             }
             const nextStatus = status === 'close' ? 'open': 'close';
-            const nextStatusTitle = status === 'close' ? 'открыть': 'закрыть';
+            const nextStatusTitle = status === 'close' ? gettext('открыть'): gettext('закрыть');
             const btn = `
                 <a class="button" onclick="project_close('${project_id}', '${nextStatus}')" href="javascript:;" id="project_close_btn"  closed="0">
-                <div class="right"></div><div class="left"></div><div class="btn_cont">${nextStatusTitle} проект <span class="link_cancel">&times;</span></div></a>
+                <div class="right"></div><div class="left"></div><div class="btn_cont">${nextStatusTitle} ${gettext('проект')} <span class="link_cancel">&times;</span></div></a>
             `
 
 
-            const closedTitle = status === 'close' ? 'Проект закрыт': '';
+            const closedTitle = status === 'close' ? gettext('Проект закрыт'): '';
             $('#project_close_btn').replaceWith(btn);
             $('.project_closed_title').html(closedTitle);
 
             if (status === 'close') {
-                $('#success_close').html('<div class="success">Проект успешно закрыт.</div>');
+                $('#success_close').html(`<div class="success">${gettext("Проект успешно закрыт")}.</div>`);
             } else {
-                $('#success_close').html('<div class="success">Проект успешно открыт.</div>');
+                $('#success_close').html(`<div class="success">${gettext('Проект успешно открыт')}.</div>`);
             }
 
 
@@ -882,7 +882,7 @@ function projects_tasks_init(static_task_obj) {
 
             $('#select_task_user_' + task_id + '[not_select!=1]').easycomplete(
                 {
-                    str_word_select: 'Выбрать сотрудника',
+                    str_word_select: gettext('Выбрать сотрудника'),
                     url: '/api/v1/users/',
                     width: 350,
                     trigger: 1

@@ -29,6 +29,21 @@ Run docker in dev mode with building:
 docker-compose up --build
 ```
 
+Make/update Translations:
+```
+docker-compose exec app python manage.py makemessages -l es -i 'ganttchart'
+```
+
+Make/update Translations for js:
+```
+docker-compose exec app python manage.py makemessages -d djangojs -l es -i 'ganttchart'
+```
+
+Compile Translations after changes:
+```
+docker-compose exec app python manage.py compilemessages
+```
+
 ## PostgreSQL
 
 We are using this database. The psycopg2-binary package does not need to be installed everywhere. In most cases, enough

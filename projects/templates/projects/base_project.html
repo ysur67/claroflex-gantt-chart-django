@@ -1,9 +1,10 @@
-{% load static %}
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
-<html>
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>EasyWork24 - cистема управления заданиями</title>
+    <title>{% trans "Projects" %} - {% trans "Home" %}</title>
     <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>
 
     <LINK rel=stylesheet type=text/css href="{% static 'css/style_new.css' %}"/>
@@ -17,6 +18,7 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/tooltips/poshy/tip-green/tip-green.css' %}"
           media="screen"/>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'js/messages.js' %}"></script>
     <script src="{% static 'js/functions.js' %}"></script>
     <script src="{% static 'js/worktime.js' %}"></script>
@@ -52,7 +54,7 @@
         new_msgs_count = parseInt('{NEW_MSGS_COUNT}');
         not_check_new_msgs = '0';
         current_user_id = '1099';
-        title = 'EasyWork24 - cистема управления заданиями';
+        title = gettext('Cистема управления заданиями');
         o = 'projects';
         $(document).ready(function () {
             if (o != 'auth') {
@@ -74,35 +76,17 @@
 <div class="top">
     <div class="site_center_block">
         <div class="top_acts_block">
-
-            <a href="{% url 'admin:logout' %}" class="t_btn">выход</a>
-
+            <a href="{% url 'admin:logout' %}" class="t_btn">{% trans 'выход' %}</a>
         </div>
-
-
-        <a href="/id1099" class="easy_logo"></a>
-        <div class="logo_l_marg"></div>
-
-        <div id="ps_wrap" class="ps_wrap"></div>
-        <div class="top_sep" style="margin-right:9px"></div>
-        <div class="top_cal_nt_wrap"><a href="javascript:;" class="top_cal_nt" title="Уведомления о событиях"
-                                        id="nc_cof" onclick="Evcal.show_evcal_popup();"></a></div>
-        <div href="javascript:;" class="planning_session_notice"><a onclick="show_planning_sessions();"
-                                                                    href="javascript:;" title="Планерки" id="nc_ps"></a>
-        </div>
-        <div class="top_sep"></div>
-
-        <div class="wktime_tpp" id="wktime_tpp"></div>
+        <a href="/" class="easy_logo"></a>
     </div>
 
 
 </div>
 
 <script>
-
-
-    tp_notice_bar_init();
-    wk_top();
+    {#tp_notice_bar_init();#}
+    {#wk_top();#}
     toggle_st_class_btn();
 </script>
 
@@ -126,8 +110,9 @@
 
         </tr>
     </table>
-    <div class="footer_info">EasyWork - система автоматизации бизнеса</div>
+    <div class="footer_info">{% trans 'система автоматизации бизнеса' %}</div>
 </div>
+
 
 </body>
 </html>

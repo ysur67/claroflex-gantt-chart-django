@@ -1,23 +1,23 @@
 {% extends 'projects/base_project.html' %}
-{% load static %}
+{% load static i18n %}
 
 {% block right_block %}
     <div class="nav_block">
         <div class="top_shdw"></div>
-        <span class="current">Мои проекты</span> <span id="nav_custom_n" style="font-weight:normal"></span>
+        <span class="current">{% trans 'Мои проекты' %}</span> <span id="nav_custom_n" style="font-weight:normal"></span>
     </div>
     <div class="content_block_no_padding">
         <script type="text/javascript" src="{% static 'js/tinymce/tinymce.min.js' %}"></script>
 
         <div class="content_block_padn">
             <div style="display: none" id="add_form_block" class="add_form_margin">
-                <div class="title_add_form">Добавить проект</div>
+                <div class="title_add_form">{% trans 'Добавить проект' %}</div>
                 <div class="add_form add_form_margin">
 
                     <table cellpadding="0" cellspacing="0" class="tables_data_1">
                         <tbody>
                         <tr>
-                            <td class="td_title">Название</td>
+                            <td class="td_title">{% trans 'Название' %}</td>
                             <td class="td_value"><input type="text" class="input_text" id="project_name"
                                                         style="width:528px"/>
                                 <div class="td_error sub_input_error"></div>
@@ -25,23 +25,22 @@
 
                         </tr>
                         <tr>
-                            <td class="td_title td_vert_top">Описание</td>
+                            <td class="td_title td_vert_top">{% trans 'Описание' %}</td>
                             <td class="td_value"><textarea id="project_desc" class="input_text"
                                                            style="width:528px; height:100px"></textarea>
                             </td>
                         </tr>
                         <tr>
-                            <td class="td_title td_vert_top">Ответственное лицо</td>
+                            <td class="td_title td_vert_top">{% trans 'Ответственное лицо' %}</td>
                             <td class="td_value"><select id="project_head"></select>
                             </td>
                         </tr>
 
 
                         <tr>
-                            <td class="td_title td_vert_top">Задачи</td>
+                            <td class="td_title td_vert_top">{% trans 'Задачи' %}</td>
                             <td class="td_value"><a href="javascript:;" onclick="add_project_task()"
-                                                    class="link" id="add_project_task_btn"> [+] добавить
-                                задачу</a>
+                                                    class="link" id="add_project_task_btn"> [+] {% trans 'добавить задачу' %}</a>
                             </td>
                         </tr>
                         <input type="hidden" name="user_created" id="user_created"
@@ -58,10 +57,9 @@
                                        id="project_tasks_tb">
                                     <tr>
                                         <th class="nopdl">№</th>
-                                        <th class="">Сотрудник</th>
-                                        <th title="Предшествующая задача">Связь</th>
-                                        <th class="">Дата старта &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Дата
-                                            завершения
+                                        <th class="">{% trans 'Сотрудник' %}</th>
+                                        <th title="{% trans 'Предшествующая задача' %}">{% trans 'Связь' %}</th>
+                                        <th class="">{% trans 'Дата старта' %} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% trans 'Дата завершения' %}
                                         </th>
                                         <th></th>
                                     </tr>
@@ -69,14 +67,14 @@
                                     </tbody>
                                 </table>
                                 <a href="javascript:;" onclick="add_project_task()" class="link d_none"
-                                   id="add_more_project_task_btn"> [+] добавить еще задачу</a>
+                                   id="add_more_project_task_btn"> [+] {% trans 'добавить еще задачу' %}</a>
                             </td>
                             <td style="vertical-align:top"></td>
                         </tr>
                     </table>
 
-                    <div class="d_none project_period_date" id="project_period_date">Дата старта: <span
-                            id="project_date_start"></span> Дата завершения: <span
+                    <div class="d_none project_period_date" id="project_period_date">{% trans 'Дата старта' %}: <span
+                            id="project_date_start"></span> {% trans 'Дата завершения' %}: <span
                             id="project_date_finish"></span></div>
                     <div class="project_scheme d_none" id="project_scheme">
                         <table cellpadding="0" cellspacing="0" class="project_scheme_tb">
@@ -98,7 +96,7 @@
                         <a class="button" onclick="add_project()" href="javascript:;" id="add_project_btn">
                             <div class="right"></div>
                             <div class="left"></div>
-                            <div class="btn_cont">добавить проект</div>
+                            <div class="btn_cont">{% trans 'добавить проект' %}</div>
                         </a>
                         <div class="clear"></div>
                     </div>
@@ -110,21 +108,20 @@
 
                 <div class="stand_margin">
                     <a href="javascript:;" class="link"
-                       onclick="$('#add_form_block').hide(); $('#show_add_form_a').show()">Скрыть</a>
+                       onclick="$('#add_form_block').hide(); $('#show_add_form_a').show()">{% trans 'Скрыть' %}</a>
                 </div>
 
             </div>
 
             <div class="add_new_list_item" id="show_add_form_a">
                 <a href="javascript:;" class="link"
-                   onclick="$('#add_form_block').fadeIn(200); $('#show_add_form_a').hide()">+ Добавить
-                    проект</a>
+                   onclick="$('#add_form_block').fadeIn(200); $('#show_add_form_a').hide()">+ {% trans 'Добавить проект' %}</a>
             </div>
 
             <script type="text/javascript">
                 tinymce.init({
                     selector: "#project_desc",
-                    language: 'ru',
+                    language: '{{ LANGUAGE_CODE }}',
                     plugins: ['table'
 
                     ],
@@ -139,7 +136,7 @@
                 $('.after_task_s').live('change', pr_task_after_task_change);
                 $('#project_head').easycomplete(
                     {
-                        str_word_select: 'Выбрать сотрудника',
+                        str_word_select: gettext('Выбрать сотрудника'),
                         url: '/api/v1/users/',
                         width: 350,
                         trigger: 1
@@ -149,12 +146,12 @@
 
         <div class="task_top_panel project_top_menu">
             {% url 'project-list' as PROJECTS_URL %}
-            <a class="item active" href="{{ PROJECTS_URL }}">Мои проекты <span
+            <a class="item active" href="{{ PROJECTS_URL }}">{% trans 'Мои проекты' %} <span
                     id="new_count_for_worker"></span></a>
-            <a class="item " href="{{ PROJECTS_URL }}">Мои закрытые проекты </a>
-            <a class="item " href="{{ PROJECTS_URL }}">Проекты, в которых участвую <span
+            <a class="item " href="{{ PROJECTS_URL }}">{% trans 'Мои закрытые проекты' %}</a>
+            <a class="item " href="{{ PROJECTS_URL }}">{% trans 'Проекты, в которых участвую' %} <span
                     id="new_count_in_part_projects"></span></a>
-            <a class="item " href="{{ PROJECTS_URL }}">Закрытые, в которых участвую</a>
+            <a class="item " href="{{ PROJECTS_URL }}">{% trans 'Закрытые, в которых участвую' %}</a>
             <div class="clear"></div>
         </div>
 
@@ -165,10 +162,10 @@
             <table cellpadding="0" cellspacing="0" class="tasks_tb" style="width:100%; margin-top:5px">
                 <thead>
                 <tr class="">
-                    <th class="">Название</th>
-                    <th class="">Добавил</th>
-                    <th class="">Дата старта</th>
-                    <th class="">Дата завершения</th>
+                    <th class="">{% trans 'Название' %}</th>
+                    <th class="">{% trans 'Добавил' %}</th>
+                    <th class="">{% trans 'Дата старта' %}</th>
+                    <th class="">{% trans 'Дата завершения' %}</th>
                     <th class=""></th>
                 </tr>
                 </thead>
@@ -179,7 +176,7 @@
                             <nobr></nobr>
                         </a></td>
                         <td>{{ project.user_created }} <br/><span
-                                class="user_position">Акционер / Инвестор / Клиент</span>
+                                class="user_position">{% trans 'Акционер' %} / {% trans 'Инвестор' %} / {% trans 'Клиент' %}</span>
                         </td>
                         <td>{{ project.created_at|date:"d.m.Y" }}</td>
                         <td>{{ project.completed_at|default_if_none:"" }}</td>
@@ -189,7 +186,7 @@
                                                          id="delete_project_btn_{{ project.id }}">
                             <div class="right"></div>
                             <div class="left"></div>
-                            <div class="btn_cont">удалить</div>
+                            <div class="btn_cont">{% trans 'удалить' %}</div>
                         </a></td>
                     </tr>
                 {% endfor %}
