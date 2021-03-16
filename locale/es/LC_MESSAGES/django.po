@@ -143,7 +143,7 @@ msgstr "Retrasado en el horario"
 msgid ""
 "Изменения на графике отобразятся после нажатия на кнопку \"Сохранить "
 "изменения\""
-msgstr "Los cambios en el gráfico se muestran después de hacer clic en \ "Guardar" "cambios\"
+msgstr "Los cambios en el gráfico se muestran después de hacer clic en \"Guardar " "cambios\""
 
 #: projects/templates/projects/project_detail.html:165
 msgid "Проект закрыт"
