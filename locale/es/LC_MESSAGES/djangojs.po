@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-17 09:00+0000\n"
+"POT-Creation-Date: 2021-03-17 10:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -279,6 +279,142 @@ msgstr "Mostrar"
 msgid "Hide"
 msgstr "Esconder"
 
+#: projects/static/js/calendar.js:330
+msgid "Вс"
+msgstr ""
+
+#: projects/static/js/calendar.js:331
+msgid "Пн"
+msgstr ""
+
+#: projects/static/js/calendar.js:332
+msgid "Вт"
+msgstr ""
+
+#: projects/static/js/calendar.js:333
+msgid "Ср"
+msgstr ""
+
+#: projects/static/js/calendar.js:334
+msgid "Чт"
+msgstr ""
+
+#: projects/static/js/calendar.js:335
+msgid "Пт"
+msgstr ""
+
+#: projects/static/js/calendar.js:336
+msgid "Сб"
+msgstr ""
+
+#: projects/static/js/calendar.js:344
+msgid "Январь"
+msgstr ""
+
+#: projects/static/js/calendar.js:345
+msgid "Февраль"
+msgstr "Febrero"
+
+#: projects/static/js/calendar.js:346
+msgid "Март"
+msgstr ""
+
+#: projects/static/js/calendar.js:347
+msgid "Апрель"
+msgstr ""
+
+#: projects/static/js/calendar.js:348
+msgid "Май"
+msgstr ""
+
+#: projects/static/js/calendar.js:349
+msgid "Июнь"
+msgstr ""
+
+#: projects/static/js/calendar.js:350
+msgid "Июль"
+msgstr ""
+
+#: projects/static/js/calendar.js:351
+msgid "Август"
+msgstr ""
+
+#: projects/static/js/calendar.js:352
+msgid "Сентябрь"
+msgstr ""
+
+#: projects/static/js/calendar.js:353
+msgid "Октябрь"
+msgstr ""
+
+#: projects/static/js/calendar.js:354
+msgid "Ноябрь"
+msgstr ""
+
+#: projects/static/js/calendar.js:355
+msgid "Декабрь"
+msgstr ""
+
+#: projects/static/js/calendar.js:358
+msgid "ЯНВАРЬ"
+msgstr ""
+
+#: projects/static/js/calendar.js:359
+msgid "ФЕВРАЛЬ"
+msgstr "FEBRERO"
+
+#: projects/static/js/calendar.js:360
+msgid "МАРТ"
+msgstr ""
+
+#: projects/static/js/calendar.js:361
+msgid "АПРЕЛЬ"
+msgstr ""
+
+#: projects/static/js/calendar.js:362
+msgid "МАЙ"
+msgstr ""
+
+#: projects/static/js/calendar.js:363
+msgid "ИЮНЬ"
+msgstr ""
+
+#: projects/static/js/calendar.js:364
+msgid "ИЮЛЬ"
+msgstr ""
+
+#: projects/static/js/calendar.js:365
+msgid "АВГУСТ"
+msgstr ""
+
+#: projects/static/js/calendar.js:366
+msgid "СЕНТЯБРЬ"
+msgstr ""
+
+#: projects/static/js/calendar.js:367
+msgid "ОКТЯБРЬ"
+msgstr ""
+
+#: projects/static/js/calendar.js:368
+msgid "НОЯБРЬ"
+msgstr ""
+
+#: projects/static/js/calendar.js:369
+msgid "ДЕКАБРЬ"
+msgstr ""
+
+#: projects/static/js/functions.js:918
+msgid "Изменение данных проекта"
+msgstr "Modificar los datos del proyecto"
+
+#: projects/static/js/functions.js:931
+msgid "Описание"
+msgstr "Descripción"
+
+#: projects/static/js/functions.js:936
+msgid "Ответственное лицо"
+msgstr "Persona responsable"
+
 #: projects/static/js/jquery.easycomplete.js:66
 #: projects/static/js/jquery.easycomplete.js:87
 msgid "Изменить"
@@ -292,47 +428,51 @@ msgstr "Cancelar"
 msgid "Проект успешно добавлен."
 msgstr "El proyecto se ha agregado con éxito."
 
-#: projects/static/js/projects.js:424
+#: projects/static/js/projects.js:323
+msgid "Данные успешно сохранены"
+msgstr "Datos guardados exitosamente"
+
+#: projects/static/js/projects.js:438
 msgid "По плану"
 msgstr "De hecho"
 
-#: projects/static/js/projects.js:448 projects/static/js/projects.js:885
+#: projects/static/js/projects.js:462 projects/static/js/projects.js:899
 msgid "Выбрать сотрудника"
 msgstr "Seleccione un empleado"
 
-#: projects/static/js/projects.js:501
+#: projects/static/js/projects.js:515
 msgid "Проект успешно удален"
 msgstr "Proyecto eliminado correctamente"
 
-#: projects/static/js/projects.js:501
+#: projects/static/js/projects.js:515
 msgid "Восстановить"
 msgstr "Restablecer"
 
-#: projects/static/js/projects.js:809
+#: projects/static/js/projects.js:823
 msgid "открыть"
 msgstr "abrir"
 
-#: projects/static/js/projects.js:809
+#: projects/static/js/projects.js:823
 msgid "закрыть"
 msgstr "cerrar"
 
-#: projects/static/js/projects.js:812
+#: projects/static/js/projects.js:826
 msgid "проект"
 msgstr "proyecto"
 
-#: projects/static/js/projects.js:823
+#: projects/static/js/projects.js:837
 msgid "Проект успешно открыт"
 msgstr "Proyecto abierto con éxito"
 
-#: projects/static/js/projects.js:1581
+#: projects/static/js/projects.js:1595
 msgid "день"
 msgstr "dia"
 
-#: projects/static/js/projects.js:1581
+#: projects/static/js/projects.js:1595
 msgid "дня"
 msgstr "del día"
 
-#: projects/static/js/projects.js:1581
+#: projects/static/js/projects.js:1595
 msgid "дней"
 msgstr "dias"
 
@@ -347,3 +487,12 @@ msgstr "blockquote"
 #: projects/static/js/tinymce/tinymce.min.js:6
 msgid "p"
 msgstr "p"
+
+msgid "Название"
+msgstr "Nombre"
+
+msgid "сохранить проект"
+msgstr "Guardar proyecto"
+
+msgid "Отмена"
+msgstr "Cancelación"

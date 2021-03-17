@@ -271,6 +271,10 @@ function save_project_heads(project_id) {
             // } else if (data['success'] == '1') {
             //     document.location.reload();
             // }
+        },
+        error: function(jqXHR) {
+            loading_btn('save_project_btn', 1);
+            alert(JSON.parse(jqXHR.responseText))
         }
     });
 }
@@ -315,6 +319,12 @@ function save_project() {
         data: JSON.stringify(data),
         success: function (data) {
             loading_btn('add_project_btn', 1);
+            document.location.reload();
+            $('#success').html(`<div class="success">${gettext('Данные успешно сохранены')}.</div>`);
+            clear_block_by_settime('success');
+
+            get_project_tasks_list(project_id);
+            deleted_project_tasks = {};
 
             var error_text = '';
 
@@ -334,6 +344,10 @@ function save_project() {
 
                 show_gr_edited_notice(1);*/
             }
+        },
+        error: function (jqXHR) {
+            loading_btn('add_project_btn', 1);
+            project_errors(JSON.parse(jqXHR.responseText));
         }
     });
 
