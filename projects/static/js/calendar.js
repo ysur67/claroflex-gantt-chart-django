@@ -327,13 +327,13 @@ function get_month_days_count(return_what, thisyear, month)
 function get_dayweek_by_day(day)
 {
 	dayWeek = {};
-	dayWeek[0] = 'Вс';
-	dayWeek[1] = 'Пн';
-	dayWeek[2] = 'Вт';
-	dayWeek[3] = 'Ср';
-	dayWeek[4] = 'Чт';
-	dayWeek[5] = 'Пт';
-	dayWeek[6] = 'Сб';
+	dayWeek[0] = gettext('Вс');
+	dayWeek[1] = gettext('Пн');
+	dayWeek[2] = gettext('Вт');
+	dayWeek[3] = gettext('Ср');
+	dayWeek[4] = gettext('Чт');
+	dayWeek[5] = gettext('Пт');
+	dayWeek[6] = gettext('Сб');
 	
 	return dayWeek[day]
 }
@@ -341,32 +341,32 @@ function get_dayweek_by_day(day)
 function get_month_rus_name_by_month(month, upper)
 {
 	monthnames = new Array(
-	"Январь",
-	"Февраль",
-	"Март",
-	"Апрель",
-	"Май",
-	"Июнь",
-	"Июль",
-	"Август",
-	"Сентябрь",
-	"Октябрь",
-	"Ноябрь",
-	"Декабрь");
+	gettext("Январь"),
+	gettext("Февраль"),
+	gettext("Март"),
+	gettext("Апрель"),
+	gettext("Май"),
+	gettext("Июнь"),
+	gettext("Июль"),
+	gettext("Август"),
+	gettext("Сентябрь"),
+	gettext("Октябрь"),
+	gettext("Ноябрь"),
+	gettext("Декабрь"));
 	
 	monthnames_upper = new Array(
-	"ЯНВАРЬ",
-	"ФЕВРАЛЬ",
-	"МАРТ",
-	"АПРЕЛЬ",
-	"МАЙ",
-	"ИЮНЬ",
-	"ИЮЛЬ",
-	"АВГУСТ",
-	"СЕНТЯБРЬ",
-	"ОКТЯБРЬ",
-	"НОЯБРЬ",
-	"ДЕКАБРЬ");
+	gettext("ЯНВАРЬ"),
+	gettext("ФЕВРАЛЬ"),
+	gettext("МАРТ"),
+	gettext("АПРЕЛЬ"),
+	gettext("МАЙ"),
+	gettext("ИЮНЬ"),
+	gettext("ИЮЛЬ"),
+	gettext("АВГУСТ"),
+	gettext("СЕНТЯБРЬ"),
+	gettext("ОКТЯБРЬ"),
+	gettext("НОЯБРЬ"),
+	gettext("ДЕКАБРЬ"));
 	
 	if(upper)
 	{

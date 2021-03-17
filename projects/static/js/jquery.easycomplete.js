@@ -63,7 +63,7 @@
 			if($.trim(key)!='')
 			{ 
 				 ea_set_selected_item(_this_element_id, key, value);
-				 $('#ea_show_select_link__'+_this_element_id).html('Изменить');
+				 $('#ea_show_select_link__'+_this_element_id).html(gettext('Изменить'));
 			}
 			
 			$('#ea_show_select_link__'+_this_element_id).bind('click', {element_id : _this_element_id}, ea_show_select) ;
@@ -77,14 +77,14 @@
 			if(!$('#ea_search_block__'+e.data.element_id).is(':visible'))
 			{
 				$('#ea_search_block__'+e.data.element_id).show(100);
-				$('#ea_show_select_link__'+e.data.element_id).html('Отменить');
+				$('#ea_show_select_link__'+e.data.element_id).html(gettext('Отменить'));
 				$('#ea_search_block__'+e.data.element_id+' .s_inp_wrap .s_inp').focus();
 			}
 			else
 			{  
 				if($.trim($('#ea_selected__'+e.data.element_id+' .selected').attr('key'))!='')
 				{ 
-					$('#ea_show_select_link__'+e.data.element_id).html('Изменить');
+					$('#ea_show_select_link__'+e.data.element_id).html(gettext('Изменить'));
 					
 				}
 				else

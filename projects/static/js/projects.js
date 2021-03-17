@@ -271,6 +271,10 @@ function save_project_heads(project_id) {
             // } else if (data['success'] == '1') {
             //     document.location.reload();
             // }
+        },
+        error: function(jqXHR) {
+            loading_btn('save_project_btn', 1);
+            alert(JSON.parse(jqXHR.responseText))
         }
     });
 }
@@ -315,6 +319,12 @@ function save_project() {
         data: JSON.stringify(data),
         success: function (data) {
             loading_btn('add_project_btn', 1);
+            document.location.reload();
+            $('#success').html(`<div class="success">${gettext('Данные успешно сохранены')}.</div>`);
+            clear_block_by_settime('success');
+
+            get_project_tasks_list(project_id);
+            deleted_project_tasks = {};
 
             var error_text = '';
 
@@ -334,6 +344,10 @@ function save_project() {
 
                 show_gr_edited_notice(1);*/
             }
+        },
+        error: function (jqXHR) {
+            loading_btn('add_project_btn', 1);
+            project_errors(JSON.parse(jqXHR.responseText));
         }
     });
 
@@ -421,7 +435,7 @@ function add_project_task(after_task_id) {
     $('#add_more_project_task_btn').show();
     $('#project_tasks_tb').show();
 
-    $('#projects_tasks').append('<tr class="task" num="' + num + '" after_task_id="' + after_task_id + '" id="task_' + task_id + '" task_id="' + task_id + '" completed="0"><td class="task_num cont_process"></td><td class="task_user_c" ><select id="select_task_user_' + task_id + '" class="user"></select><div class="project_task_desc_bl"><textarea id="task_desc_' + task_id + '" class="task_desc input_text"></textarea></div></td><td class="prt_after_sel_bl"><select id="after_task_' + task_id + '" class="input_text after_task_s"></select></td><td class="prt_dates_bl"><div class="prt_date_t">По плану</div><input type="text" id="task_date_start_' + task_id + '" class="date_inp input_text date_start" task_id="' + task_id + '" value="' + date_start + '"/>&nbsp;&nbsp;&nbsp;<input type="text" id="task_date_finish_' + task_id + '" class="date_inp input_text date_finish" task_id="' + task_id + '"/></td><td class="prt_delete_bl"><a href="javascript:;" class="delete" onclick="delete_project_task(\'' + task_id + '\')"></a></td></tr>');
+    $('#projects_tasks').append('<tr class="task" num="' + num + '" after_task_id="' + after_task_id + '" id="task_' + task_id + '" task_id="' + task_id + '" completed="0"><td class="task_num cont_process"></td><td class="task_user_c" ><select id="select_task_user_' + task_id + '" class="user"></select><div class="project_task_desc_bl"><textarea id="task_desc_' + task_id + '" class="task_desc input_text"></textarea></div></td><td class="prt_after_sel_bl"><select id="after_task_' + task_id + '" class="input_text after_task_s"></select></td><td class="prt_dates_bl"><div class="prt_date_t">' + gettext('По плану') + '</div><input type="text" id="task_date_start_' + task_id + '" class="date_inp input_text date_start" task_id="' + task_id + '" value="' + date_start + '"/>&nbsp;&nbsp;&nbsp;<input type="text" id="task_date_finish_' + task_id + '" class="date_inp input_text date_finish" task_id="' + task_id + '"/></td><td class="prt_delete_bl"><a href="javascript:;" class="delete" onclick="delete_project_task(\'' + task_id + '\')"></a></td></tr>');
 
     $('#project_tasks_tb').show();
 
@@ -1578,7 +1592,7 @@ function show_project_period_date(min_date_start, max_date_finish, min_plan_date
 
         var days = difference_in_days_between_dates(date('Y-m-d', max_date_finish), date('Y-m-d', max_plan_date_finish));
 
-        var days_str = numToword(days, new Array('день', 'дня', 'дней'));
+        var days_str = numToword(days, new Array(gettext('день'), gettext('дня'), gettext('дней')));
 
         //difference_in_days_between_dates();
 

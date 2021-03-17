@@ -915,25 +915,25 @@ function close_login() {
 function create_popup_block(elem_id, width, data, cancel_text, hide_bottom) {
     const template = `
 	<div id="add_form_block" class="add_form_margin">
-		<div class="title_add_form">Изменение данных проекта</div>
+		<div class="title_add_form">${gettext('Изменение данных проекта')}</div>
 		<div class="add_form add_form_margin">
 		
 		<table cellpadding="0" cellspacing="0" class="tables_data_1">
 		<tbody>
 		<tr>
-			<td class="td_title">Название</td>
+			<td class="td_title">${gettext('Название')}</td>
 				<td class="td_value"><input type="text" class="input_text" id="project_name" style="width:528px" value="${data.name}"  />
 				<div class="td_error sub_input_error"></div>
 				</td>
 				
 			</tr>
 			<tr>
-			<td class="td_title td_vert_top">Описание</td>
+			<td class="td_title td_vert_top">${gettext('Описание')}</td>
 				<td class="td_value"><textarea id="project_desc" class="input_text" style="width:528px; height:100px">${data.description}</textarea>
 				</td>
 			</tr>
 			<tr>
-			<td class="td_title td_vert_top">Ответственное лицо</td>
+			<td class="td_title td_vert_top">${gettext('Ответственное лицо')}</td>
             <td class="td_value"><select id="project_head"><option value="${data.responsible_use}" class="selected" >${data.responsible_user_name}</option></select>
             </td>
 			</tr>
@@ -942,7 +942,7 @@ function create_popup_block(elem_id, width, data, cancel_text, hide_bottom) {
 		
 		<div style="margin-top:20px">
 		<a class="button" onclick="save_project_heads(${data.id})" href="javascript:;" id="save_project_btn">
-		<div class="right"></div><div class="left"></div><div class="btn_cont">сохранить проект</div></a> <a class="cancel_add_btn" onclick="close_popup('', 1);tinyMCE.editors['project_desc'].destroy()" href="javascript:;">Отмена</a>
+		<div class="right"></div><div class="left"></div><div class="btn_cont">${gettext('сохранить проект')}</div></a> <a class="cancel_add_btn" onclick="close_popup('', 1);tinyMCE.editors['project_desc'].destroy()" href="javascript:;">${gettext('Отмена')}</a>
 		<div class="clear"></div>
 		</div> 
 		
@@ -955,21 +955,22 @@ function create_popup_block(elem_id, width, data, cancel_text, hide_bottom) {
 		
 		
 		<script type="text/javascript">
-		tinymce.init({
-			selector: "#project_desc",
-		language : 'ru',
-		plugins: ['table'
-				 
-		   ],menubar:false,
-			toolbar1: "table"
-			
-		 });
+		
+		    tinymce.init({
+                selector: "#project_desc",
+                language : $('html').attr('lang'),
+                plugins: ['table'
+                         
+                   ],menubar:false,
+                    toolbar1: "table"
+                
+             });
 		</script>
 		<script>
 		$(function() {
             $('#project_head').easycomplete(
             {
-            str_word_select : 'Выбрать сотрудника',
+            str_word_select : gettext('Выбрать сотрудника'),
             url:'/api/v1/users/',
             width:350,
             trigger : 1
@@ -981,7 +982,7 @@ function create_popup_block(elem_id, width, data, cancel_text, hide_bottom) {
         width = 500;
     }
 
-    var cancel_text_str = 'Отмена';
+    var cancel_text_str = gettext('Отмена');
 
 
     if (cancel_text) {

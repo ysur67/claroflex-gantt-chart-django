@@ -1,0 +1,5 @@
+#projects_tasks .prt_after_sel_bl, .link-class {
+    width: 55px;
+    word-wrap: break-word;
+    max-width: 55px;
+}
