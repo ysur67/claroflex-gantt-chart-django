@@ -106,8 +106,9 @@ msgid ""
 "individual fields yet. Please click OK to save. You’ll need to re-run the "
 "action."
 msgstr ""
-"Tiene cambios sin guardar en campos editables individuales. Si ejecuta un , "
-"los cambios no guardados se perderán."
+"Ha seleccionado una acción, pero no ha guardado los cambios en "
+"campos individuales todavía. Haga clic en Aceptar para guardar. Deberá volver a ejecutar el"
+"acción."
 
 #: projects/static/admin/js/actions.js:132
 #: projects/static/admin/js/actions.min.js:6
@@ -116,8 +117,9 @@ msgid ""
 "fields. You’re probably looking for the Go button rather than the Save "
 "button."
 msgstr ""
-"Ha seleccionado una acción y no ha realizado ningún cambio en la campos. "
-"Probablemente esté buscando el botón Ir en lugar de Guardarbotón."
+"Ha seleccionado una acción y no ha realizado ningún cambio en la "
+"campos. Probablemente esté buscando el botón Ir en lugar de Guardar"
+"botón."
 
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:13
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:113
@@ -281,35 +283,35 @@ msgstr "Esconder"
 
 #: projects/static/js/calendar.js:330
 msgid "Вс"
-msgstr ""
+msgstr "Dom"
 
 #: projects/static/js/calendar.js:331
 msgid "Пн"
-msgstr ""
+msgstr "Lun"
 
 #: projects/static/js/calendar.js:332
 msgid "Вт"
-msgstr ""
+msgstr "Mar"
 
 #: projects/static/js/calendar.js:333
 msgid "Ср"
-msgstr ""
+msgstr "Miér"
 
 #: projects/static/js/calendar.js:334
 msgid "Чт"
-msgstr ""
+msgstr "Juev"
 
 #: projects/static/js/calendar.js:335
 msgid "Пт"
-msgstr ""
+msgstr "Vier"
 
 #: projects/static/js/calendar.js:336
 msgid "Сб"
-msgstr ""
+msgstr "Sab"
 
 #: projects/static/js/calendar.js:344
 msgid "Январь"
-msgstr ""
+msgstr "Enero"
 
 #: projects/static/js/calendar.js:345
 msgid "Февраль"
@@ -317,47 +319,47 @@ msgstr "Febrero"
 
 #: projects/static/js/calendar.js:346
 msgid "Март"
-msgstr ""
+msgstr "Marzo"
 
 #: projects/static/js/calendar.js:347
 msgid "Апрель"
-msgstr ""
+msgstr "Abril"
 
 #: projects/static/js/calendar.js:348
 msgid "Май"
-msgstr ""
+msgstr "Mayo"
 
 #: projects/static/js/calendar.js:349
 msgid "Июнь"
-msgstr ""
+msgstr "Junio"
 
 #: projects/static/js/calendar.js:350
 msgid "Июль"
-msgstr ""
+msgstr "Julio"
 
 #: projects/static/js/calendar.js:351
 msgid "Август"
-msgstr ""
+msgstr "Agosto"
 
 #: projects/static/js/calendar.js:352
 msgid "Сентябрь"
-msgstr ""
+msgstr "Septiembre"
 
 #: projects/static/js/calendar.js:353
 msgid "Октябрь"
-msgstr ""
+msgstr "Octubre"
 
 #: projects/static/js/calendar.js:354
 msgid "Ноябрь"
-msgstr ""
+msgstr "Noviembre"
 
 #: projects/static/js/calendar.js:355
 msgid "Декабрь"
-msgstr ""
+msgstr "Diciembre"
 
 #: projects/static/js/calendar.js:358
 msgid "ЯНВАРЬ"
-msgstr ""
+msgstr "ENERO"
 
 #: projects/static/js/calendar.js:359
 msgid "ФЕВРАЛЬ"
@@ -365,43 +367,43 @@ msgstr "FEBRERO"
 
 #: projects/static/js/calendar.js:360
 msgid "МАРТ"
-msgstr ""
+msgstr "MARZO"
 
 #: projects/static/js/calendar.js:361
 msgid "АПРЕЛЬ"
-msgstr ""
+msgstr "ABRIL"
 
 #: projects/static/js/calendar.js:362
 msgid "МАЙ"
-msgstr ""
+msgstr "MAYO"
 
 #: projects/static/js/calendar.js:363
 msgid "ИЮНЬ"
-msgstr ""
+msgstr "JUNIO"
 
 #: projects/static/js/calendar.js:364
 msgid "ИЮЛЬ"
-msgstr ""
+msgstr "JULIO"
 
 #: projects/static/js/calendar.js:365
 msgid "АВГУСТ"
-msgstr ""
+msgstr "AGOSTO"
 
 #: projects/static/js/calendar.js:366
 msgid "СЕНТЯБРЬ"
-msgstr ""
+msgstr "SEPTIEMBRE"
 
 #: projects/static/js/calendar.js:367
 msgid "ОКТЯБРЬ"
-msgstr ""
+msgstr "OCTUBRE"
 
 #: projects/static/js/calendar.js:368
 msgid "НОЯБРЬ"
-msgstr ""
+msgstr "NOVIEMBRE"
 
 #: projects/static/js/calendar.js:369
 msgid "ДЕКАБРЬ"
-msgstr ""
+msgstr "DICIEMBRE"
 
 #: projects/static/js/functions.js:918
 msgid "Изменение данных проекта"
@@ -482,27 +484,27 @@ msgstr "Cerrar"
 
 #: projects/static/js/projects.js:1685
 msgid "Отчет"
-msgstr ""
+msgstr "Reporte"
 
 #: projects/static/js/projects.js:1691
 msgid "написать"
-msgstr ""
+msgstr "escribir"
 
 #: projects/static/js/projects.js:1703
 msgid "Игнатьев Дмитрий Геннадьевич"
-msgstr ""
+msgstr "Juan Antonio Rodríguez"
 
 #: projects/static/js/projects.js:1703
 msgid "Акционер"
-msgstr ""
+msgstr "Accionista"
 
 #: projects/static/js/projects.js:1703
 msgid "Клиент"
-msgstr ""
+msgstr "Cliente"
 
 #: projects/static/js/projects.js:1724
 msgid "17 март в 12:25"
-msgstr ""
+msgstr "17 de marzo a las 12:25"
 
 #: projects/static/js/tinymce/tinymce.min.js:6
 msgid "align"
