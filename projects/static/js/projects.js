@@ -1671,7 +1671,7 @@ function pr_task_after_task_change(e) {
 function show_project_tasks_comments(task_id, toclose) {
     // если окно с комментарием уже открыто
     if ($('#task_comments_bl_' + task_id).attr('id') == 'task_comments_bl_' + task_id || toclose) {
-        tinyMCE.editors['task_report_text_' + task_id].destroy()
+        // tinyMCE.editors['task_report_text_' + task_id].destroy()
         $('#task_comments_bl_' + task_id).remove();
         return;
     }
@@ -1680,20 +1680,84 @@ function show_project_tasks_comments(task_id, toclose) {
 
     var elem_offset = $(task_elem).offset();
 
+    const template = `
+    <div class="project_task_comments" id="task_comments_bl_${task_id}">
+        <div class="cat_block" style=""><div class="" style="float:right"><a href="javascript:;" class="link" onclick="show_project_tasks_comments('${task_id}', 1)">$(gettext('Закрыть')</a></div>${gettext('Отчет')}:</div>
+        <div id="report_add_form ">
+        <div class="add_form  add_form_ntrb" id="add_report_form">
+        <textarea id="task_report_text_${task_id}" class="input_text" style="width:99%"></textarea>
+         
+        <div class="add_form_btn_margin">
+        <a class="button" onclick="add_project_task_report('${task_id}')" href="javascript:;" id="add_task_report_btn_${task_id}"><div class="right"></div><div class="left"></div><div class="btn_cont">${gettext('написать')}</div></a>
+        <div  class="clear"></div>
+        </div>
+        
+        </div>
+        </div>
+        
+        <div id="task_reports_list_${task_id}"><div class="user_cont_block project_report_item task_report_item_608 " id="task_report_195">
+        <div class="task_report_cont_hide_195_${task_id}"><div class="edit_tools"><a href="javascript:;" class="delete" onclick="delete_project_task_report('195', '${task_id}')"></a></div></div>
+        <table cellpadding="0" cellspacing="0" >
+        <tr>
+            <td class="user_left"><a href="/id1099" class="user_link"><img src="/static/img/avatar.jpg"/></a></td>
+                <td class="user_right"><b><a href="/id1099" class="user_link">${gettext('Игнатьев Дмитрий Геннадьевич')}</a></b> <span class="user_position">${gettext('Акционер')} / ${gettext('Инвестор')} / ${gettext('Клиент')}</span>        
+                <div class="user_cont">
+                <div class="task_report_cont_hide_195_608">
+                 <div class="user_cont_text"><p>new 2</p></div>
+                    <div class="user_cont_sub">${gettext('17 март в 12:26')}</div>
+                    
+                    </div>
+                    <div id="cont_task_report_result_195_${task_id}"></div>
+                </div>        
+                </td>
+            </tr>
+        </table>
+        </div><div class="user_cont_block project_report_item task_report_item_${task_id} " id="task_report_194">
+        <div class="task_report_cont_hide_194_${task_id}"><div class="edit_tools"><a href="javascript:;" class="delete" onclick="delete_project_task_report('194', '${task_id}')"></a></div></div>
+        <table cellpadding="0" cellspacing="0" >
+        <tr>
+            <td class="user_left"><a href="/id1099" class="user_link"><img src="/static/img/avatar.jpg"/></a></td>
+                <td class="user_right"><b><a href="/id1099" class="user_link">${gettext('Игнатьев Дмитрий Геннадьевич')}</a></b> <span class="user_position">${gettext('Акционер')} / ${gettext('Инвестор')} / ${gettext('Клиент')}</span>        
+                <div class="user_cont">
+                <div class="task_report_cont_hide_194_${task_id}">
+                 <div class="user_cont_text"><p>new</p></div>
+                    <div class="user_cont_sub">${gettext('17 март в 12:25')}</div>
+                    
+                    </div>
+                    <div id="cont_task_report_result_194_${task_id}"></div>
+                </div>        
+                </td>
+            </tr>
+        </table>
+        </div></div>
+        </div>
+        
+        <script type="text/javascript">
+            tinymce.init({
+            selector: "#task_report_text_${task_id}",
+            language : $('html').attr('lang'),
+            plugins: ['table'
+                     
+               ],menubar:false,
+               toolbar1: "table"
+             });
+        </script>`
+
     $('.project_task_comments_bl').html('');
+    $('#comments_' + task_id).html(template);
 
-    $.post('/ajax/ajaxProjects.php',
-        {
-            mode: 'get_project_task_comments_block',
-            task_id: task_id
-        },
-        function (data) {
-
-            if (data) {
-                $('#comments_' + task_id).html(data)
-            }
-
-        });
+    // $.post('/ajax/ajaxProjects.php',
+    //     {
+    //         mode: 'get_project_task_comments_block',
+    //         task_id: task_id
+    //     },
+    //     function (data) {
+    //
+    //         if (data) {
+    //             $('#comments_' + task_id).html(data)
+    //         }
+    //
+    //     });
 
 }
 

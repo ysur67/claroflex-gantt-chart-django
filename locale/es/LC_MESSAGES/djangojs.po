@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-17 10:06+0000\n"
+"POT-Creation-Date: 2021-03-17 17:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -475,6 +475,34 @@ msgstr "del día"
 #: projects/static/js/projects.js:1595
 msgid "дней"
 msgstr "dias"
+
+#: projects/static/js/projects.js:1685
+msgid "Закрыть"
+msgstr "Cerrar"
+
+#: projects/static/js/projects.js:1685
+msgid "Отчет"
+msgstr ""
+
+#: projects/static/js/projects.js:1691
+msgid "написать"
+msgstr ""
+
+#: projects/static/js/projects.js:1703
+msgid "Игнатьев Дмитрий Геннадьевич"
+msgstr ""
+
+#: projects/static/js/projects.js:1703
+msgid "Акционер"
+msgstr ""
+
+#: projects/static/js/projects.js:1703
+msgid "Клиент"
+msgstr ""
+
+#: projects/static/js/projects.js:1724
+msgid "17 март в 12:25"
+msgstr ""
 
 #: projects/static/js/tinymce/tinymce.min.js:6
 msgid "align"
