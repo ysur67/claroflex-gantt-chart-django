@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-16 07:39+0000\n"
+"POT-Creation-Date: 2021-03-17 09:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,8 @@ msgid ""
 "the box below and then clicking the \"Choose\" arrow between the two boxes."
 msgstr ""
 "Esta es la lista de %s disponibles. Puede elegir algunos seleccionándolos en "
-"en el cuadro de abajo y luego haciendo clic en la flecha \"Elegir\" entre los dos cuadros."
+"en el cuadro de abajo y luego haciendo clic en la flecha \"Elegir\" entre "
+"los dos cuadros."
 
 #: projects/static/admin/js/SelectFilter2.js:60
 #, javascript-format
@@ -69,8 +70,9 @@ msgid ""
 "This is the list of chosen %s. You may remove some by selecting them in the "
 "box below and then clicking the \"Remove\" arrow between the two boxes."
 msgstr ""
-"Esta es la lista de %s elegidos. Puede eliminar algunos seleccionándolos en el "
-"cuadro de abajo y luego haciendo clic en la flecha \" Eliminar \" entre los dos cuadros."
+"Esta es la lista de %s elegidos. Puede eliminar algunos seleccionándolos en "
+"el cuadro de abajo y luego haciendo clic en la flecha \" Eliminar \" entre "
+"los dos cuadros."
 
 #: projects/static/admin/js/SelectFilter2.js:99
 msgid "Remove all"
@@ -94,8 +96,8 @@ msgid ""
 "You have unsaved changes on individual editable fields. If you run an "
 "action, your unsaved changes will be lost."
 msgstr ""
-"Tiene cambios sin guardar en campos editables individuales. Si ejecuta una acción "
-", se perderán los cambios que no haya guardado."
+"Tiene cambios sin guardar en campos editables individuales. Si ejecuta una "
+"acción , se perderán los cambios que no haya guardado."
 
 #: projects/static/admin/js/actions.js:130
 #: projects/static/admin/js/actions.min.js:5
@@ -104,8 +106,8 @@ msgid ""
 "individual fields yet. Please click OK to save. You’ll need to re-run the "
 "action."
 msgstr ""
-"Tiene cambios sin guardar en campos editables individuales. Si ejecuta un "
-", los cambios no guardados se perderán."
+"Tiene cambios sin guardar en campos editables individuales. Si ejecuta un , "
+"los cambios no guardados se perderán."
 
 #: projects/static/admin/js/actions.js:132
 #: projects/static/admin/js/actions.min.js:6
@@ -114,9 +116,8 @@ msgid ""
 "fields. You’re probably looking for the Go button rather than the Save "
 "button."
 msgstr ""
-"Ha seleccionado una acción y no ha realizado ningún cambio en la "
-"campos. Probablemente esté buscando el botón Ir en lugar de Guardar"
-"botón."
+"Ha seleccionado una acción y no ha realizado ningún cambio en la campos. "
+"Probablemente esté buscando el botón Ir en lugar de Guardarbotón."
 
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:13
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:113
@@ -278,9 +279,22 @@ msgstr "Mostrar"
 msgid "Hide"
 msgstr "Esconder"
 
+#: projects/static/js/jquery.easycomplete.js:66
+#: projects/static/js/jquery.easycomplete.js:87
+msgid "Изменить"
+msgstr "Editar"
+
+#: projects/static/js/jquery.easycomplete.js:80
+msgid "Отменить"
+msgstr "Cancelar"
+
 #: projects/static/js/projects.js:83
 msgid "Проект успешно добавлен."
 msgstr "El proyecto se ha agregado con éxito."
+
+#: projects/static/js/projects.js:424
+msgid "По плану"
+msgstr "De hecho"
 
 #: projects/static/js/projects.js:448 projects/static/js/projects.js:885
 msgid "Выбрать сотрудника"
@@ -309,6 +323,18 @@ msgstr "proyecto"
 #: projects/static/js/projects.js:823
 msgid "Проект успешно открыт"
 msgstr "Proyecto abierto con éxito"
+
+#: projects/static/js/projects.js:1581
+msgid "день"
+msgstr "dia"
+
+#: projects/static/js/projects.js:1581
+msgid "дня"
+msgstr "del día"
+
+#: projects/static/js/projects.js:1581
+msgid "дней"
+msgstr "dias"
 
 #: projects/static/js/tinymce/tinymce.min.js:6
 msgid "align"
