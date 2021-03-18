@@ -1682,7 +1682,7 @@ function show_project_tasks_comments(task_id, toclose) {
 
     const template = `
     <div class="project_task_comments" id="task_comments_bl_${task_id}">
-        <div class="cat_block" style=""><div class="" style="float:right"><a href="javascript:;" class="link" onclick="show_project_tasks_comments('${task_id}', 1)">$(gettext('Закрыть')</a></div>${gettext('Отчет')}:</div>
+        <div class="cat_block" style=""><div class="" style="float:right"><a href="javascript:;" class="link" onclick="show_project_tasks_comments('${task_id}', 1)">${gettext('Закрыть')}</a></div>${gettext('Отчет')}:</div>
         <div id="report_add_form ">
         <div class="add_form  add_form_ntrb" id="add_report_form">
         <textarea id="task_report_text_${task_id}" class="input_text" style="width:99%"></textarea>

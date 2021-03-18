@@ -58,7 +58,7 @@
                                     <tr>
                                         <th class="nopdl">№</th>
                                         <th class="">{% trans 'Сотрудник' %}</th>
-                                        <th title="{% trans 'Предшествующая задача' %}">{% trans 'Связь' %}</th>
+                                        <th class="link-class" title="{% trans 'Предшествующая задача' %}">{% trans 'Связь' %}</th>
                                         <th class="">{% trans 'Дата старта' %} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% trans 'Дата завершения' %}
                                         </th>
                                         <th></th>
@@ -179,7 +179,7 @@
                                 class="user_position">{% trans 'Акционер' %} / {% trans 'Инвестор' %} / {% trans 'Клиент' %}</span>
                         </td>
                         <td>{{ project.created_at|date:"d.m.Y" }}</td>
-                        <td>{{ project.completed_at|default_if_none:"" }}</td>
+                        <td>{{ project.completed_at|date:"d.m.Y"|default_if_none:"" }}</td>
                         <td style="padding-right:5px"><a class="button"
                                                          onclick="delete_project({{ project.id }})"
                                                          href="javascript:;"
