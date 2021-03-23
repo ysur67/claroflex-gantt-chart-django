@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-17 17:45+0000\n"
+"POT-Creation-Date: 2021-03-17 19:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,9 +106,9 @@ msgid ""
 "individual fields yet. Please click OK to save. You’ll need to re-run the "
 "action."
 msgstr ""
-"Ha seleccionado una acción, pero no ha guardado los cambios en "
-"campos individuales todavía. Haga clic en Aceptar para guardar. Deberá volver a ejecutar el"
-"acción."
+"Ha seleccionado una acción, pero no ha guardado los cambios en campos "
+"individuales todavía. Haga clic en Aceptar para guardar. Deberá volver a "
+"ejecutar elacción."
 
 #: projects/static/admin/js/actions.js:132
 #: projects/static/admin/js/actions.min.js:6
@@ -117,9 +117,8 @@ msgid ""
 "fields. You’re probably looking for the Go button rather than the Save "
 "button."
 msgstr ""
-"Ha seleccionado una acción y no ha realizado ningún cambio en la "
-"campos. Probablemente esté buscando el botón Ir en lugar de Guardar"
-"botón."
+"Ha seleccionado una acción y no ha realizado ningún cambio en la campos. "
+"Probablemente esté buscando el botón Ir en lugar de Guardarbotón."
 
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:13
 #: projects/static/admin/js/admin/DateTimeShortcuts.js:113
@@ -478,13 +477,13 @@ msgstr "del día"
 msgid "дней"
 msgstr "dias"
 
+#: projects/static/js/projects.js:1682 projects/static/js/projects.js:1685
+msgid "Отчет"
+msgstr "Reporte"
+
 #: projects/static/js/projects.js:1685
 msgid "Закрыть"
 msgstr "Cerrar"
-
-#: projects/static/js/projects.js:1685
-msgid "Отчет"
-msgstr "Reporte"
 
 #: projects/static/js/projects.js:1691
 msgid "написать"
@@ -497,6 +496,10 @@ msgstr "Juan Antonio Rodríguez"
 #: projects/static/js/projects.js:1703
 msgid "Акционер"
 msgstr "Accionista"
+
+#: projects/static/js/projects.js:1703
+msgid "Инвестор"
+msgstr "Inversor"
 
 #: projects/static/js/projects.js:1703
 msgid "Клиент"

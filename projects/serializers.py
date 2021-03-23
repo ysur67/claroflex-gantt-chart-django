@@ -1,4 +1,5 @@
 from django.db import transaction
+from django.utils.translation import gettext as _
 from rest_framework import serializers
 
 from projects.models import Project, ProjectTask
@@ -17,6 +18,13 @@ class ProjectTaskSerializer(serializers.ModelSerializer):
             'close_date',
             'related_task',
         )
+
+    def validate(self, attrs):
+        if attrs['close_date'] < attrs['start_date']:
+            raise serializers.ValidationError({
+                'close_date': _('Дата старта задачи не может быть меньше даты завершения')
+            })
+        return attrs
 
     def create(self, validated_data):
         task_id = validated_data.pop('id', 'no')
