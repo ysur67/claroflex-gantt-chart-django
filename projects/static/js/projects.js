@@ -194,6 +194,16 @@ function project_errors(data) {
     if (data['name']) {
         error_text += '<div>Название проекта не может быть пустым.</div>';
     }
+    if (data['tasks']) {
+        $.each(data['tasks'], function (index, j) {
+            for (let key in j) {
+                const errors = j[key];
+                for (let i = 0; i < errors.length; i++) {
+                    error_text += `<div>${errors[i]}</div>`
+                }
+            }
+        })
+    }
     // if (data['error']['date']) {
     //     $.each(data['error']['date'], function (i, j) {
     //
@@ -233,7 +243,11 @@ function project_errors(data) {
     // }
 
     if (data) {
-        $('#error_box').html(JSON.stringify(data));
+        if (error_text) {
+            $('#error_box').html(error_text);
+        } else {
+            $('#error_box').html(JSON.stringify(data));
+        }
         $('#error_box').show();
     }
 }
@@ -272,7 +286,7 @@ function save_project_heads(project_id) {
             //     document.location.reload();
             // }
         },
-        error: function(jqXHR) {
+        error: function (jqXHR) {
             loading_btn('save_project_btn', 1);
             alert(JSON.parse(jqXHR.responseText))
         }
@@ -819,15 +833,15 @@ function project_close(project_id, status) {
             } else if (status === 'open') {
                 $('#report_add_form').show();
             }
-            const nextStatus = status === 'close' ? 'open': 'close';
-            const nextStatusTitle = status === 'close' ? gettext('открыть'): gettext('закрыть');
+            const nextStatus = status === 'close' ? 'open' : 'close';
+            const nextStatusTitle = status === 'close' ? gettext('открыть') : gettext('закрыть');
             const btn = `
                 <a class="button" onclick="project_close('${project_id}', '${nextStatus}')" href="javascript:;" id="project_close_btn"  closed="0">
                 <div class="right"></div><div class="left"></div><div class="btn_cont">${nextStatusTitle} ${gettext('проект')} <span class="link_cancel">&times;</span></div></a>
             `
 
 
-            const closedTitle = status === 'close' ? gettext('Проект закрыт'): '';
+            const closedTitle = status === 'close' ? gettext('Проект закрыт') : '';
             $('#project_close_btn').replaceWith(btn);
             $('.project_closed_title').html(closedTitle);
 
@@ -843,7 +857,6 @@ function project_close(project_id, status) {
 
         }, 'json');
 }
-
 
 
 function show_projects_content() {
