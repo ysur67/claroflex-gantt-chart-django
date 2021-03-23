@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-16 07:40+0000\n"
+"POT-Creation-Date: 2021-03-23 06:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,12 +23,16 @@ msgid "English"
 msgstr "Ingles"
 
 #: engineers/settings.py:142
+msgid "Russian"
+msgstr "Rusia"
+
+#: engineers/settings.py:143
 msgid "Spain"
 msgstr "España"
 
-#: engineers/settings.py:143
-msgid "Russian"
-msgstr "Rusia"
+#: projects/serializers.py:25
+msgid "Дата старта задачи не может быть меньше даты завершения"
+msgstr "La fecha de inicio de la tarea no puede ser menor que la fecha de finalización"
 
 #: projects/templates/projects/base_project.html:7
 msgid "Projects"
@@ -38,11 +42,11 @@ msgstr "Proyecto"
 msgid "Home"
 msgstr "Inicio"
 
-#: projects/templates/projects/base_project.html:79
+#: projects/templates/projects/base_project.html:83
 msgid "выход"
 msgstr "Salida"
 
-#: projects/templates/projects/base_project.html:113
+#: projects/templates/projects/base_project.html:117
 msgid "система автоматизации бизнеса"
 msgstr "sistema de automatización empresarial"
 
@@ -143,7 +147,9 @@ msgstr "Retrasado en el horario"
 msgid ""
 "Изменения на графике отобразятся после нажатия на кнопку \"Сохранить "
 "изменения\""
-msgstr "Los cambios en el gráfico se muestran después de hacer clic en \"Guardar " "cambios\""
+msgstr ""
+"Los cambios en el gráfico se muestran después de hacer clic en \"Guardar "
+"cambios\""
 
 #: projects/templates/projects/project_detail.html:165
 msgid "Проект закрыт"

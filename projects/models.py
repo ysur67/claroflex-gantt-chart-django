@@ -41,7 +41,7 @@ class Project(models.Model):
 
     def close(self):
         self.completed_at = timezone.now()
-        self.save(update_fields=['completed_at', 'updated_at',])
+        self.save(update_fields=['completed_at', 'updated_at', ])
 
     def open(self):
         self.completed_at = None
@@ -66,5 +66,4 @@ class ProjectTask(models.Model):
 
     @property
     def user_name(self):
-        print(get_user_name(self.user))
         return get_user_name(self.user)
