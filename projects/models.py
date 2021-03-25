@@ -60,10 +60,20 @@ class ProjectTask(models.Model):
     description = models.TextField('Task Description', null=True, blank=True)
     created_at = models.DateTimeField('Created at', auto_now_add=True)
     updated_at = models.DateTimeField('Updated at', auto_now=True)
-    start_date = models.DateField('Start date')
-    close_date = models.DateField('Close date')
+    start_date = models.DateField('Start date  by plan')
+    close_date = models.DateField('Close date by plan')
+    actual_start_date = models.DateField('Actual start date', null=True, blank=True)
+    actual_close_date = models.DateField('Actual close date', null=True, blank=True)
     related_task = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
 
     @property
     def user_name(self):
         return get_user_name(self.user)
+
+    def close(self):
+        self.actual_close_date = timezone.now()
+        self.save(update_fields=['actual_close_date', 'updated_at', ])
+
+    def open(self):
+        self.actual_close_date = None
+        self.save(update_fields=['actual_close_date', 'updated_at', ])
