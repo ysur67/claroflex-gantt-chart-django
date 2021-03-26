@@ -732,34 +732,46 @@ function project_task_complete(task_id, completed) {
     else
         loading_btn('complete_project_task_btn_' + task_id);
 
-    $.post('/ajax/ajaxProjects.php',
-        {
-            mode: 'project_task_complete',
-            project_id: project_id,
-            task_id: task_id,
-            completed: completed
-        },
+    const typeAction = completed === 1 ? 'close': 'open';
+    $.post(`/api/v1/project-tasks/${task_id}/${typeAction}/`,
+        {},
         function (data) {
 
             var task_completed_class = $('#task_' + task_id).attr('completed_class');
 
-            if (data['success'] == 1 && completed == '-1') {
+            if (completed === 1) {
+                const template = `
+                <a class="button" onclick="project_task_complete(${task_id},0)" href="javascript:;" id="complete_project_task_btn_${task_id}">
+                    <div class="right"></div><div class="left"></div><div class="btn_cont">${gettext('задание не выполнено')}</div></a>`
                 $('#task_' + task_id + ' .task_num').removeClass(task_completed_class);
                 $('#task_' + task_id + ' .task_num').addClass('cont_process');
-                $('#project_task_completed_bl_' + task_id).html('');
-                recount_project_notice();
+                $('#project_task_completed_bl_' + task_id).html(template);
             }
-            // Правим счетчик в левом меню
-            else if (data['success'] == 1 && (completed == 1 || completed == 2)) {
-                $('#task_' + task_id + ' .task_num').removeClass(task_completed_class);
-                $('#task_' + task_id + ' .task_num').addClass('cont_completed');
-                $('#project_task_completed_bl_' + task_id).html(data['complete_btn']);
-                recount_project_notice();
-            } else if (data['success'] == 1 && completed == 0) {
-                $('#task_' + task_id + ' .task_num').removeClass('cont_completed');
-                $('#task_' + task_id + ' .task_num').addClass(task_completed_class);
-                $('#project_task_completed_bl_' + task_id).html(data['complete_btn']);
+            else {
+                const template = `
+                <a class="button" onclick="project_task_complete(${task_id},1)" href="javascript:;" id="complete_project_task_btn_${task_id}">
+                    <div class="right"></div><div class="left"></div><div class="btn_cont">${gettext('задание выполнено')}</div></a>`
+
+                $('#project_task_completed_bl_' + task_id).html(template);
             }
+
+            // if (data['success'] == 1 && completed == '-1') {
+            //     $('#task_' + task_id + ' .task_num').removeClass(task_completed_class);
+            //     $('#task_' + task_id + ' .task_num').addClass('cont_process');
+            //     $('#project_task_completed_bl_' + task_id).html('');
+            //     recount_project_notice();
+            // }
+            // // Правим счетчик в левом меню
+            // else if (data['success'] == 1 && (completed == 1 || completed == 2)) {
+            //     $('#task_' + task_id + ' .task_num').removeClass(task_completed_class);
+            //     $('#task_' + task_id + ' .task_num').addClass('cont_completed');
+            //     $('#project_task_completed_bl_' + task_id).html(data['complete_btn']);
+            //     recount_project_notice();
+            // } else if (data['success'] == 1 && completed == 0) {
+            //     $('#task_' + task_id + ' .task_num').removeClass('cont_completed');
+            //     $('#task_' + task_id + ' .task_num').addClass(task_completed_class);
+            //     $('#project_task_completed_bl_' + task_id).html(data['complete_btn']);
+            // }
 
         }, 'json');
 }
@@ -973,6 +985,7 @@ function check_pr_task_for_visible_in_user_part_list(task_data) {
 }
 
 function project_scheme_init(e, static_task_obj) {
+
     if (e)
         var task_id = $(e.target).attr('task_id');
 

@@ -3,7 +3,8 @@
 {% block right_block %}
     <div class="nav_block">
         <div class="top_shdw"></div>
-        <a href="{% url 'project-list' %}">{% trans 'Мои проекты' %}</a> » <span class="current">{% trans 'Просмотр проекта' %}</span> <span
+        <a href="{% url 'project-list' %}">{% trans 'Мои проекты' %}</a> » <span
+            class="current">{% trans 'Просмотр проекта' %}</span> <span
             id="nav_custom_n" style="font-weight:normal"></span>
     </div>
     <div class="content_block_no_padding">
@@ -11,7 +12,8 @@
 
         <div class="content_block_padn">
             <div class="project_closed_title"></div>
-            <a href="javascript:;" onclick="get_project_edit_form({{ object.id }})" class="link" style="float:right">{% trans 'Изменить данные' %}</a>
+            <a href="javascript:;" onclick="get_project_edit_form({{ object.id }})" class="link"
+               style="float:right">{% trans 'Изменить данные' %}</a>
             <div class="project_title">{{ object.name }}</div>
             <div id="project_desc_show" class="d_none stand_margin">
                 {{ object.description|safe }}
@@ -44,8 +46,10 @@
                                     <tr>
                                         <th class="nopdl">№</th>
                                         <th class="">{% trans 'Сотрудник' %}</th>
-                                        <th class="link-class" title="{% trans 'Предшествующая задача' %}">{% trans 'Связь' %}</th>
-                                        <th class="">{% trans 'Дата старта' %} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% trans 'Дата завершения' %}
+                                        <th class="link-class"
+                                            title="{% trans 'Предшествующая задача' %}">{% trans 'Связь' %}</th>
+                                        <th class="">{% trans 'Дата старта' %}
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% trans 'Дата завершения' %}
                                         </th>
 
                                         <th></th>
@@ -54,9 +58,9 @@
                                     {% for task in object.tasks.all %}
                                         <tr class="task " id="task_{{ task.id }}"
                                             task_id="{{ task.id }}"
-                                            completed="0"
+                                            completed="{% if task.actual_close_date %}1{% else %}0{% endif %}"
                                             after_task_id="0"
-                                            date_finished="0000-00-00 00:00:00"
+                                            date_finished="{% if task.actual_close_date %}{{ task.actual_close_date|date:"Y-m-d" }}{% else %}0000-00-00 00:00:00{% endif %}"
                                             num="1"
                                             is_participation=0>
 
@@ -64,7 +68,8 @@
 
                                             <td class="task_user_c">
                                                 <select id="select_task_user_{{ task.id }}" class="user">
-                                                    <option value="{{ task.user.id }}" class="selected">{{ task.user_name }}
+                                                    <option value="{{ task.user.id }}"
+                                                            class="selected">{{ task.user_name }}
                                                     </option>
                                                 </select>
                                                 <div class="project_task_desc_bl">
@@ -75,12 +80,40 @@
                                                     <a href="javascript:;"
                                                        onclick="show_project_tasks_comments('{{ task.id }}')"
                                                        class="link_proc">{% trans 'Отчет' %}
-                                                        <span class="new_count" id="new_task_report_count_{{ task.id }}"></span></a>
-                                                    <div id="comments_{{ task.id }}" class="project_task_comments_bl"></div>
+                                                        <span class="new_count"
+                                                              id="new_task_report_count_{{ task.id }}"></span></a>
+                                                    <div id="comments_{{ task.id }}"
+                                                         class="project_task_comments_bl"></div>
+                                                </div>
+                                                <div class="project_task_completed_bl"
+                                                     id="project_task_completed_bl_{{ task.id }}">
+                                                    {% if task.user == request.user %}
+                                                        {% if not task.actual_close_date %}
+                                                            <a class="button"
+                                                               onclick="project_task_complete('{{ task.id }}',1)"
+                                                               href="javascript:;"
+                                                               id="complete_project_task_btn_{{ task.id }}">
+                                                                <div class="right"></div>
+                                                                <div class="left"></div>
+                                                                <div class="btn_cont">{% trans 'задание выполнено' %}</div>
+                                                            </a>
+                                                            {% else %}
+                                                            <a class="button"
+                                                               onclick="project_task_complete('{{ task.id }}',0)"
+                                                               href="javascript:;"
+                                                               id="complete_project_task_btn_{{ task.id }}">
+                                                                <div class="right"></div>
+                                                                <div class="left"></div>
+                                                                <div class="btn_cont">{% trans 'задание не выполнено' %}</div>
+                                                            </a>
+                                                            {% endif %}
+                                                        {% else %}
+                                                        {% if task.actual_close_date %}
+                                                            <div class="project_task_completed_str">{% trans 'Задание выполнено' %}</div>
+                                                        {% endif %}
+                                                    {% endif %}
                                                 </div>
 
-                                                <div class="project_task_completed_bl"
-                                                     id="project_task_completed_bl_{{ task.id }}"></div>
                                             </td>
 
                                             <td class="prt_after_sel_bl">
@@ -129,14 +162,16 @@
                     </div>
 
                     <div style="margin-bottom:10px" id="add_project_task_btn">
-                        <a href="javascript:;" onclick="add_project_task()" class="link">[+] {% trans 'добавить задачу' %}</a>
+                        <a href="javascript:;" onclick="add_project_task()"
+                           class="link">[+] {% trans 'добавить задачу' %}</a>
                     </div>
                     <div class="d_none project_period_date" id="project_period_date">
 
                         <div><span class="prt_dates_rs">{% trans 'По плану' %}</span> {% trans 'Дата старта' %}: <span
                                 id="project_date_start_plan"></span> {% trans 'Дата завершения' %}: <span
                                 id="project_date_finish_plan"></span></div>
-                        <div style="margin:4px 0px 4px 0px"><span class="prt_dates_rs">{% trans 'По факту' %}</span> {% trans 'Дата старта' %}:
+                        <div style="margin:4px 0px 4px 0px"><span
+                                class="prt_dates_rs">{% trans 'По факту' %}</span> {% trans 'Дата старта' %}:
                             <span id="project_date_start"></span> {% trans 'Дата завершения' %}: <span
                                     id="project_date_finish"></span></div>
                         <div style="margin:4px 0px 4px 0px"><span
@@ -156,18 +191,23 @@
                             <tbody class="project_scheme_days_rows" id="project_scheme_days_rows"></tbody>
                         </table>
                     </div>
-                    <div class="sub_project_scheme" id="gr_edited_notice">{% trans 'Изменения на графике отобразятся после нажатия на кнопку "Сохранить изменения"' %}.
+                    <div class="sub_project_scheme"
+                         id="gr_edited_notice">{% trans 'Изменения на графике отобразятся после нажатия на кнопку "Сохранить изменения"' %}.
                     </div>
                     <div class="clear"></div>
                     <div>
                         <div style="margin-top:15px"></div>
                         <div style="float:right">
-                            <div class="project_closed_title project_str_closed_status">{% if object.completed_at %}{% trans 'Проект закрыт' %}{% endif %}</div>
-                            <a class="button" onclick="project_close({{ object.id }}, '{% if object.completed_at %}open{% else %}close{% endif %}')" href="javascript:;"
+                            <div class="project_closed_title project_str_closed_status">
+                                {% if object.completed_at %}{% trans 'Проект закрыт' %}{% endif %}</div>
+                            <a class="button"
+                               onclick="project_close({{ object.id }}, '{% if object.completed_at %}open{% else %}close{% endif %}')"
+                               href="javascript:;"
                                id="project_close_btn" closed="0">
                                 <div class="right"></div>
                                 <div class="left"></div>
-                                <div class="btn_cont">{% if object.completed_at %}{% trans 'открыть' %}{% else %}{% trans 'закрыть' %}{% endif %} {% trans 'проект' %} <span
+                                <div class="btn_cont">{% if object.completed_at %}{% trans 'открыть' %}{% else %}
+                                    {% trans 'закрыть' %}{% endif %} {% trans 'проект' %} <span
                                         class="link_cancel">&times;</span></div>
                             </a>
                         </div>
@@ -189,7 +229,8 @@
                 </div>
 
             </div>
-            <script async src="https://comments.app/js/widget.js?3" data-comments-app-website="WNdvBnk7" data-limit="5"></script>
+            <script async src="https://comments.app/js/widget.js?3" data-comments-app-website="WNdvBnk7"
+                    data-limit="5"></script>
             <div class="cat_block" style="margin-top:35px">{% trans 'Комментарии' %}:</div>
             <div id="report_add_form " style="display:block">
                 <div class="add_form  add_form_ntrb" id="add_report_form">
@@ -210,37 +251,38 @@
             </div>
 
             <div id="reports_list">
-                <div class="no_contents" id="no_reports" {% trans 'Отчет отсутствует' %}.</div>
+                <div class="no_contents" id="no_reports" {% trans 'Отчет отсутствует' %}.
             </div>
-
-
-            <script type="text/javascript">
-                tinymce.init({
-                    selector: "#report_text",
-                    language: '{{ LANGUAGE_CODE }}',
-                    plugins: ['table'
-
-                    ],
-                    menubar: false,
-                    toolbar1: "table"
-                });
-            </script>
-
-            <script>
-                pages_count = '0';
-            </script>
-
-
         </div>
 
-        <script>
-            project_id = '{{ object.id }}';
-            Disk.get_content_file_upload_form('{{ object.id }}', 8, 'file_form_{{ object.id }}');
-            $('.task .date_inp').live('change', show_gr_edited_notice);
-            projects_tasks_init();
-            after_tasks_select_init();
-            $('.after_task_s').live('change', pr_task_after_task_change);
 
+        <script type="text/javascript">
+            tinymce.init({
+                selector: "#report_text",
+                language: '{{ LANGUAGE_CODE }}',
+                plugins: ['table'
+
+                ],
+                menubar: false,
+                toolbar1: "table"
+            });
         </script>
+
+        <script>
+            pages_count = '0';
+        </script>
+
+
+    </div>
+
+    <script>
+        project_id = '{{ object.id }}';
+        Disk.get_content_file_upload_form('{{ object.id }}', 8, 'file_form_{{ object.id }}');
+        $('.task .date_inp').live('change', show_gr_edited_notice);
+        projects_tasks_init();
+        after_tasks_select_init();
+        $('.after_task_s').live('change', pr_task_after_task_change);
+
+    </script>
     </div>
 {% endblock %}
