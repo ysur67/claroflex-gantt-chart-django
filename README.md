@@ -53,7 +53,7 @@ pip install psycopg2
 ```
 
 ```sh
-sudo -u postgres psql postgres
+sudo psql -U postgres postgres
 ```
 
 ```sql
@@ -73,6 +73,8 @@ cd claroflex-gantt-chart-django
 pip install -U -r requirements.txt
 python ./manage.py makemigrations
 python ./manage.py migrate
+python manage.py createsuperuser
+python manage.py collectstatic
 python ./manage.py test
 python ./manage.py runserver 0.0.0.0:8080
 ```
