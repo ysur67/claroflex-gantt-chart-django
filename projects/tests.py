@@ -75,7 +75,6 @@ class CreateContactIntegrationTest(LiveServerTestCase):
         print (message)
         self.assertEqual(message, "Это поле не может быть пустым.")
         
-        
 #class SimpleTest(TestCase):
     #def test_basic_addition(self):
        # """
