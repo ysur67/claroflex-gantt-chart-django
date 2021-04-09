@@ -170,7 +170,6 @@
                 </tr>
                 </thead>
                 <tbody id="project_list">
-                    {% csrf_token %}
                     {% for project in projects %}
                         {% include 'projects/includes/project.html' with project=project request=request %}
                     {% endfor %}

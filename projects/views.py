@@ -18,16 +18,14 @@ class ProjectListView(LoginRequiredMixin, ListView):
     context_object_name = 'projects'
 
     def post(self, *args, **kwargs):
-        qs = self.get_queryset()
         if self.request.is_ajax():
+            qs = self.get_queryset()
             response_data = [self.render_projects_template(project)\
                 for project in qs]
             return JsonResponse({
                 'elements':response_data
             })
-        return JsonResponse({
-            'error':'404'
-        })
+        return Http404("There is no such page")
 
     def render_projects_template(self, project):
         return render_to_string(

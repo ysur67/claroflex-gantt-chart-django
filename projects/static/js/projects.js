@@ -530,8 +530,9 @@ function delete_project(project_id) {
         success: function (data) {
             $('#project_' + project_id).replaceWith(`<tr class="tb_data_1_row" id="project_' + project_id + '"><td colspan="5"><div class="success">${gettext('Проект успешно удален')} | <a href="javascript:;" onclick="restore_project(' + project_id + ');">${gettext('Восстановить')}</a> | <a href="javascript:;" onclick="$(\'#project_' + project_id + '\').remove();">${gettext('Скрыть')}</a></div></td></tr>`);
         },
-        error: function (jqXHR, textStatus, errorThrown) {
+        error: function (error) {
             alert('Произошла ошибка, презагрузите страницу');
+            console.log({error});
         }
     });
 }
