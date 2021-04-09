@@ -521,14 +521,21 @@ function get_today_timedate() {
 
 
 function delete_project(project_id) {
-    loading_btn('delete_project_btn_' + project_id);
-
-    $.post(`/api/v1/projects/${project_id}/delete/`,
-        {},
-        function (data) {
+    $.ajax({
+        type: "POST",
+        url: `/api/v1/projects/${project_id}/delete/`,
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: {},
+        success: function (data) {
             $('#project_' + project_id).replaceWith(`<tr class="tb_data_1_row" id="project_' + project_id + '"><td colspan="5"><div class="success">${gettext('Проект успешно удален')} | <a href="javascript:;" onclick="restore_project(' + project_id + ');">${gettext('Восстановить')}</a> | <a href="javascript:;" onclick="$(\'#project_' + project_id + '\').remove();">${gettext('Скрыть')}</a></div></td></tr>`);
-        });
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert('Произошла ошибка, презагрузите страницу');
+        }
+    });
 }
+
 
 function restore_project(project_id) {
     $.post('/ajax/ajaxProjects.php',
@@ -1934,4 +1941,37 @@ function get_project_task_new_reports_count(task_id) {
             }
 
         });
+}
+function change_page(event){
+    event.preventDefault();
+    var page = event.target;
+    // var url = window.location.href
+    var param = page.dataset.href;
+    $.ajax({
+        type: "POST",
+        // your urls won't work until 
+        // there is `if(regex)` inside 
+        // getCookie func at the top of the document
+        url: '/projects/',
+        data: {state:param},
+        success: function(data){
+            var project_list = document.querySelector('#project_list');
+            project_list.innerHTML = '';
+            var elements = data.elements;
+            elements.forEach(element =>{
+                project_list.innerHTML += element;
+            })
+            var nav_links = document.querySelectorAll('.page')
+            nav_links.forEach(link => {
+                if(link == page)
+                    page.classList.add('active');
+                else
+                    link.classList.remove('active');
+            })
+        },
+        error: function(error){
+            console.log({error});
+            alert('Произошла ошибка, перезагрузите страницу');
+        }
+    })
 }

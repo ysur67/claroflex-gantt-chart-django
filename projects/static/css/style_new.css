@@ -6758,3 +6758,44 @@ textarea
 {
 	color:#F30
 }
+
+.modal
+{
+	display: none;
+	position: fixed; 
+	z-index: 11001111;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%; 
+	overflow: auto; 
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+	align-items: center;
+}
+
+.modal > .modal-content
+{
+	background-color: white;
+	margin: 10% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	border-radius: 4px;
+	width: 10%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.modal-content > .controls 
+{
+	margin-top: 25px;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.controls > .button 
+{
+	padding: 3px 15px;
+}

@@ -146,12 +146,12 @@
 
         <div class="task_top_panel project_top_menu">
             {% url 'project-list' as PROJECTS_URL %}
-            <a class="item active" href="{{ PROJECTS_URL }}">{% trans 'Мои проекты' %} <span
+            <a class="item page active" href="javascript:;" data-href='' onclick="change_page(event)">{% trans 'Мои проекты' %} <span
                     id="new_count_for_worker"></span></a>
-            <a class="item " href="{{ PROJECTS_URL }}">{% trans 'Мои закрытые проекты' %}</a>
-            <a class="item " href="{{ PROJECTS_URL }}">{% trans 'Проекты, в которых участвую' %} <span
+            <a class="item page" href="javascript:;" data-href='closed' onclick="change_page(event)">{% trans 'Мои закрытые проекты' %}</a>
+            <a class="item page" href="javascript:;" data-href='member' onclick="change_page(event)">{% trans 'Проекты, в которых участвую' %} <span
                     id="new_count_in_part_projects"></span></a>
-            <a class="item " href="{{ PROJECTS_URL }}">{% trans 'Закрытые, в которых участвую' %}</a>
+            <a class="item page" href="javascript:;" data-href='member_closed' onclick="change_page(event)">{% trans 'Закрытые, в которых участвую' %}</a>
             <div class="clear"></div>
         </div>
 
@@ -170,26 +170,10 @@
                 </tr>
                 </thead>
                 <tbody id="project_list">
-                {% for project in projects %}
-                    <tr class="task_it_row project_item  " id="project_{{ project.id }}">
-                        <td><a href="{% url 'project-detail' project.id %}" class="link">{{ project.name }}
-                            <nobr></nobr>
-                        </a></td>
-                        <td>{{ project.user_created }} <br/><span
-                                class="user_position">{% trans 'Акционер' %} / {% trans 'Инвестор' %} / {% trans 'Клиент' %}</span>
-                        </td>
-                        <td>{{ project.created_at|date:"d.m.Y" }}</td>
-                        <td>{{ project.completed_at|date:"d.m.Y"|default_if_none:"" }}</td>
-                        <td style="padding-right:5px"><a class="button"
-                                                         onclick="delete_project({{ project.id }})"
-                                                         href="javascript:;"
-                                                         id="delete_project_btn_{{ project.id }}">
-                            <div class="right"></div>
-                            <div class="left"></div>
-                            <div class="btn_cont">{% trans 'удалить' %}</div>
-                        </a></td>
-                    </tr>
-                {% endfor %}
+                    {% csrf_token %}
+                    {% for project in projects %}
+                        {% include 'projects/includes/project.html' with project=project request=request %}
+                    {% endfor %}
                 </tbody>
             </table>
             <div class="content_block_padn">
@@ -202,7 +186,6 @@
                 is_part = "0";
                 //draw_background_list_item('project_item', 'zebra1');
             </script>
-
         </div>
 
         <script>
@@ -211,3 +194,15 @@
     </div>
 {% endblock %}
 
+{% block modals %}
+    <div class="modal" id="dialog">
+        <div class="modal-content">
+            <span class="modal-title"></span>
+            <div class="controls">
+                <button type='button' class="button" id='bYes'>{% trans "Удалить" %}</button>
+                <button type='button' class="button" id='bNo'>{% trans "Отмена" %}</button>
+            </div>
+            
+        </div>
+   </div>
+{% endblock %}

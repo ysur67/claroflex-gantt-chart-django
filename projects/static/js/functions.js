@@ -279,6 +279,30 @@ function loading_btn(btn_id, default_text) {
 
 }
 
+function display_dialog(title, yesCallBack, noCallBack) {
+    var $dialog = $('#dialog');
+    $('.modal-title').text(title);
+    $dialog.css('display', 'flex');
+    $('#bYes').on('click', function(e){
+        e.preventDefault();
+        yesCallBack();
+        $dialog.css('display', 'none');
+        $('#bNo').off('click');
+    });
+    $('#bNo').on('click', function(e){
+        e.preventDefault();
+        if(noCallBack)
+            noCallBack();
+        $dialog.css('display', 'none');
+        $('#bNo').off('click');
+    });
+}
+
+function remove_loading_btn(project_id, text){
+    var elem = $('#delete_project_btn_' + project_id).children('.btn_cont');
+    $(elem).html(`<div class="btn_cont">${text}</div>`)
+}
+
 function simple_loading_btn(btn_id, default_text) {
     var elem = $('#' + btn_id);
     var width = $(elem).css('width');

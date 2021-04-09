@@ -16,3 +16,4 @@ db.sqlite3-journal
 .env
 docker-compose.*.yml
 !docker-compose.example.yml
+.vscode
