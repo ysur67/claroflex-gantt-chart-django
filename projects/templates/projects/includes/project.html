@@ -1,7 +1,7 @@
 {% load static i18n %}
 
 <tr class="task_it_row project_item  " id="project_{{ project.id }}">
-    <td><a href="{% url 'project-detail' project.id %}" class="link">{{ project.name }}
+    <td><a href="{{project.get_absolute_url}}" class="link">{{ project.name }}
         <nobr></nobr>
     </a></td>
     <td>{{ project.user_created }} <br/><span
@@ -9,7 +9,7 @@
     </td>
     <td>{{ project.created_at|date:"d.m.Y" }}</td>
     <td>{{ project.completed_at|date:"d.m.Y"|default_if_none:"" }}</td>
-    {% if not request.POST.state or request.POST.state == 'closed' %}
+    {% if project.user_created == request.user %}
         <td style="padding-right:5px"><a class="button"
                                         onclick="display_dialog('{% trans 'Удалить выбранную запись?' %}', function(){delete_project('{{project.id}}')})"
                                         href="javascript:;"

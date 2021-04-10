@@ -1304,8 +1304,9 @@ function render_project_scheme_line(task_id, static_task_obj) {
 
             var line_href;
 
-            if (to_project_link == 1) {
-                line_href = 'href="/projects?referer=part&id=' + task_data['project_id'] + '"';
+            if (to_project_link != '') {
+                // line_href = 'href="/projects?referer=part&id=' + task_data['project_id'] + '"';
+                line_href = `href="${to_project_link}"`;
             } else {
                 line_href = 'href="javascript:;"';
             }
@@ -1942,37 +1943,4 @@ function get_project_task_new_reports_count(task_id) {
             }
 
         });
-}
-function change_page(event){
-    event.preventDefault();
-    var page = event.target;
-    // var url = window.location.href
-    var param = page.dataset.href;
-    $.ajax({
-        type: "POST",
-        // your urls won't work until 
-        // there is `if(regex)` inside 
-        // getCookie func at the top of the document
-        url: '/projects/',
-        data: {state:param},
-        success: function(data){
-            var project_list = document.querySelector('#project_list');
-            project_list.innerHTML = '';
-            var elements = data.elements;
-            elements.forEach(element =>{
-                project_list.innerHTML += element;
-            })
-            var nav_links = document.querySelectorAll('.page')
-            nav_links.forEach(link => {
-                if(link == page)
-                    page.classList.add('active');
-                else
-                    link.classList.remove('active');
-            })
-        },
-        error: function(error){
-            console.log({error});
-            alert('Произошла ошибка, перезагрузите страницу');
-        }
-    })
 }

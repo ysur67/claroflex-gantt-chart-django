@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from django.http import HttpResponse, JsonResponse
 from django.db.models import Q
 from django.template.loader import render_to_string
+from django.http import Http404
 
 from projects.models import Project, ProjectTask
 from projects.serializers import ProjectSerializer, ProjectTaskSerializer
@@ -17,29 +18,10 @@ class ProjectListView(LoginRequiredMixin, ListView):
     template_name = 'projects/project_list.html'
     context_object_name = 'projects'
 
-    def post(self, *args, **kwargs):
-        if self.request.is_ajax():
-            qs = self.get_queryset()
-            response_data = [self.render_projects_template(project)\
-                for project in qs]
-            return JsonResponse({
-                'elements':response_data
-            })
-        return Http404("There is no such page")
-
-    def render_projects_template(self, project):
-        return render_to_string(
-            'projects/includes/project.html',
-            {
-                'project':project,
-                'request':self.request
-            }
-        )
-
     def get_queryset(self):
         qs = super().get_queryset()
-        qs = qs.filter(deleted=False)
-        state = self.request.POST.get('state', None)
+        qs = qs.filter(deleted=False).prefetch_related('tasks')
+        state = self.request.GET.get('state', None)
         qs = self.filter_by_state(qs, state)
         return qs
 
