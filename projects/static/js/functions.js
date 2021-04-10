@@ -298,11 +298,6 @@ function display_dialog(title, yesCallBack, noCallBack) {
     });
 }
 
-function remove_loading_btn(project_id, text){
-    var elem = $('#delete_project_btn_' + project_id).children('.btn_cont');
-    $(elem).html(`<div class="btn_cont">${text}</div>`)
-}
-
 function simple_loading_btn(btn_id, default_text) {
     var elem = $('#' + btn_id);
     var width = $(elem).css('width');
