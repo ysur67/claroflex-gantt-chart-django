@@ -1,5 +1,5 @@
 {% extends 'projects/base_project.html' %}
-{% load static i18n %}
+{% load static i18n tasks_filters %}
 
 {% block right_block %}
     <div class="nav_block">
@@ -12,12 +12,12 @@
         <div class="content_block_padn">
         {% if page == 'self_projects' %}
             {% include "projects/includes/add_form.html" %}
-        {% elif page == 'member' and task_list %}
+        {% elif page == 'member' and request.user.tasks.all|filter_active %}
             <div class="add_form stand_margin">
                 <div class="title_add_form">{% trans 'Текущие задачи по проектам' %}</div>
                 {% include "projects/includes/gantt_diagram.html" %}
             <script>
-                tasks_obj = new Object({ {% for project in projects %}{% for task in task_list %}"{{task.id}}": {"task_id": "{{task.id}}", 
+                tasks_obj = new Object({ {% for project in projects %}{% for task in request.user.tasks.all|filter_active %}"{{task.id}}": {"task_id": "{{task.id}}", 
                     "start": "{{ task.created_at|date:'Y-m-d'}}", "finish": "{{task.close_date|date:'Y-m-d'}}", "date_finished": "{{task.actual_close_date|date:'Y-m-d'}}",
                     "completed": "{% if task.actual_close_date %}1{% else %}0{% endif %}", "task_desc": "{{task.description}}", "to_project_link": "{{project.get_absolute_url}}",
                     "project_id": "{{project.id}}", "after_task_id": "{{task.related_task}}", "this_user_task":"{{task.user.id}}"},{% endfor %}{% endfor %} });

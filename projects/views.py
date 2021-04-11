@@ -27,9 +27,6 @@ class ProjectListView(LoginRequiredMixin, ListView):
         context = super().get_context_data()
         current_page = self.request.GET.get('page', 'self_projects')
         context['page'] = current_page
-        if current_page == 'member':
-            task_list = self.request.user.tasks.filter(actual_close_date__isnull=True)
-            context['task_list'] = task_list
         return context
 
     def filter_by_state(self, qs, current_page):
