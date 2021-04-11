@@ -19,24 +19,28 @@ class ProjectListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         qs = super().get_queryset()
         qs = qs.filter(deleted=False).prefetch_related('tasks')
-        state = self.request.GET.get('state', 'self_projects')
-        qs = self.filter_by_state(qs, state)
+        current_page = self.request.GET.get('page', 'self_projects')
+        qs = self.filter_by_state(qs, current_page)
         return qs
 
     def get_context_data(self):
         context = super().get_context_data()
-        context['page'] = self.request.GET.get('state', 'self_projects')
+        current_page = self.request.GET.get('page', 'self_projects')
+        context['page'] = current_page
+        if current_page == 'member':
+            task_list = self.request.user.tasks.filter(actual_close_date__isnull=True)
+            context['task_list'] = task_list
         return context
 
-    def filter_by_state(self, qs, state):
+    def filter_by_state(self, qs, current_page):
         user = self.request.user 
-        if state == 'self_projects':
+        if current_page == 'self_projects':
             return qs.filter(user_created=user)
-        elif state == 'closed':
+        elif current_page == 'closed':
             return qs.filter(completed_at__isnull=False, user_created=user)
-        elif state == 'member':
+        elif current_page == 'member':
             return qs.filter(completed_at__isnull=True, tasks__user=user).distinct()
-        elif state == 'member_closed':
+        elif current_page == 'member_closed':
             return qs.filter(completed_at__isnull=False, tasks__user=user).distinct()
 
         return

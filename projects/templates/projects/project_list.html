@@ -12,12 +12,12 @@
         <div class="content_block_padn">
         {% if page == 'self_projects' %}
             {% include "projects/includes/add_form.html" %}
-        {% elif page == 'member' and request.user.tasks.all %}
+        {% elif page == 'member' and task_list %}
             <div class="add_form stand_margin">
                 <div class="title_add_form">{% trans 'Текущие задачи по проектам' %}</div>
                 {% include "projects/includes/gantt_diagram.html" %}
             <script>
-                tasks_obj = new Object({ {% for project in projects %}{% for task in project.tasks.all %}"{{task.id}}": {"task_id": "{{task.id}}", 
+                tasks_obj = new Object({ {% for project in projects %}{% for task in task_list %}"{{task.id}}": {"task_id": "{{task.id}}", 
                     "start": "{{ task.created_at|date:'Y-m-d'}}", "finish": "{{task.close_date|date:'Y-m-d'}}", "date_finished": "{{task.actual_close_date|date:'Y-m-d'}}",
                     "completed": "{% if task.actual_close_date %}1{% else %}0{% endif %}", "task_desc": "{{task.description}}", "to_project_link": "{{project.get_absolute_url}}",
                     "project_id": "{{project.id}}", "after_task_id": "{{task.related_task}}", "this_user_task":"{{task.user.id}}"},{% endfor %}{% endfor %} });
@@ -54,12 +54,12 @@
 
         <div class="task_top_panel project_top_menu">
             {% url 'project-list' as PROJECTS_URL %}
-            <a class="item {% if page == 'self_projects' %}active{% endif %}" href="{{ PROJECTS_URL }}">{% trans 'Мои проекты' %} <span
+            <a class="item {% if page == 'self_projects' %}active{% endif %}" href="{{ PROJECTS_URL }}?page=self_projects">{% trans 'Мои проекты' %} <span
                     id="new_count_for_worker"></span></a>
-            <a class="item {% if page == 'closed' %}active{% endif %}"  href="{{ PROJECTS_URL }}?state=closed" >{% trans 'Мои закрытые проекты' %}</a>
-            <a class="item {% if page == 'member' %}active{% endif %}" href="{{ PROJECTS_URL }}?state=member" >{% trans 'Проекты, в которых участвую' %} <span
+            <a class="item {% if page == 'closed' %}active{% endif %}"  href="{{ PROJECTS_URL }}?page=closed" >{% trans 'Мои закрытые проекты' %}</a>
+            <a class="item {% if page == 'member' %}active{% endif %}" href="{{ PROJECTS_URL }}?page=member" >{% trans 'Проекты, в которых участвую' %} <span
                     id="new_count_in_part_projects"></span></a>
-            <a class="item {% if page == 'member_closed' %}active{% endif %}" href="{{ PROJECTS_URL }}?state=member_closed">{% trans 'Закрытые, в которых участвую' %}</a>
+            <a class="item {% if page == 'member_closed' %}active{% endif %}" href="{{ PROJECTS_URL }}?page=member_closed">{% trans 'Закрытые, в которых участвую' %}</a>
             <div class="clear"></div>
         </div> 
 
