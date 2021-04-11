@@ -4,9 +4,7 @@ from rest_framework import viewsets, generics
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.http import HttpResponse, JsonResponse
-from django.db.models import Q
 from django.template.loader import render_to_string
-from django.http import Http404
 
 from projects.models import Project, ProjectTask
 from projects.serializers import ProjectSerializer, ProjectTaskSerializer
@@ -21,20 +19,27 @@ class ProjectListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         qs = super().get_queryset()
         qs = qs.filter(deleted=False).prefetch_related('tasks')
-        state = self.request.GET.get('state', None)
+        state = self.request.GET.get('state', 'self_projects')
         qs = self.filter_by_state(qs, state)
         return qs
 
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['page'] = self.request.GET.get('state', 'self_projects')
+        return context
+
     def filter_by_state(self, qs, state):
         user = self.request.user 
-        if state == 'closed':
-            return qs.filter(Q(completed_at__isnull=False) & Q(user_created=user))
+        if state == 'self_projects':
+            return qs.filter(user_created=user)
+        elif state == 'closed':
+            return qs.filter(completed_at__isnull=False, user_created=user)
         elif state == 'member':
-            return qs.filter(Q(completed_at__isnull=True) & Q(tasks__user=user)).distinct()
+            return qs.filter(completed_at__isnull=True, tasks__user=user).distinct()
         elif state == 'member_closed':
-            return qs.filter(Q(completed_at__isnull=False) & Q(tasks__user=user)).distinct()
+            return qs.filter(completed_at__isnull=False, tasks__user=user).distinct()
 
-        return qs.filter(user_created=user)
+        return
 
 
 class ProjectDetailView(DetailView):

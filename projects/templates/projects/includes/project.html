@@ -1,7 +1,7 @@
 {% load static i18n %}
 
 <tr class="task_it_row project_item  " id="project_{{ project.id }}">
-    <td><a href="{{project.get_absolute_url}}" class="link">{{ project.name }}
+    <td><a href="{% url 'project-detail' project.id %}" class="link">{{ project.name }}
         <nobr></nobr>
     </a></td>
     <td>{{ project.user_created }} <br/><span
