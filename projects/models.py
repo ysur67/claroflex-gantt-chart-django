@@ -58,6 +58,11 @@ class ProjectFile(models.Model):
     created_at = models.DateTimeField('Created at', auto_now_add=True)
 
 
+class ProjectTaskQuerySet(models.QuerySet):
+    def active(self):
+        return self.filter(actual_close_date__isnull=True)
+
+
 class ProjectTask(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='tasks')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, verbose_name='Task user', related_name='tasks')
@@ -69,6 +74,8 @@ class ProjectTask(models.Model):
     actual_start_date = models.DateField('Actual start date', null=True, blank=True)
     actual_close_date = models.DateField('Actual close date', null=True, blank=True)
     related_task = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
+
+    objects = ProjectTaskQuerySet.as_manager()
 
     @property
     def user_name(self):

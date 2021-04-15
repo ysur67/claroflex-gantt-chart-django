@@ -8,39 +8,76 @@ from django.template.loader import render_to_string
 
 from projects.models import Project, ProjectTask
 from projects.serializers import ProjectSerializer, ProjectTaskSerializer
+from abc import ABC, abstractmethod
 
 
-class ProjectListView(LoginRequiredMixin, ListView):
+class ProjectListViewCreator(LoginRequiredMixin, ListView, ABC):
     login_url = '/login/'
     model = Project
     template_name = 'projects/project_list.html'
     context_object_name = 'projects'
 
+    @abstractmethod
+    def get_queryset(self):
+        qs = super(ListView, self).get_queryset()
+        qs = qs.filter(deleted=False).prefetch_related('tasks')
+        return qs
+
+    @abstractmethod
+    def get_context_data(self):
+        return super(ListView, self).get_context_data()
+
+class UserProjectListView(ProjectListViewCreator):
     def get_queryset(self):
         qs = super().get_queryset()
-        qs = qs.filter(deleted=False).prefetch_related('tasks')
-        current_page = self.request.GET.get('page', 'self_projects')
-        qs = self.filter_by_state(qs, current_page)
-        return qs
+        return qs.filter(user_created=self.request.user)
 
     def get_context_data(self):
         context = super().get_context_data()
-        current_page = self.request.GET.get('page', 'self_projects')
-        context['page'] = current_page
+        context['page'] = 'SELF_PROJECTS'
         return context
 
-    def filter_by_state(self, qs, current_page):
-        user = self.request.user 
-        if current_page == 'self_projects':
-            return qs.filter(user_created=user)
-        elif current_page == 'closed':
-            return qs.filter(completed_at__isnull=False, user_created=user)
-        elif current_page == 'member':
-            return qs.filter(completed_at__isnull=True, tasks__user=user).distinct()
-        elif current_page == 'member_closed':
-            return qs.filter(completed_at__isnull=False, tasks__user=user).distinct()
 
-        return
+class ClosedProjectListView(ProjectListViewCreator):
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(
+            completed_at__isnull=False, 
+            user_created=self.request.user
+        )
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['page'] = 'CLOSED_PROJECTS' 
+        return context
+
+
+class MemberProjectListView(ProjectListViewCreator):
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(
+            completed_at__isnull=True, 
+            tasks__user=self.request.user
+        ).distinct()
+    
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['page'] = 'MEMBER_PROJECTS'
+        return context
+
+
+class MemberClosedProjectListView(ProjectListViewCreator):
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(
+            completed_at__isnull=False, 
+            tasks__user=self.request.user
+        ).distinct()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'MEMBER_CLOSED_PROJECTS' 
+        return context
 
 
 class ProjectDetailView(DetailView):
