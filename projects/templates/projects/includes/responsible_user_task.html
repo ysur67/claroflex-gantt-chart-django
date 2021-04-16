@@ -10,6 +10,7 @@
     <td class="task_num" num=""></td>
 
     <td class="task_user_c" >{{ task.user_name }}
+    <input type="hidden" id="select_task_user_{{ task.id }}" value="{{ task.user.id }}" not_select="1">
     <div class="project_task_desc_bl d_none" id="project_task_desc_show_{{ task.id }}" style="display: none;">
         <span id="task_desc_{{ task.id }}">
             {{ task.description }}

@@ -109,16 +109,19 @@
                         <div style="float:right">
                             <div class="project_closed_title project_str_closed_status">
                                 {% if object.completed_at %}{% trans 'Проект закрыт' %}{% endif %}</div>
-                            <a class="button"
-                               onclick="project_close({{ object.id }}, '{% if object.completed_at %}open{% else %}close{% endif %}')"
-                               href="javascript:;"
-                               id="project_close_btn" closed="0">
-                                <div class="right"></div>
-                                <div class="left"></div>
-                                <div class="btn_cont">{% if object.completed_at %}{% trans 'открыть' %}{% else %}
-                                    {% trans 'закрыть' %}{% endif %} {% trans 'проект' %} <span
-                                        class="link_cancel">&times;</span></div>
-                            </a>
+                                {% if request.user == object.responsible_user %}
+                                    <a class="button"
+                                        onclick="project_close({{ object.id }}, '{% if object.completed_at %}open{% else %}close{% endif %}')"
+                                        href="javascript:;"
+                                        id="project_close_btn" closed="0">
+                                        <div class="right"></div>
+                                        <div class="left"></div>
+                                        <div class="btn_cont">{% if object.completed_at %}{% trans 'открыть' %}{% else %}
+                                            {% trans 'закрыть' %}{% endif %} {% trans 'проект' %} <span
+                                                class="link_cancel">&times;</span></div>
+                                    </a>
+                                {% endif %}
+                            
                         </div>
 
 
