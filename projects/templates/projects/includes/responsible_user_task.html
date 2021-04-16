@@ -1,0 +1,86 @@
+{% load i18n %}
+<tr class="task {% if request.user == task.user %}user_task{% endif %}" id="task_{{ task.id }}"
+    task_id="{{ task.id }}"
+    completed="{% if task.actual_close_date %}1{% else %}0{% endif %}" 
+    after_task_id="0"
+    date_finished="{% if task.actual_close_date %}{{ task.actual_close_date|date:"Y-m-d" }}{% else %}0000-00-00 00:00:00{% endif %}"
+    num="1"
+    is_participation=0>
+
+    <td class="task_num" num=""></td>
+
+    <td class="task_user_c" >{{ task.user_name }}
+    <div class="project_task_desc_bl d_none" id="project_task_desc_show_{{ task.id }}" style="display: none;">
+        <span id="task_desc_{{ task.id }}">
+            {{ task.description }}
+        </span>
+        <div class="stand_margin">
+            <a href="javascript:;" class="link" onclick="$('#project_task_desc_show_{{ task.id }}').hide(); $('#show_task_desc_a_{{ task.id }}').show()">
+                Скрыть
+            </a>
+        </div>
+    </div>
+    <div class="stand_margin" id="show_task_desc_a_{{ task.id }}" style="display: block;"> 
+        <a href="javascript:;" class="link" onclick="$('#project_task_desc_show_{{ task.id }}').fadeIn(200); $('#show_task_desc_a_{{ task.id }}').hide()">
+            Показать описание задачи
+        </a>
+    </div>
+    <div id="comments_{{ task.id }}" class="project_task_comments_bl"></div>
+    {% if request.user == task.user %}
+        <div class="project_task_completed_bl" id="project_task_completed_bl_{{ task.id }}">
+            {% if task.user == request.user %}
+                {% if not task.actual_close_date %}
+                    <a class="button"
+                        onclick="project_task_complete('{{ task.id }}',1)"
+                        href="javascript:;"
+                        id="complete_project_task_btn_{{ task.id }}">
+                            <div class="right"></div>
+                            <div class="left"></div>
+                            <div class="btn_cont">{% trans 'задание выполнено' %}</div>
+                    </a>
+                    {% else %}
+                    <a class="button"
+                    onclick="project_task_complete('{{ task.id }}',0)"
+                    href="javascript:;"
+                    id="complete_project_task_btn_{{ task.id }}">
+                        <div class="right"></div>
+                        <div class="left"></div>
+                        <div class="btn_cont">{% trans 'задание не выполнено' %}</div>
+                    </a>
+                    {% endif %}
+                {% else %}
+                {% if task.actual_close_date %}
+                    <div class="project_task_completed_str">{% trans 'Задание выполнено' %}</div>
+                {% endif %}
+            {% endif %}
+        </div>
+    {% endif %}
+
+    </td>
+
+    <td class="prt_after_sel_bl">
+       <div>{% if task.related_task %}{{ task.related_task.id }}{% else %}-{% endif %}</div>
+    </td>
+
+    <td class="prt_dates_bl">
+        <div class="prt_date_t">{% trans 'По плану' %}</div>
+        <span task_id="{{ task.id }}" 
+            id="task_date_start_{{ task.id }}"
+            class="prtdt date_start" 
+            not_picker="1"
+            value="{{ task.start_date|date:"d.m.Y" }}">{{ task.start_date|date:'d.m.Y' }}</span>
+        <span task_id="{{ task.id }}" 
+            id="task_date_finish_{{ task.id }}"
+            class="prtdt date_finish" 
+            value="{{ task.close_date|date:"d.m.Y" }}"
+            not_picker="1">{{ task.close_date|date:"d.m.Y" }}</span>
+        <div class="clear"></div>
+        <div class="prt_date_t">{% trans 'По факту' %}</div> 
+        <div>
+            <div class="prtdt" id="fact_date_start_{{ task.id }}"></div>
+            <div class="prtdt" id="fact_date_finish_{{ task.id }}"></div>
+            <div class="clear"></div>
+        </div>
+    </td>
+    <td>&nbsp;</td>
+</tr>
