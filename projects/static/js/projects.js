@@ -521,14 +521,22 @@ function get_today_timedate() {
 
 
 function delete_project(project_id) {
-    loading_btn('delete_project_btn_' + project_id);
-
-    $.post(`/api/v1/projects/${project_id}/delete/`,
-        {},
-        function (data) {
+    $.ajax({
+        type: "POST",
+        url: `/api/v1/projects/${project_id}/delete/`,
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: {},
+        success: function (data) {
             $('#project_' + project_id).replaceWith(`<tr class="tb_data_1_row" id="project_' + project_id + '"><td colspan="5"><div class="success">${gettext('Проект успешно удален')} | <a href="javascript:;" onclick="restore_project(' + project_id + ');">${gettext('Восстановить')}</a> | <a href="javascript:;" onclick="$(\'#project_' + project_id + '\').remove();">${gettext('Скрыть')}</a></div></td></tr>`);
-        });
+        },
+        error: function (error) {
+            alert('Произошла ошибка, презагрузите страницу');
+            console.log({error});
+        }
+    });
 }
+
 
 function restore_project(project_id) {
     $.post('/ajax/ajaxProjects.php',
@@ -1296,8 +1304,9 @@ function render_project_scheme_line(task_id, static_task_obj) {
 
             var line_href;
 
-            if (to_project_link == 1) {
-                line_href = 'href="/projects?referer=part&id=' + task_data['project_id'] + '"';
+            if (to_project_link != '') {
+                // line_href = 'href="/projects?referer=part&id=' + task_data['project_id'] + '"';
+                line_href = `href="${to_project_link}"`;
             } else {
                 line_href = 'href="javascript:;"';
             }
