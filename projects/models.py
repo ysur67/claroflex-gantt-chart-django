@@ -60,7 +60,10 @@ class ProjectFile(models.Model):
 
 class ProjectTaskQuerySet(models.QuerySet):
     def active(self):
-        return self.filter(actual_close_date__isnull=True)
+        return self.filter(
+            actual_close_date__isnull=True,
+            project__deleted=False
+        )
 
 
 class ProjectTask(models.Model):
