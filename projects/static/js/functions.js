@@ -279,6 +279,25 @@ function loading_btn(btn_id, default_text) {
 
 }
 
+function display_dialog(title, yesCallBack, noCallBack) {
+    var $dialog = $('#dialog');
+    $('.modal-title').text(title);
+    $dialog.css('display', 'flex');
+    $('#bYes').on('click', function(e){
+        e.preventDefault();
+        yesCallBack();
+        $dialog.css('display', 'none');
+        $('#bNo').off('click');
+    });
+    $('#bNo').on('click', function(e){
+        e.preventDefault();
+        if(noCallBack)
+            noCallBack();
+        $dialog.css('display', 'none');
+        $('#bNo').off('click');
+    });
+}
+
 function simple_loading_btn(btn_id, default_text) {
     var elem = $('#' + btn_id);
     var width = $(elem).css('width');

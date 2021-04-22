@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
 
 
 def get_user_name(user):
@@ -28,6 +29,9 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("project-detail", kwargs={"pk": self.id})
+
     @property
     def user_created_name(self):
         return get_user_name(self.user_created)
@@ -54,9 +58,17 @@ class ProjectFile(models.Model):
     created_at = models.DateTimeField('Created at', auto_now_add=True)
 
 
+class ProjectTaskQuerySet(models.QuerySet):
+    def active(self):
+        return self.filter(
+            actual_close_date__isnull=True,
+            project__deleted=False
+        )
+
+
 class ProjectTask(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='tasks')
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, verbose_name='Task user')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, verbose_name='Task user', related_name='tasks')
     description = models.TextField('Task Description', null=True, blank=True)
     created_at = models.DateTimeField('Created at', auto_now_add=True)
     updated_at = models.DateTimeField('Updated at', auto_now=True)
@@ -65,6 +77,8 @@ class ProjectTask(models.Model):
     actual_start_date = models.DateField('Actual start date', null=True, blank=True)
     actual_close_date = models.DateField('Actual close date', null=True, blank=True)
     related_task = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
+
+    objects = ProjectTaskQuerySet.as_manager()
 
     @property
     def user_name(self):
