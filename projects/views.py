@@ -74,8 +74,8 @@ class MemberClosedProjectListView(ProjectListViewCreator):
             tasks__user=self.request.user
         ).distinct()
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get_context_data(self):
+        context = super().get_context_data()
         context['page'] = 'MEMBER_CLOSED_PROJECTS' 
         return context
 

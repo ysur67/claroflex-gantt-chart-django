@@ -69,7 +69,7 @@ class ProjectSerializer(serializers.ModelSerializer):
                 tasks_ids.add(task.id)
                 if task_data.get('id'):
                     tasks_ids.add(task_data['id'])
-
-            if tasks_ids:
-                ProjectTask.objects.exclude(id__in=tasks_ids).delete()
+            # Не очень понял в чем была идея этой строчки
+            # if tasks_ids:
+            #     ProjectTask.objects.exclude(id__in=tasks_ids).delete()
         return instance
