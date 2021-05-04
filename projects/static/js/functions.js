@@ -953,7 +953,7 @@ function create_popup_block(elem_id, width, data, cancel_text, hide_bottom) {
 			</tr>
 			<tr>
 			<td class="td_title td_vert_top">${gettext('Ответственное лицо')}</td>
-            <td class="td_value"><select id="project_head"><option value="${data.responsible_use}" class="selected" >${data.responsible_user_name}</option></select>
+            <td class="td_value"><select id="project_head"><option value="${data.responsible_user}" class="selected" >${data.responsible_user_name}</option></select>
             </td>
 			</tr>
 			</tbody>

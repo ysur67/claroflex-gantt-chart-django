@@ -12,8 +12,10 @@
 
         <div class="content_block_padn">
             <div class="project_closed_title"></div>
-            <a href="javascript:;" onclick="get_project_edit_form({{ object.id }})" class="link"
-               style="float:right">{% trans 'Изменить данные' %}</a>
+            {% if object.user_created == request.user %}
+                <a href="javascript:;" onclick="get_project_edit_form({{ object.id }})" class="link"
+                style="float:right">{% trans 'Изменить данные' %}</a>
+            {% endif %}
             <div class="project_title">{{ object.name }}</div>
             <div id="project_desc_show" class="d_none stand_margin">
                 {{ object.description|safe }}
@@ -22,10 +24,12 @@
                        onclick="$('#project_desc_show').hide(); $('#show_project_desc').show()">{% trans 'Скрыть' %}</a>
                 </div>
             </div>
-            <div class="stand_margin" id="show_project_desc">
-                <a href="javascript:;" class="link"
-                   onclick="$('#project_desc_show').fadeIn(200); $('#show_project_desc').hide()">{% trans 'Показать описание проекта' %}</a>
-            </div>
+            {% if object.description %}
+                <div class="stand_margin" id="show_project_desc">
+                    <a href="javascript:;" class="link"
+                    onclick="$('#project_desc_show').fadeIn(200); $('#show_project_desc').hide()">{% trans 'Показать описание проекта' %}</a>
+                </div>
+            {% endif %}
             <div style="margin-top:15px"></div>
 
             <table cellpadding="0" cellspacing="0">
