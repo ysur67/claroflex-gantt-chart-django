@@ -17,13 +17,13 @@
         </span>
         <div class="stand_margin">
             <a href="javascript:;" class="link" onclick="$('#project_task_desc_show_{{ task.id }}').hide(); $('#show_task_desc_a_{{ task.id }}').show()">
-                Скрыть
+                {% trans "Скрыть" %}
             </a>
         </div>
     </div>
     <div class="stand_margin" id="show_task_desc_a_{{ task.id }}" style="display: block;"> 
         <a href="javascript:;" class="link" onclick="$('#project_task_desc_show_{{ task.id }}').fadeIn(200); $('#show_task_desc_a_{{ task.id }}').hide()">
-            Показать описание задачи
+            {% trans "Показать описание задачи" %}
         </a>
     </div>
     <div id="comments_{{ task.id }}" class="project_task_comments_bl"></div>
