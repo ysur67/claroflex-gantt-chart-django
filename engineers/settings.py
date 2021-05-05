@@ -131,6 +131,12 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.JSONParser',
     ],
     "DATE_INPUT_FORMATS": ["%d-%m-%Y", "%d.%m.%Y", '%Y-%m-%d'],
+    'DATETIME_FORMAT': "%d.%m.%Y %H:%M:%S",
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.TemplateHTMLRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
 }
 
 LOCALE_PATHS = (

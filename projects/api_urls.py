@@ -7,6 +7,7 @@ from . import views
 router = SimpleRouter()
 router.register('projects', views.ProjectViewSet, basename='projects')
 router.register('project-tasks', views.ProjectTaskViewSet, basename='projects')
+router.register('project-comments', views.ProjectCommentViewSet, basename='projects')
 
 urlpatterns = [
     path('', include(router.urls)),

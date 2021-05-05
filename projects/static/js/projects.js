@@ -567,32 +567,40 @@ function add_project_report(project_id) {
 
     loading_btn('add_report_btn_' + project_id);
 
-    $.post('/ajax/ajaxProjects.php',
-        {
-            mode: 'add_project_report',
-            project_id: project_id,
-            report_text: report_text
-        },
-        function (data) {
+    const url = `/api/v1/project-comments/`
+
+    const request_data = {
+        project_id: project_id,
+        comment_text: report_text
+    }
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(request_data),
+        success: function (data) {
 
             loading_btn('add_report_btn_' + project_id, 1);
 
             project_report_btn = 0;
 
-            if (data['error']) {
-                if (data['error']['report_text'] == '1') {
-                    $('#report_text').focus();
-                }
-            }
-            if (data['success'] == 1) {
+            if (data['id']) {
                 tinyMCE.editors['report_text'].setContent('');
                 $('#report_text').focus();
-
-                get_project_report_item(data['report_id']);
-                confirm_project_report(0, 1);
+    
+                get_project_report_item(data['id']);
+                // confirm_project_report(0, 1);
             }
-
-        }, 'json');
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            loading_btn('add_report_btn_' + project_id, 1); 
+            project_report_btn = 0;
+            $('#report_text').focus(); 
+            console.log(JSON.parse(jqXHR.responseText));
+        }
+    });
 
 }
 
@@ -625,38 +633,40 @@ function get_more_project_reports() {
 
 
 function get_project_report_item(report_id, with_replace) {
-    $.post('/ajax/ajaxProjects.php',
-        {
-            mode: 'get_project_report_item',
-            report_id: report_id,
-            project_id: project_id
-        },
-        function (data) {
-
+    $.ajax({
+        type: "GET",
+        url: `/api/v1/project-comments/${report_id}/`,
+        dataType: 'html',
+        contentType: "text/html; charset=utf-8",
+        data:{},
+        success: function (data) {
+            console.log(data)
             if (!with_replace) {
                 $('#reports_list').prepend(data);
                 $('#no_reports').remove();
             }
-
-        });
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(errorThrown)
+        }
+    });
 }
 
 
 // Принять отчет о круге обязанностей 
 function confirm_project_report(report_id, confirm_all) {
     loading_btn('confirm_report_btn_' + report_id);
+    const url = `/api/v1/project-comments/${report_id}/confirm/`
 
-    $.post('/ajax/ajaxProjects.php',
-        {
-            mode: 'confirm_project_report',
-            report_id: report_id,
-            project_id: project_id,
-            confirm_all: confirm_all
-
-        },
-        function (data) {
-
-            if (data == 1) {
+    $.ajax({
+        type: "POST",
+        url: url,
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data:{},
+        success: function (data) {
+            console.log(data)
+            if (data) {
                 if (report_id) {
                     $('#confirm_report_' + report_id).remove();
                     $('#report_' + report_id).removeClass('not_confirm');
@@ -664,48 +674,54 @@ function confirm_project_report(report_id, confirm_all) {
                     $('.confirm_btn_for_report_' + project_id).remove();
                     $('.report_item_' + project_id).removeClass('not_confirm');
                 }
-
+            
                 recount_project_notice();
             }
-
-        });
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(errorThrown)
+        }
+    })
 }
 
 function delete_project_report(report_id, project_id) {
-    $.post('/ajax/ajaxProjects.php',
-        {
-            mode: 'delete_project_report',
-            report_id: report_id,
-            project_id: project_id
-
-        },
-        function (data) {
-
-            if (data == 1) {
+    $.ajax({
+        type: "POST",
+        url: `/api/v1/project-comments/${report_id}/remove/`,
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data:{},
+        success: function (data) {
+            console.log(data)
+            if (data) {
                 $('.cont_hide_' + report_id + '_' + project_id).hide();
                 $('#cont_report_result_' + report_id + '_' + project_id).html('<div class="">Комментарий успешно удален | <a href="javascript:;" onclick="restore_project_report(\'' + report_id + '\',\'' + project_id + '\')" class="link">Восстановить</a> | <a href="javascript:;" onclick="$(\'#report_' + report_id + '\').remove()" class="link">Скрыть</a> </div>');
-
-                recount_project_notice();
+            
+                // recount_project_notice();
             }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(errorThrown)
+        }
+    });
 
-        });
 }
 
 function restore_project_report(report_id, project_id) {
-    $.post('/ajax/ajaxProjects.php',
+    $.post(`/api/v1/project-comments/${report_id}/restore/`,
         {
-            mode: 'restore_project_report',
-            report_id: report_id,
-            project_id: project_id
+            // mode: 'restore_project_report',
+            // report_id: report_id,
+            // project_id: project_id
 
         },
         function (data) {
 
-            if (data == 1) {
+            if (data) {
                 $('.cont_hide_' + report_id + '_' + project_id).show();
                 $('#cont_report_result_' + report_id + '_' + project_id).html('');
 
-                recount_project_notice();
+                // recount_project_notice();
             }
 
         });
