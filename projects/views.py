@@ -82,7 +82,8 @@ class MemberClosedProjectListView(ProjectListViewCreator):
         return context
 
 
-class ProjectDetailView(DetailView):
+class ProjectDetailView(LoginRequiredMixin, DetailView):
+    login_url = '/login/'
     model = Project
 
 
