@@ -2,7 +2,9 @@ from django.db import transaction
 from django.utils.translation import gettext as _
 from rest_framework import serializers
 
-from projects.models import Project, ProjectTask
+from projects.models import Project, ProjectTask, ProjectComment
+from django.contrib.auth.models import User
+from rest_framework.settings import api_settings
 
 
 class ProjectTaskSerializer(serializers.ModelSerializer):
@@ -69,7 +71,43 @@ class ProjectSerializer(serializers.ModelSerializer):
                 tasks_ids.add(task.id)
                 if task_data.get('id'):
                     tasks_ids.add(task_data['id'])
-            # Не очень понял в чем была идея этой строчки
-            # if tasks_ids:
-            #     ProjectTask.objects.exclude(id__in=tasks_ids).delete()
         return instance
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['id', 'username']
+
+
+class ProjectCommentSerializer(serializers.ModelSerializer):
+    project = ProjectSerializer(read_only=True)
+    user_left = UserSerializer(read_only=True)
+    date = serializers.DateTimeField(required=False, format='%d.%m.%Y %H:%M:%S')
+
+    class Meta:
+        model = ProjectComment
+        fields = '__all__'
+        set_timezone = 'date'
+
+    def validate(self, attrs):
+        project_id = self.initial_data['project_id']
+        project = Project.objects.filter(id=project_id)
+        if project.exists():
+            return attrs
+        raise serializers.ValidationError({
+            'project_id': _('Проект не найден')
+        })
+
+    def create(self, validated_data):
+        project_id = self.initial_data['project_id']
+        project_instance = Project.objects.get(id=project_id)
+        comment_text = validated_data.pop('comment_text', [])
+        request = self.context['request']
+        comment = ProjectComment.objects.create(
+            user_left=request.user,
+            project=project_instance,
+            comment_text=comment_text
+        )
+        return comment

@@ -150,7 +150,7 @@
                     <br/>
 
                     <div class="add_form_btn_margin">
-                        <a class="button" onclick="add_project_report('137')" href="javascript:;"
+                        <a class="button" onclick="add_project_report({{ object.id }})" href="javascript:;"
                            id="add_report_btn_137">
                             <div class="right"></div>
                             <div class="left"></div>
@@ -161,9 +161,16 @@
 
                 </div>
             </div>
-
             <div id="reports_list">
-                <div class="no_contents" id="no_reports" {% trans 'Отчет отсутствует' %}.
+                {% with object.comments.active as comments %}
+                    {% if comments %}
+                        {% for comment in comments %}
+                            {% include 'projects/includes/comment.html' with object=comment %}
+                        {% endfor %}
+                    {% else %}
+                        <div class="no_contents" id="no_reports">Отчет отсутствует.</div>
+                    {% endif %}
+                {% endwith %}
             </div>
         </div>
 

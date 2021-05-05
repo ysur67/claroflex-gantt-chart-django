@@ -1,10 +1,15 @@
 from django.contrib import admin
 
-from projects.models import Project, ProjectTask
+from projects.models import Project, ProjectTask, ProjectComment
 
 
 class ProjectTaskInline(admin.TabularInline):
     model = ProjectTask
+    extra = 0
+
+
+class ProjectCommentInline(admin.TabularInline):
+    model = ProjectComment
     extra = 0
 
 
@@ -20,4 +25,5 @@ class ProjectAdmin(admin.ModelAdmin):
     )
     inlines = (
         ProjectTaskInline,
+        ProjectCommentInline
     )

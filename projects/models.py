@@ -91,3 +91,38 @@ class ProjectTask(models.Model):
     def open(self):
         self.actual_close_date = None
         self.save(update_fields=['actual_close_date', 'updated_at', ])
+
+
+class ProjectCommentQuerySet(models.QuerySet):
+    def active(self):
+        return self.filter(deleted=False)
+
+
+class ProjectComment(models.Model):
+
+    class Meta:
+        ordering = ['-date',]
+
+    project = models.ForeignKey(Project, null=False, blank=False, verbose_name='Related project', on_delete=models.CASCADE, related_name='comments')
+    user_left = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='User left', related_name='project_comment', null=True)
+    comment_text = models.TextField(verbose_name="Comment's text", null=False, blank=False)
+    date = models.DateTimeField('Created at', auto_now_add=True, null=True)
+    confirmed = models.BooleanField('Confirmed', default=False)
+    deleted = models.BooleanField('Deleted?', default=False)
+
+    objects = ProjectCommentQuerySet.as_manager()
+
+    def __str__(self):
+        return str(self.project)
+
+    def remove(self):
+        self.deleted = True
+        self.save()
+
+    def restore(self):
+        self.deleted = False
+        self.save()
+
+    def confirm(self):
+        self.confirmed = True
+        self.save()
