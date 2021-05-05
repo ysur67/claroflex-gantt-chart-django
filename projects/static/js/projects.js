@@ -692,7 +692,9 @@ function delete_project_report(report_id, project_id) {
         success: function (data) {
             if (data) {
                 $('.cont_hide_' + report_id + '_' + project_id).hide();
-                $('#cont_report_result_' + report_id + '_' + project_id).html('<div class="">Комментарий успешно удален | <a href="javascript:;" onclick="restore_project_report(\'' + report_id + '\',\'' + project_id + '\')" class="link">Восстановить</a> | <a href="javascript:;" onclick="$(\'#report_' + report_id + '\').remove()" class="link">Скрыть</a> </div>');
+                $('#cont_report_result_' + report_id + '_' + project_id).html(
+                    '<div class="">' + gettext('Комментарий успешно удален ') + '| <a href="javascript:;" onclick="restore_project_report(\'' + report_id + '\',\'' + project_id + '\')" class="link">' + gettext('Восстановить') + '</a> | <a href="javascript:;" onclick="$(\'#report_' + report_id + '\').remove()" class="link">' + gettext('Скрыть') + '</a> </div>'
+                );
             
                 // recount_project_notice();
             }

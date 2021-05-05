@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 10:28+0000\n"
+"POT-Creation-Date: 2021-05-05 09:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -437,7 +437,7 @@ msgstr "Datos guardados exitosamente"
 msgid "По плану"
 msgstr "De hecho"
 
-#: projects/static/js/projects.js:476 projects/static/js/projects.js:932
+#: projects/static/js/projects.js:476 projects/static/js/projects.js:947
 msgid "Выбрать сотрудника"
 msgstr "Seleccione un empleado"
 
@@ -445,71 +445,79 @@ msgstr "Seleccione un empleado"
 msgid "Проект успешно удален"
 msgstr "Proyecto eliminado correctamente"
 
-#: projects/static/js/projects.js:531
+#: projects/static/js/projects.js:531 projects/static/js/projects.js:696
 msgid "Восстановить"
 msgstr "Restablecer"
 
-#: projects/static/js/projects.js:753
+#: projects/static/js/projects.js:696
+msgid "Комментарий успешно удален "
+msgstr "Proyecto eliminado correctamente"
+
+#: projects/static/js/projects.js:696
+msgid "Скрыть"
+msgstr "abrir"
+
+#: projects/static/js/projects.js:768
 msgid "задание не выполнено"
-msgstr ""
+msgstr "tarea no completada"
 
-#: projects/static/js/projects.js:761
+#: projects/static/js/projects.js:776
 msgid "задание выполнено"
-msgstr ""
+msgstr "tarea terminada"
 
-#: projects/static/js/projects.js:857
+#: projects/static/js/projects.js:872
 msgid "открыть"
 msgstr "abrir"
 
-#: projects/static/js/projects.js:857
+#: projects/static/js/projects.js:872
 msgid "закрыть"
 msgstr "cerrar"
 
-#: projects/static/js/projects.js:860
+#: projects/static/js/projects.js:875
 msgid "проект"
 msgstr "proyecto"
 
-#: projects/static/js/projects.js:871
+#: projects/static/js/projects.js:886
 msgid "Проект успешно открыт"
 msgstr "Proyecto abierto con éxito"
 
-#: projects/static/js/projects.js:1630
+#: projects/static/js/projects.js:1645
 msgid "день"
 msgstr "dia"
 
-#: projects/static/js/projects.js:1630
+#: projects/static/js/projects.js:1645
 msgid "дня"
 msgstr "del día"
 
-#: projects/static/js/projects.js:1630
+#: projects/static/js/projects.js:1645
 msgid "дней"
 msgstr "dias"
 
-#: projects/static/js/projects.js:1720
+#: projects/static/js/projects.js:1735
 msgid "Закрыть"
 msgstr "Cerrar"
 
-#: projects/static/js/projects.js:1720
+#: projects/static/js/projects.js:1735
 msgid "Отчет"
 msgstr "Reporte"
 
-#: projects/static/js/projects.js:1726
+#: projects/static/js/projects.js:1741
 msgid "написать"
 msgstr "escribir"
 
-#: projects/static/js/projects.js:1738
+#: projects/static/js/projects.js:1753
 msgid "Игнатьев Дмитрий Геннадьевич"
 msgstr "Juan Antonio Rodríguez"
 
-#: projects/static/js/projects.js:1738
+#: projects/static/js/projects.js:1753
 msgid "Акционер"
 msgstr "Accionista"
 
-#: projects/static/js/projects.js:1738
+#: projects/static/js/projects.js:1753
 msgid "Клиент"
 msgstr "Cliente"
 
-#: projects/static/js/projects.js:1759
+#: projects/static/js/projects.js:1774
 msgid "17 март в 12:25"
 msgstr "17 de marzo a las 12:25"
 
