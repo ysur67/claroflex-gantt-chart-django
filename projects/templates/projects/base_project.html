@@ -60,14 +60,14 @@
         current_user_id = '1099';
         title = gettext('Cистема управления заданиями');
         o = 'projects';
-        $(document).ready(function () {
+        {% comment %} $(document).ready(function () {
             if (o != 'auth') {
                 set_u_act();
                 {#Left_menu.check_new_count('new_tasks_count');#}
                 check_new_msgs(current_user_id);
                 $('textarea').autoResize();
             }
-        })
+        }) {% endcomment %}
 
         msg_audio_init();
 

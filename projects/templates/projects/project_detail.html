@@ -200,7 +200,7 @@
 
     <script>
         project_id = '{{ object.id }}';
-        Disk.get_content_file_upload_form('{{ object.id }}', 8, 'file_form_{{ object.id }}');
+        {% comment %} Disk.get_content_file_upload_form('{{ object.id }}', 8, 'file_form_{{ object.id }}'); {% endcomment %}
         $('.task .date_inp').live('change', show_gr_edited_notice);
         projects_tasks_init();
         after_tasks_select_init();

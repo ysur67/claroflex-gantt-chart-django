@@ -38,7 +38,7 @@
                 });
             </script>
             <script>
-                Disk.get_content_file_upload_form('0', 8, 'file_form_0');
+                {% comment %} Disk.get_content_file_upload_form('0', 8, 'file_form_0'); {% endcomment %}
                 $('#add_more_project_task_btn').trigger('click');
                 after_tasks_select_init();
                 $('.after_task_s').live('change', pr_task_after_task_change);
