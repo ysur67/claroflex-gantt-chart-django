@@ -107,7 +107,6 @@ class ProjectComment(models.Model):
     user_left = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='User left', related_name='project_comment', null=True)
     comment_text = models.TextField(verbose_name="Comment's text", null=False, blank=False)
     date = models.DateTimeField('Created at', auto_now_add=True, null=True)
-    confirmed = models.BooleanField('Confirmed', default=False)
     deleted = models.BooleanField('Deleted?', default=False)
 
     objects = ProjectCommentQuerySet.as_manager()
@@ -121,8 +120,4 @@ class ProjectComment(models.Model):
 
     def restore(self):
         self.deleted = False
-        self.save()
-
-    def confirm(self):
-        self.confirmed = True
         self.save()

@@ -144,9 +144,3 @@ class ProjectCommentViewSet(viewsets.ModelViewSet):
         obj = self.get_object()
         obj.restore()
         return Response({})
-
-    @action(methods=['POST'], detail=True, url_path='confirm')
-    def confirm(self, *args, **kwargs):
-        obj = self.get_object()
-        obj.confirm()
-        return Response({})

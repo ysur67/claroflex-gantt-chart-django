@@ -640,7 +640,6 @@ function get_project_report_item(report_id, with_replace) {
         contentType: "text/html; charset=utf-8",
         data:{},
         success: function (data) {
-            console.log(data)
             if (!with_replace) {
                 $('#reports_list').prepend(data);
                 $('#no_reports').remove();
@@ -665,7 +664,6 @@ function confirm_project_report(report_id, confirm_all) {
         contentType: "application/json; charset=utf-8",
         data:{},
         success: function (data) {
-            console.log(data)
             if (data) {
                 if (report_id) {
                     $('#confirm_report_' + report_id).remove();
@@ -692,7 +690,6 @@ function delete_project_report(report_id, project_id) {
         contentType: "application/json; charset=utf-8",
         data:{},
         success: function (data) {
-            console.log(data)
             if (data) {
                 $('.cont_hide_' + report_id + '_' + project_id).hide();
                 $('#cont_report_result_' + report_id + '_' + project_id).html('<div class="">Комментарий успешно удален | <a href="javascript:;" onclick="restore_project_report(\'' + report_id + '\',\'' + project_id + '\')" class="link">Восстановить</a> | <a href="javascript:;" onclick="$(\'#report_' + report_id + '\').remove()" class="link">Скрыть</a> </div>');
