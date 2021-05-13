@@ -12,7 +12,7 @@
     <table cellpadding="0" cellspacing="0" >
         <tr>
             <td class="user_left"><a href="/id{{ object.user_left.id }}" class="user_link"><img src="{% static 'img/avatar-placeholder.png' %}"/></a></td>
-            <td class="user_right"><b><a href="/id{{ object.user_left.id }}" class="user_link">{{ object.user_left.username }}</a></b>
+            <td class="user_right"><b><a href="/id{{ object.user_left.id }}" class="user_link">{{ object.user_left.first_name }} {{ object.user_left.last_name }}</a></b>
             <span class="user_position">{% trans 'Акционер' %} / {% trans 'Инвестор' %} / {% trans 'Клиент' %}</span>        
             <div class="user_cont">
                 <div class="cont_hide_{{ object.id }}_{{ object.project.id }}">
