@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-05 09:54+0000\n"
+"POT-Creation-Date: 2021-05-13 12:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,27 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: engineers/settings.py:147
+#: engineers/settings.py:148
 msgid "English"
 msgstr "Ingles"
 
-#: engineers/settings.py:148
+#: engineers/settings.py:149
 msgid "Russian"
 msgstr "Rusia"
 
-#: engineers/settings.py:149
+#: engineers/settings.py:150
 msgid "Spain"
 msgstr "España"
 
-#: projects/serializers.py:27
+#: projects/serializers.py:29
 msgid "Дата старта задачи не может быть меньше даты завершения"
 msgstr ""
 "La fecha de inicio de la tarea no puede ser menor que la fecha de "
 "finalización"
 
-#: projects/serializers.py:100
-msgid "Проект не найден"
-msgstr "El proyecto esta cerrado"
+#: projects/serializers.py:110
+msgid "Объект не найден"
+msgstr "El objeto no encontrado"
 
 #: projects/templates/projects/base_project.html:7
 msgid "Projects"
@@ -48,11 +48,11 @@ msgstr "Proyecto"
 msgid "Home"
 msgstr "Inicio"
 
-#: projects/templates/projects/base_project.html:83
+#: projects/templates/projects/base_project.html:84
 msgid "выход"
 msgstr "Salida"
 
-#: projects/templates/projects/base_project.html:117
+#: projects/templates/projects/base_project.html:118
 msgid "система автоматизации бизнеса"
 msgstr "sistema de automatización empresarial"
 
@@ -62,7 +62,7 @@ msgid "Добавить проект"
 msgstr "Agregar proyecto"
 
 #: projects/templates/projects/includes/add_form.html:9
-#: projects/templates/projects/project_list.html:75
+#: projects/templates/projects/project_list.html:76
 msgid "Название"
 msgstr "Nombre"
 
@@ -104,7 +104,7 @@ msgstr "Comunicación"
 #: projects/templates/projects/project_detail.html:55
 #: projects/templates/projects/project_detail.html:91
 #: projects/templates/projects/project_detail.html:95
-#: projects/templates/projects/project_list.html:77
+#: projects/templates/projects/project_list.html:78
 msgid "Дата старта"
 msgstr "Fecha de inicio"
 
@@ -113,7 +113,7 @@ msgstr "Fecha de inicio"
 #: projects/templates/projects/project_detail.html:56
 #: projects/templates/projects/project_detail.html:92
 #: projects/templates/projects/project_detail.html:96
-#: projects/templates/projects/project_list.html:78
+#: projects/templates/projects/project_list.html:79
 msgid "Дата завершения"
 msgstr "Fecha de real-ón"
 
@@ -134,16 +134,19 @@ msgstr "Esconder"
 
 #: projects/templates/projects/includes/comment.html:16
 #: projects/templates/projects/includes/project.html:8
+#: projects/templates/projects/includes/report.html:14
 msgid "Акционер"
 msgstr "Accionista"
 
 #: projects/templates/projects/includes/comment.html:16
 #: projects/templates/projects/includes/project.html:8
+#: projects/templates/projects/includes/report.html:14
 msgid "Инвестор"
 msgstr "Inversor"
 
 #: projects/templates/projects/includes/comment.html:16
 #: projects/templates/projects/includes/project.html:8
+#: projects/templates/projects/includes/report.html:14
 msgid "Клиент"
 msgstr "Cliente"
 
@@ -155,40 +158,46 @@ msgstr "¿Eliminar la entrada seleccionada?"
 msgid "удалить"
 msgstr "eliminar"
 
+#: projects/templates/projects/includes/report.html:24
+msgid "Подтвердить отчет"
+msgstr "Confirmar informeo"
+
 #: projects/templates/projects/includes/responsible_user_task.html:26
 msgid "Показать описание задачи"
 msgstr "Mostrar descripción del proyecto"
 
-#: projects/templates/projects/includes/responsible_user_task.html:40
+#: projects/templates/projects/includes/responsible_user_task.html:33
+#: projects/templates/projects/includes/user_created_task.html:26
+#: projects/templates/projects/report_form.html:7
+msgid "Отчет"
+msgstr "Reporte"
+
+#: projects/templates/projects/includes/responsible_user_task.html:51
 #: projects/templates/projects/includes/user_created_task.html:42
 msgid "задание выполнено"
 msgstr "tarea terminada"
 
-#: projects/templates/projects/includes/responsible_user_task.html:49
+#: projects/templates/projects/includes/responsible_user_task.html:60
 #: projects/templates/projects/includes/user_created_task.html:51
 msgid "задание не выполнено"
 msgstr "tarea no completada"
 
-#: projects/templates/projects/includes/responsible_user_task.html:54
+#: projects/templates/projects/includes/responsible_user_task.html:65
 #: projects/templates/projects/includes/user_created_task.html:56
 msgid "Задание выполнено"
 msgstr "Tarea terminada"
 
-#: projects/templates/projects/includes/responsible_user_task.html:67
+#: projects/templates/projects/includes/responsible_user_task.html:78
 #: projects/templates/projects/includes/user_created_task.html:69
 #: projects/templates/projects/project_detail.html:91
 msgid "По плану"
 msgstr "De acuerdo al plan"
 
-#: projects/templates/projects/includes/responsible_user_task.html:79
+#: projects/templates/projects/includes/responsible_user_task.html:90
 #: projects/templates/projects/includes/user_created_task.html:80
 #: projects/templates/projects/project_detail.html:95
 msgid "По факту"
 msgstr "De hecho"
-
-#: projects/templates/projects/includes/user_created_task.html:26
-msgid "Отчет"
-msgstr "Reporte"
 
 #: projects/templates/projects/includes/user_created_task.html:90
 msgid "Удалить задачу"
@@ -196,7 +205,7 @@ msgstr "Eliminar tarea"
 
 #: projects/templates/projects/project_detail.html:6
 #: projects/templates/projects/project_list.html:7
-#: projects/templates/projects/project_list.html:59
+#: projects/templates/projects/project_list.html:60
 msgid "Мои проекты"
 msgstr "Mis proyectos"
 
@@ -256,29 +265,37 @@ msgstr "Añadir un comentario"
 msgid "Текущие задачи по проектам"
 msgstr "Mostrar descripción del proyecto"
 
-#: projects/templates/projects/project_list.html:61
+#: projects/templates/projects/project_list.html:62
 msgid "Мои закрытые проекты"
 msgstr "Mis proyectos cerrados"
 
-#: projects/templates/projects/project_list.html:62
+#: projects/templates/projects/project_list.html:63
 msgid "Проекты, в которых участвую"
 msgstr "Proyectos en los que participo"
 
-#: projects/templates/projects/project_list.html:64
+#: projects/templates/projects/project_list.html:65
 msgid "Закрытые, в которых участвую"
 msgstr "Cerrados, en el que participo"
 
-#: projects/templates/projects/project_list.html:76
+#: projects/templates/projects/project_list.html:77
 msgid "Добавил"
 msgstr "Añadido por"
 
-#: projects/templates/projects/project_list.html:111
+#: projects/templates/projects/project_list.html:112
 msgid "Удалить"
 msgstr "Eliminar"
 
-#: projects/templates/projects/project_list.html:112
+#: projects/templates/projects/project_list.html:113
 msgid "Отмена"
 msgstr "Cancelación"
+
+#: projects/templates/projects/report_form.html:6
+msgid "Закрыть"
+msgstr "cerrar"
+
+#: projects/templates/projects/report_form.html:17
+msgid "написать"
+msgstr "escribir"
 
 #~ msgid "Отчет отсутствует"
 #~ msgstr "Sin informe"

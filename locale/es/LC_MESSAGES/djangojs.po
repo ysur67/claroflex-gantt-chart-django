@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-05 09:54+0000\n"
+"POT-Creation-Date: 2021-05-13 12:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -446,14 +446,15 @@ msgid "Проект успешно удален"
 msgstr "Proyecto eliminado correctamente"
 
 #: projects/static/js/projects.js:531 projects/static/js/projects.js:696
+#: projects/static/js/projects.js:1827
 msgid "Восстановить"
 msgstr "Restablecer"
 
-#: projects/static/js/projects.js:696
+#: projects/static/js/projects.js:696 projects/static/js/projects.js:1827
 msgid "Комментарий успешно удален "
 msgstr "Proyecto eliminado correctamente"
 
-#: projects/static/js/projects.js:696
+#: projects/static/js/projects.js:696 projects/static/js/projects.js:1827
 msgid "Скрыть"
 msgstr "abrir"
 
@@ -493,34 +494,6 @@ msgstr "del día"
 msgid "дней"
 msgstr "dias"
 
-#: projects/static/js/projects.js:1735
-msgid "Закрыть"
-msgstr "Cerrar"
-
-#: projects/static/js/projects.js:1735
-msgid "Отчет"
-msgstr "Reporte"
-
-#: projects/static/js/projects.js:1741
-msgid "написать"
-msgstr "escribir"
-
-#: projects/static/js/projects.js:1753
-msgid "Игнатьев Дмитрий Геннадьевич"
-msgstr "Juan Antonio Rodríguez"
-
-#: projects/static/js/projects.js:1753
-msgid "Акционер"
-msgstr "Accionista"
-
-#: projects/static/js/projects.js:1753
-msgid "Клиент"
-msgstr "Cliente"
-
-#: projects/static/js/projects.js:1774
-msgid "17 март в 12:25"
-msgstr "17 de marzo a las 12:25"
-
 #: projects/static/js/tinymce/tinymce.min.js:6
 msgid "align"
 msgstr "alinear"
@@ -532,6 +505,27 @@ msgstr "blockquote"
 #: projects/static/js/tinymce/tinymce.min.js:6
 msgid "p"
 msgstr "p"
+
+#~ msgid "Закрыть"
+#~ msgstr "Cerrar"
+
+#~ msgid "Отчет"
+#~ msgstr "Reporte"
+
+#~ msgid "написать"
+#~ msgstr "escribir"
+
+#~ msgid "Игнатьев Дмитрий Геннадьевич"
+#~ msgstr "Juan Antonio Rodríguez"
+
+#~ msgid "Акционер"
+#~ msgstr "Accionista"
+
+#~ msgid "Клиент"
+#~ msgstr "Cliente"
+
+#~ msgid "17 март в 12:25"
+#~ msgstr "17 de marzo a las 12:25"
 
 #~ msgid "Инвестор"
 #~ msgstr "Inversor"
