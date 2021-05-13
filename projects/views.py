@@ -1,4 +1,6 @@
+import re
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models.query import FlatValuesListIterable
 from django.views.generic import ListView, DetailView
 from rest_framework import viewsets, generics
 from rest_framework.decorators import action
@@ -8,8 +10,8 @@ from django.template.loader import render_to_string
 from rest_framework.renderers import TemplateHTMLRenderer, JSONRenderer
 from .renderers import CommentHtmlRenderer
 
-from projects.models import Project, ProjectTask, ProjectComment
-from projects.serializers import ProjectSerializer, ProjectTaskSerializer, ProjectCommentSerializer
+from projects.models import Project, ProjectTask, ProjectComment, TaskComment
+from projects.serializers import ProjectSerializer, ProjectTaskSerializer, ProjectCommentSerializer, TaskCommentSerializer
 from abc import ABC, abstractmethod
 
 
@@ -127,6 +129,17 @@ class ProjectTaskViewSet(generics.UpdateAPIView, viewsets.GenericViewSet):
         obj.open()
         return Response({})
 
+    @action(methods=['POST'], detail=True, url_path='reports')
+    def get_reports_template(self, *args, **kwargs):
+        obj = self.get_object()
+        template = render_to_string(
+            'projects/report_form.html',
+            context={'object': obj, 'request': self.request}
+        )
+        return JsonResponse({
+            'template': template
+        })
+
 
 class ProjectCommentViewSet(viewsets.ModelViewSet):
     serializer_class = ProjectCommentSerializer
@@ -144,4 +157,16 @@ class ProjectCommentViewSet(viewsets.ModelViewSet):
     def restore(self, *args, **kwargs):
         obj = self.get_object()
         obj.restore()
+        return Response({})
+
+
+class TaskCommentViewSet(ProjectCommentViewSet):
+    serializer_class = TaskCommentSerializer
+    queryset = TaskComment.objects.all()
+    template_name = 'projects/includes/report.html'
+
+    @action(methods=['POST'], detail=True, url_path='confirm')
+    def confirm(self, *args, **kwargs):
+        obj = self.get_object()
+        obj.confirm()
         return Response({})

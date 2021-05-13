@@ -1,8 +1,10 @@
+from os import read
+import re
 from django.db import transaction
 from django.utils.translation import gettext as _
 from rest_framework import serializers
 
-from projects.models import Project, ProjectTask, ProjectComment
+from projects.models import Project, ProjectTask, ProjectComment, TaskComment, Comment
 from django.contrib.auth.models import User
 from rest_framework.settings import api_settings
 
@@ -83,33 +85,64 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username']
 
 
-class ProjectCommentSerializer(serializers.ModelSerializer):
-    project = ProjectSerializer(read_only=True)
+class CommentSerializer(serializers.ModelSerializer):
     user_left = UserSerializer(read_only=True)
     date = serializers.DateTimeField(required=False, format='%d.%m.%Y %H:%M:%S')
 
+    serialized_class_title = ''
+    serialized_class = ProjectComment
+    related_class = ''
+    request_id = ''
+
     class Meta:
-        model = ProjectComment
+        model = Comment
         fields = '__all__'
         set_timezone = 'date'
 
     def validate(self, attrs):
-        project_id = self.initial_data['project_id']
-        project = Project.objects.filter(id=project_id)
-        if project.exists():
+        if not self.request_id:
             return attrs
-        raise serializers.ValidationError({
-            'project_id': _('Проект не найден')
-        })
+
+        request_id = self.initial_data[self.request_id]
+        objects = self.related_class.objects.filter(id=request_id)
+        if not objects.exists():
+            raise serializers.ValidationError({
+                self.request_id: _('Объект не найден')
+            })
+
+        return attrs
 
     def create(self, validated_data):
-        project_id = self.initial_data['project_id']
-        project_instance = Project.objects.get(id=project_id)
-        comment_text = validated_data.pop('comment_text', [])
-        request = self.context['request']
-        comment = ProjectComment.objects.create(
-            user_left=request.user,
-            project=project_instance,
-            comment_text=comment_text
-        )
-        return comment
+        data = validated_data.copy()
+        if self.related_class:
+            obj_id = self.initial_data[self.request_id]
+            data[self.serialized_class_title] = self.related_class.objects.get(id=obj_id)
+        data['user_left'] = self.context['request'].user
+        data['comment_text'] = validated_data.pop('comment_text', [])
+        instance = self.serialized_class.objects.create(**data)
+        return instance
+
+class ProjectCommentSerializer(CommentSerializer):
+    project = ProjectSerializer(read_only=True)
+
+    serialized_class_title = 'project'
+    serialized_class = ProjectComment
+    related_class = Project
+    request_id = 'project_id'
+
+    class Meta:
+        model = ProjectComment
+        fields = '__all__'
+
+
+class TaskCommentSerializer(CommentSerializer):
+    task = ProjectTaskSerializer(read_only=True)
+
+    serialized_class_title = 'task'
+    serialized_class = TaskComment
+    related_class = ProjectTask
+    request_id = 'task_id'
+
+    class Meta:
+        model = TaskComment
+        fields = '__all__'

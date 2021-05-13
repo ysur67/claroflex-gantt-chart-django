@@ -2,6 +2,8 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from polymorphic.models import PolymorphicModel
+from polymorphic.managers import PolymorphicQuerySet
 
 
 def get_user_name(user):
@@ -93,26 +95,25 @@ class ProjectTask(models.Model):
         self.save(update_fields=['actual_close_date', 'updated_at', ])
 
 
-class ProjectCommentQuerySet(models.QuerySet):
+class CommentQuerySet(PolymorphicQuerySet):
     def active(self):
         return self.filter(deleted=False)
 
 
-class ProjectComment(models.Model):
+class Comment(PolymorphicModel):
 
     class Meta:
-        ordering = ['-date',]
+        ordering = ['-id']
 
-    project = models.ForeignKey(Project, null=False, blank=False, verbose_name='Related project', on_delete=models.CASCADE, related_name='comments')
-    user_left = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='User left', related_name='project_comment', null=True)
+    user_left = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='User left', related_name='comments', null=True)
     comment_text = models.TextField(verbose_name="Comment's text", null=False, blank=False)
     date = models.DateTimeField('Created at', auto_now_add=True, null=True)
     deleted = models.BooleanField('Deleted?', default=False)
 
-    objects = ProjectCommentQuerySet.as_manager()
+    objects = CommentQuerySet.as_manager()
 
     def __str__(self):
-        return str(self.project)
+        return f'Comment {self.id} left by {str(self.user_left)}'
 
     def remove(self):
         self.deleted = True
@@ -120,4 +121,17 @@ class ProjectComment(models.Model):
 
     def restore(self):
         self.deleted = False
+        self.save()
+
+
+class ProjectComment(Comment):
+    project = models.ForeignKey(Project, null=False, blank=False, verbose_name='Related project', on_delete=models.CASCADE, related_name='comments')
+
+
+class TaskComment(Comment):
+    task = models.ForeignKey(ProjectTask, verbose_name='Related task', on_delete=models.CASCADE, related_name='reports')
+    confirmed = models.BooleanField('Confirmed?', default=False)
+
+    def confirm(self):
+        self.confirmed = True
         self.save()

@@ -1,0 +1,36 @@
+{% load static i18n parse_iso %}
+
+<div class="user_cont_block project_report_item task_report_item_{{ object.task.id }} {% if not object.confirmed %}not_confirm{% endif %}" id="task_report_{{ object.id }}">
+<div class="task_report_cont_hide_{{ object.id }}_{{ object.task.id }}">
+    <div class="edit_tools">
+        {% if request.user.id == object.user_left.id %}
+            <a href="javascript:;" class="delete" onclick="delete_project_task_report('{{ object.id }}', '{{ object.task.id }}')"></a>
+        {% endif %}
+    </div>
+</div>
+<table cellpadding="0" cellspacing="0" >
+<tr>
+    <td class="user_left"><a href="/id1099" class="user_link"><img src= {% static '/img/avatar-placeholder.png' %} /></a></td>
+        <td class="user_right"><b><a href="/id1099" class="user_link">{{ object.user_left.username }}</a></b> <span class="user_position">{% trans 'Акционер' %} / {% trans 'Инвестор' %} / {% trans 'Клиент' %}</span>        
+        <div class="user_cont">
+        <div class="task_report_cont_hide_{{ object.id }}_{{ object.task.id }}">
+         <div class="user_cont_text"><p>{{ object.comment_text|safe }}</p></div>
+            <div class="user_cont_sub">{% parse_datetime object.date %}</div>
+         
+            </div>
+        <div id="cont_task_report_result_{{ object.id }}_{{ object.task.id }}">
+            {% if not object.confirmed and request.user.id == object.user_left.id %}
+                <div class="add_form_btn_margin confirm_btn_for_report_{{ object.project.id }}" id="confirm_report_{{ object.id }}">
+                    <a class="button" onclick="confirm_project_task_report('{{ object.id }}', '{{ object.task.id }}')" href="javascript:;" id="confirm_report_btn_{{ object.id }}">
+                    <div class="right"></div>
+                    <div class="left"></div>
+                    <div class="btn_cont">{% trans "Подтвердить отчет" %}</div></a>	
+                    <div  class="clear"></div>
+                </div>
+            {% endif %}
+        </div>
+        </div>        
+        </td>
+    </tr>
+</table>
+</div>

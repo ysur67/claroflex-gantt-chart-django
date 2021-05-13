@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from projects.models import Project, ProjectTask, ProjectComment
+from projects.models import Project, ProjectTask, ProjectComment, TaskComment
 
 
 class ProjectTaskInline(admin.TabularInline):
@@ -10,6 +10,11 @@ class ProjectTaskInline(admin.TabularInline):
 
 class ProjectCommentInline(admin.TabularInline):
     model = ProjectComment
+    extra = 0
+
+
+class TaskCommentInline(admin.TabularInline):
+    model = TaskComment
     extra = 0
 
 
@@ -26,4 +31,15 @@ class ProjectAdmin(admin.ModelAdmin):
     inlines = (
         ProjectTaskInline,
         ProjectCommentInline
+    )
+
+
+@admin.register(ProjectTask)
+class ProjectTaskAdmin(admin.ModelAdmin):
+    inlines = (
+        TaskCommentInline,
+    )
+    list_display = (
+        'project', 'user',
+        'created_at',
     )

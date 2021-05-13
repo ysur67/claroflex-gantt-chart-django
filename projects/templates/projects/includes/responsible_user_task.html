@@ -26,6 +26,17 @@
             {% trans "Показать описание задачи" %}
         </a>
     </div>
+
+    <div style="margin:5px 0px 8px 0px">
+        <a href="javascript:;"
+           onclick="show_project_tasks_comments('{{ task.id }}')"
+           class="link_proc">{% trans 'Отчет' %}
+            <span class="new_count"
+                  id="new_task_report_count_{{ task.id }}"></span></a>
+        <div id="comments_{{ task.id }}"
+             class="project_task_comments_bl"></div>
+    </div>
+
     <div id="comments_{{ task.id }}" class="project_task_comments_bl"></div>
     {% if request.user == task.user %}
         <div class="project_task_completed_bl" id="project_task_completed_bl_{{ task.id }}">
