@@ -14,11 +14,8 @@
         <td class="user_right"><b><a href="/id1099" class="user_link">{{ object.user_left.username }}</a></b> <span class="user_position">{% trans 'Акционер' %} / {% trans 'Инвестор' %} / {% trans 'Клиент' %}</span>        
         <div class="user_cont">
         <div class="task_report_cont_hide_{{ object.id }}_{{ object.task.id }}">
-         <div class="user_cont_text"><p>{{ object.comment_text|safe }}</p></div>
+            <div class="user_cont_text"><p>{{ object.comment_text|safe }}</p></div>
             <div class="user_cont_sub">{% parse_datetime object.date %}</div>
-         
-            </div>
-        <div id="cont_task_report_result_{{ object.id }}_{{ object.task.id }}">
             {% if not object.confirmed and request.user.id == object.user_left.id %}
                 <div class="add_form_btn_margin confirm_btn_for_report_{{ object.project.id }}" id="confirm_report_{{ object.id }}">
                     <a class="button" onclick="confirm_project_task_report('{{ object.id }}', '{{ object.task.id }}')" href="javascript:;" id="confirm_report_btn_{{ object.id }}">
@@ -29,6 +26,7 @@
                 </div>
             {% endif %}
         </div>
+        <div id="cont_task_report_result_{{ object.id }}_{{ object.task.id }}"></div>
         </div>        
         </td>
     </tr>
